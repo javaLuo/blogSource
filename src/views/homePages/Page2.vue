@@ -6,19 +6,19 @@
 </template>
 
 <script>
-import Menus from '../../components/Menus.vue';
+import Menus from "../../components/Menus.vue";
 export default {
   name: "page2",
   data: function() {
     return {
-      isShow: false,
+      isShow: false
     };
   },
   props: {
-      pageNow: Number,
+    pageNow: Number
   },
   components: {
-      Menus,
+    Menus
   },
   mounted() {
     if (this.pageNow === 1) {
@@ -32,8 +32,8 @@ export default {
 </script>
 
 <style scoped lang="less">
-    .page2{
-        height: 100%;
-        display: flex;
-    }
+.page2 {
+  height: 100%;
+  display: flex;
+}
 </style>

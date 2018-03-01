@@ -8,7 +8,7 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: "Futura-Thin", 'Helvetica Neue', Helvetica, sans-serif;
+  font-family: "Futura-Thin", "Helvetica Neue", Helvetica, sans-serif;
 }
 div,
 ul,

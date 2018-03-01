@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { isPc } from '../util/tools';
+import { isPc } from "../util/tools";
 import Swiper from "swiper";
 import Page1 from "./homePages/Page1.vue";
 import Page2 from "./homePages/Page2.vue";
@@ -37,7 +37,7 @@ export default {
   },
   methods: {
     initScroll() {
-        const pc = isPc();
+      const pc = isPc();
       this.scrollDom = new Swiper(".swiper-container", {
         direction: "vertical",
         slidesPerView: "auto",
@@ -51,11 +51,13 @@ export default {
           }
         }
       });
-      if(!pc) {
-          document.getElementById('swiper-wrapper').style.transitionTimingFunction = 'cubic-bezier(.5, .5, .5, .5)';
-          console.log('触发了');
+      if (!pc) {
+        document.getElementById(
+          "swiper-wrapper"
+        ).style.transitionTimingFunction =
+          "cubic-bezier(.5, .5, .5, .5)";
+        console.log("触发了");
       }
-
     }
   }
 };

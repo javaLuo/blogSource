@@ -26,23 +26,23 @@ export default {
   z-index: 3;
   font-size: 14px;
   letter-spacing: 1px;
-    &>ul{
-        display: flex;
-        &>li{
-            padding: 0 8px;
-            position: relative;
-            &+li{
-                &::before{
-                    content: '';
-                    width: 1px;
-                    position: absolute;
-                    left: 0;
-                    top: 5px;
-                    height: 8px;
-                    background-color: #fff;
-                }
-            }
+  & > ul {
+    display: flex;
+    & > li {
+      padding: 0 8px;
+      position: relative;
+      & + li {
+        &::before {
+          content: "";
+          width: 1px;
+          position: absolute;
+          left: 0;
+          top: 5px;
+          height: 8px;
+          background-color: #fff;
         }
+      }
     }
+  }
 }
 </style>
