@@ -39,35 +39,35 @@ export default {
         const rgb = Math.round(this.random(0, 155));
         if (i < many / 5) {
           params = {
-            h: 400,
+            h: 300,
             w: 1,
             color: `rgba(${rgb}, ${rgb}, ${rgb}, 0.6)`,
             s: 30
           };
         } else if (i < many / 4) {
           params = {
-            h: 500,
+            h: 400,
             w: 1,
             color: `rgba(${rgb}, ${rgb}, ${rgb}, 0.7)`,
             s: 35
           };
         } else if (i < many / 3) {
           params = {
-            h: 600,
+            h: 500,
             w: 1,
             color: `rgba(${rgb}, ${rgb}, ${rgb}, 0.8)`,
             s: 40
           };
         } else if (i < many / 2) {
           params = {
-            h: 700,
+            h: 600,
             w: 1,
             color: `rgba(${rgb}, ${rgb}, ${rgb}, 0.9)`,
             s: 45
           };
         } else {
           params = {
-            h: 800,
+            h: 700,
             w: 1,
             color: `rgba(${rgb}, ${rgb}, ${rgb}, 1)`,
             s: 50

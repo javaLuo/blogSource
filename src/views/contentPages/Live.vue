@@ -1,5 +1,5 @@
 <template>
-    <ul class="live" v-on:scroll.prevent="testScroll">
+    <ul class="live" @mousewhell.stop="testScroll">
         <ArtiveList v-for="(v, index) in listData.article" :thisData="v" :key="index"></ArtiveList>
     </ul>
 </template>
