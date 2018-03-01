@@ -11,7 +11,7 @@
 </template>
 
 <script>
-    import { isPc } from '../util/tools';
+import { isPc } from '../util/tools';
 import Swiper from "swiper";
 import Page1 from "./homePages/Page1.vue";
 import Page2 from "./homePages/Page2.vue";

@@ -1,6 +1,6 @@
 <template>
-    <ul class="live">
-        <ArtiveList v-for="{v, index} in listData.article" :thisData="v" :key="index"></ArtiveList>
+    <ul class="live" v-on:scroll.prevent="testScroll">
+        <ArtiveList v-for="(v, index) in listData.article" :thisData="v" :key="index"></ArtiveList>
     </ul>
 </template>
 
@@ -21,15 +21,8 @@
             ArtiveList,
         },
         methods: {
-            onLogin() {
-                this.$store
-                    .dispatch({
-                        type: "app/onLogin",
-                        params: { username: this.username, password: this.password }
-                    })
-                    .then(res => {
-                        console.log("能返回么：", res);
-                    });
+            testScroll: function() {
+                console.log('触发了Scroll');
             }
         },
         mounted() {
@@ -40,3 +33,15 @@
         }
     };
 </script>
+
+<style scoped lang="less">
+    .live{
+        display: block;
+        width: 100%;
+        height: 100vh;
+        overflow-y: auto;
+        overflow-x: hidden;
+        box-sizing: border-box;
+        padding: 32px;
+    }
+</style>

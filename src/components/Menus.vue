@@ -1,5 +1,6 @@
 <template>
     <div class="menus">
+        <CanvasBack></CanvasBack>
         <div class="info-box">
             <img class="photo" :src="ImgPic"/>
             <div class="name">Logic</div>
@@ -20,6 +21,7 @@
 
 <script>
     import ImgPic from '../assets/pic.jpg';
+    import CanvasBack from './CanvasBack.vue';
     export default {
         name: "Menus",
         data: function() {
@@ -29,6 +31,9 @@
         },
         props: {
             msg: String
+        },
+        components: {
+            CanvasBack
         }
     };
 </script>
