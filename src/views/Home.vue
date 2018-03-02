@@ -1,18 +1,19 @@
 <template>
-  <div id="home" class="home swiper-container">
+  <div id="home" class="home" @mousewheel="onMouseWheel" @DOMMouseScroll="onMouseWheel">
       <Header :pageNow="pageNow"/>
-      <div id="swiper-wrapper" class="swiper-wrapper">
-          <div class="swiper-slide swiper-no-swiping"><Page1 :pageNow="pageNow"/></div>
-          <div class="swiper-slide swiper-no-swiping"><Page2 :pageNow="pageNow"/></div>
-          <div class="swiper-slide swiper-no-swiping">3</div>
+      <div id="scroller" class="scroller">
+          <ul class="scroll-wrapper">
+              <li class="scroll-page"><Page1 :pageNow="pageNow"></Page1></li>
+              <li class="scroll-page"><Page2 :pageNow="pageNow"></Page2></li>
+              <li class="scroll-page">3</li>
+          </ul>
       </div>
-      <div class="footer">Slide 3</div>
   </div>
 </template>
 
 <script>
 import { isPc } from "../util/tools";
-import Swiper from "swiper";
+import IScroll from "iscroll";
 import Page1 from "./homePages/Page1.vue";
 import Page2 from "./homePages/Page2.vue";
 import Header from "../components/Header.vue";
@@ -21,6 +22,7 @@ export default {
   data: function() {
     return {
       scrollDom: null,
+      scrolling: false, // 是否正在滚动中
       pageNow: 0
     };
   },
@@ -38,49 +40,61 @@ export default {
   methods: {
     initScroll() {
       const pc = isPc();
-      this.scrollDom = new Swiper(".swiper-container", {
-        direction: "vertical",
-        slidesPerView: "auto",
-        mousewheel: pc,
-        speed: pc ? 1000 : 300,
-        noSwiping: pc,
-        on: {
-          slideChangeTransitionStart: () => {
-            console.log(this.scrollDom.activeIndex);
-            this.pageNow = this.scrollDom.activeIndex;
-          }
-        }
+      console.log('现在是PC吗', pc);
+      this.scrollDom = new IScroll("#scroller", {
+          snap: true,
+          bounceEasing: {
+              style: pc ? 'cubic-bezier(1,0.1,0.1,1)' : 'cubic-bezier(1,1,1,1)'
+          },
+          bounceTime: pc ? 1000 : 300,
+          preventDefault: pc,
+          disablePointer: true,
       });
-      if (!pc) {
-        document.getElementById(
-          "swiper-wrapper"
-        ).style.transitionTimingFunction =
-          "cubic-bezier(.5, .5, .5, .5)";
-        console.log("触发了");
-      }
-    }
+      this.scrollDom.on('scrollEnd', () => {
+          this.scrolling = false;
+      });
+    },
+      onMouseWheel(e) {
+        console.log('滚动：', e);
+        const f = e.wheelDeltaY || -e.detail;
+        if(this.scrolling) {
+            return;
+        }
+        let pageNow = 1;
+        if (f<0 && this.pageNow < 2) {          // 向下滚动
+            this.scrolling = true;
+            this.pageNow++;
+            this.scrollDom && this.scrollDom.goToPage(1,this.pageNow, 1000);
+        } else if (f>0 && this.pageNow > 0){    // 向上滚动
+            this.scrolling = true;
+            this.pageNow--;
+            this.scrollDom && this.scrollDom.goToPage(1,this.pageNow, 1000);
+        }
+      },
   }
 };
 </script>
 
 <style scoped lang="less">
 .home {
-  height: 100vh;
-  min-height: 400px;
-  overflow: hidden;
   background-color: #222;
-  .swiper-wrapper {
-    display: block;
-    height: 100%;
-    transition-timing-function: cubic-bezier(1, 0.01, 0.01, 1);
-    .swiper-slide {
+  .scroller {
+      height: 100vh;
+      min-height: 400px;
+      display: block;
+      overflow: hidden;
+    .scroll-wrapper {
       display: block;
       width: 100%;
-      height: 100%;
-      background-color: #fff;
-      &:last-child {
-        height: 300px;
-        background-color: #800;
+      .scroll-page{
+          display: block;
+          width: 100%;
+          height: 100vh;
+          min-height: 300px;
+          background-color: #fff;
+          &:last-child{
+              height: 300px;
+          }
       }
     }
   }

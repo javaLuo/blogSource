@@ -5,6 +5,7 @@
 </template>
 
 <script>
+    import ImgMenuBack from '../assets/menu_back.png';
 export default {
   name: "Header",
   data: function() {
@@ -12,7 +13,8 @@ export default {
       ctx: null,
       width: 0, // canvas当前的宽及像素
       height: 0, // canvas当前的高及像素
-      theRain: [] // 所有的雨
+      theRain: [], // 所有的雨
+        ImgMenuBack,
     };
   },
   mounted() {
@@ -22,10 +24,10 @@ export default {
     this.height = this.$el.clientHeight;
     this.$el.width = this.width;
     this.$el.height = this.height;
-    this.ctx.fillStyle = "#222222";
+    this.ctx.fillStyle = "transparent";
     this.ctx.lineCap = "round";
     window.addEventListener("resize", this.resize, false);
-    this.init(500);
+    this.init(100);
     this.animate();
   },
   methods: {
@@ -42,35 +44,30 @@ export default {
             h: 300,
             w: 1,
             color: `rgba(${rgb}, ${rgb}, ${rgb}, 0.6)`,
-            s: 30
           };
         } else if (i < many / 4) {
           params = {
             h: 400,
             w: 1,
             color: `rgba(${rgb}, ${rgb}, ${rgb}, 0.7)`,
-            s: 35
           };
         } else if (i < many / 3) {
           params = {
             h: 500,
             w: 1,
             color: `rgba(${rgb}, ${rgb}, ${rgb}, 0.8)`,
-            s: 40
           };
         } else if (i < many / 2) {
           params = {
             h: 600,
             w: 1,
             color: `rgba(${rgb}, ${rgb}, ${rgb}, 0.9)`,
-            s: 45
           };
         } else {
           params = {
             h: 700,
             w: 1,
             color: `rgba(${rgb}, ${rgb}, ${rgb}, 1)`,
-            s: 50
           };
         }
         const temp = {
@@ -80,7 +77,7 @@ export default {
           h: params.h, // 雨丝的长度
           w: params.w, // 雨丝的宽度
           color: params.color, // 雨丝颜色
-          s: params.s // 雨移动速度
+          s: this.random(30, 50) // 雨移动速度
         };
         this.theRain.push(temp);
       }
@@ -99,11 +96,13 @@ export default {
     },
     drow() {
       const ctx = this.ctx;
-      ctx.fillRect(0, 0, this.width, this.height);
+      // ctx.fillRect(0, 0, this.width, this.height);
+        ctx.clearRect(0, 0, this.width, this.height);
+     // ctx.drawImage(this.ImgMenuBack,0,0,this.width, this.height);
       for (let i = 0; i < this.theRain.length; i++) {
         const t = this.theRain[i];
         const deg = Math.PI / 180 * t.deg;
-        if (Math.abs(t.x) > this.width && Math.abs(t.y) > this.height) {
+        if (Math.abs(t.y) > this.height) {
           t.x = this.random(-10, this.width + 10);
           t.y = -t.h;
         } else {

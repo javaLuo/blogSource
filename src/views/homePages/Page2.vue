@@ -11,7 +11,8 @@ export default {
   name: "page2",
   data: function() {
     return {
-      isShow: false
+      isShow: false,
+        scrollDom: null,
     };
   },
   props: {
@@ -34,6 +35,7 @@ export default {
 <style scoped lang="less">
 .page2 {
   height: 100%;
+  position: relative;
   display: flex;
 }
 </style>

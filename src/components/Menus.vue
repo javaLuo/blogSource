@@ -45,6 +45,9 @@ export default {
   height: 100%;
   max-width: 512px;
   background-color: #222;
+    background-image:url(../assets/menu_back.png);
+    background-size: cover;
+    background-position: bottom center;
   display: flex;
   flex: none;
   align-items: center;
@@ -55,6 +58,7 @@ export default {
     color: #fff;
     letter-spacing: 1px;
     text-align: center;
+      z-index: 2;
     .photo {
       display: block;
       width: 30%;

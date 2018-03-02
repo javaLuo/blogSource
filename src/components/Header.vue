@@ -1,7 +1,6 @@
 <template>
     <div class="header">
         <ul>
-            <li>HI, YOU</li>
             <li>LOGIN</li>
         </ul>
     </div>

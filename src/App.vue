@@ -5,6 +5,9 @@
 </template>
 
 <style lang="less">
+    *{
+        -webkit-overflow-scrolling: touch;
+    }
 body {
   margin: 0;
   padding: 0;
@@ -103,5 +106,26 @@ th {
   -moz-osx-font-smoothing: grayscale;
   width: 100%;
   min-height: 100vh;
+}
+
+/* 美化滚动条 */
+::-webkit-scrollbar
+{
+    width: 8px;
+    height: 8px;
+    background-color: #F5F5F5;
+}
+
+/*定义滚动条轨道 内阴影+圆角*/
+::-webkit-scrollbar-track
+{
+    background-color: transparent;
+}
+
+/*定义滑块 内阴影+圆角*/
+::-webkit-scrollbar-thumb
+{
+    border-radius: 4px;
+    background-color: #222;
 }
 </style>
