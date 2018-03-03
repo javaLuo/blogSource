@@ -27,7 +27,7 @@ export default {
     this.ctx.fillStyle = "transparent";
     this.ctx.lineCap = "round";
     window.addEventListener("resize", this.resize, false);
-    this.init(100);
+    this.init(300);
     this.animate();
   },
   methods: {
@@ -38,46 +38,51 @@ export default {
        * */
       for (let i = 0; i < many; i++) {
         let params = null;
-        const rgb = Math.round(this.random(0, 155));
+        const rgb = Math.round(this.random(20, 80));
         if (i < many / 5) {
           params = {
-            h: 300,
+            h: 80,
             w: 1,
-            color: `rgba(${rgb}, ${rgb}, ${rgb}, 0.6)`,
+            s: this.random(10,12),
+            color: `rgba(${rgb}, ${rgb}, ${rgb}, 0.4)`,
           };
         } else if (i < many / 4) {
           params = {
-            h: 400,
+            h: 100,
             w: 1,
-            color: `rgba(${rgb}, ${rgb}, ${rgb}, 0.7)`,
+              s: this.random(12,14),
+            color: `rgba(${rgb}, ${rgb}, ${rgb}, 0.5)`,
           };
         } else if (i < many / 3) {
           params = {
-            h: 500,
+            h: 120,
             w: 1,
-            color: `rgba(${rgb}, ${rgb}, ${rgb}, 0.8)`,
+              s: this.random(14,16),
+            color: `rgba(${rgb}, ${rgb}, ${rgb}, 0.6)`,
           };
         } else if (i < many / 2) {
           params = {
-            h: 600,
+            h: 140,
             w: 1,
-            color: `rgba(${rgb}, ${rgb}, ${rgb}, 0.9)`,
+              s: this.random(16,18),
+            color: `rgba(${rgb}, ${rgb}, ${rgb}, 0.7)`,
           };
         } else {
           params = {
-            h: 700,
-            w: 1,
-            color: `rgba(${rgb}, ${rgb}, ${rgb}, 1)`,
+            h: 200,
+            w: 2,
+              s: this.random(18,20),
+            color: `rgba(${rgb}, ${rgb}, ${rgb}, 0.8)`,
           };
         }
         const temp = {
           x: this.random(-10, this.width + 10), // 当前起始点坐标X
           y: this.random(-1000, this.height + 1000), // 当前起始点坐标Y
-          deg: this.random(1, 1), // 斜率，偏移多少度
+          deg: this.random(-2, 5), // 斜率，偏移多少度
           h: params.h, // 雨丝的长度
           w: params.w, // 雨丝的宽度
           color: params.color, // 雨丝颜色
-          s: this.random(30, 50) // 雨移动速度
+          s: params.s // 雨移动速度
         };
         this.theRain.push(temp);
       }
@@ -96,9 +101,7 @@ export default {
     },
     drow() {
       const ctx = this.ctx;
-      // ctx.fillRect(0, 0, this.width, this.height);
         ctx.clearRect(0, 0, this.width, this.height);
-     // ctx.drawImage(this.ImgMenuBack,0,0,this.width, this.height);
       for (let i = 0; i < this.theRain.length; i++) {
         const t = this.theRain[i];
         const deg = Math.PI / 180 * t.deg;

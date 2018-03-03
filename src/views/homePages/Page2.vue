@@ -12,7 +12,7 @@ export default {
   data: function() {
     return {
       isShow: false,
-        scrollDom: null,
+        scrollDom: null
     };
   },
   props: {

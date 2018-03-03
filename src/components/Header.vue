@@ -9,8 +9,13 @@
 <script>
 export default {
   name: "Header",
+    data: function(){
+      return {
+
+      }
+    },
   props: {
-    msg: String
+
   }
 };
 </script>

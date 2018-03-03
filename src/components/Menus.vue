@@ -30,11 +30,14 @@ export default {
     };
   },
   props: {
-    msg: String
+    msg: Array
   },
   components: {
     CanvasBack
-  }
+  },
+    computed: {
+
+    }
 };
 </script>
 
@@ -73,7 +76,7 @@ export default {
     }
     .func {
       font-size: 14px;
-      margin-top: 4px;
+      margin-top: 12px;
     }
     .list-info {
       display: flex;
