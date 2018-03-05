@@ -1,6 +1,6 @@
 <template>
   <div class="page2" :class="{show: isShow}">
-      <Menus></Menus>
+      <Menus @playChange="playChange"></Menus>
       <router-view></router-view>
   </div>
 </template>
@@ -12,7 +12,7 @@ export default {
   data: function() {
     return {
       isShow: false,
-        scrollDom: null
+      scrollDom: null
     };
   },
   props: {
@@ -21,6 +21,12 @@ export default {
   components: {
     Menus
   },
+    methods: {
+        playChange(playing) {  // 菜单中的播放器按钮被点击时触发
+            console.log('触发时间：', playing);
+            this.$emit()
+        }
+    },
   mounted() {
     if (this.pageNow === 1) {
       this.isShow = true;

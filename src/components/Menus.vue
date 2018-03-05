@@ -2,7 +2,13 @@
     <div class="menus">
         <CanvasBack></CanvasBack>
         <div class="info-box">
-            <img class="photo" :src="ImgPic"/>
+            <div class="photo-box">
+                <img class="photo" :src="ImgPic" />
+                <div class="playing" :class="{ stop: !play }"></div>
+                <div class="play-btn" @click="playOrStop">
+                    <div class="line" :class="{ play }"></div>
+                </div>
+            </div>
             <div class="name">Logic</div>
             <div class="func">web前端开发工程师</div>
             <ul class="list-info">
@@ -22,35 +28,48 @@
 <script>
 import ImgPic from "../assets/pic.jpg";
 import CanvasBack from "./CanvasBack.vue";
+import { mapState } from "vuex";
 export default {
   name: "Menus",
   data: function() {
     return {
-      ImgPic
+      ImgPic,
     };
   },
-  props: {
-    msg: Array
-  },
+    methods: {
+        playOrStop() {
+            console.log('所以你为什么不变？', this.play);
+            this.$store.dispatch({
+                    type: "page/setPlaying",
+                    params: { playing: !this.play }
+                })
+        }
+    },
   components: {
     CanvasBack
   },
-    computed: {
-
-    }
+  computed: {
+      ...mapState({
+          play: state => state.page.playing,
+      })
+  }
 };
 </script>
 
 <style scoped lang="less">
+    @keyframes go-round {
+        0% { transform: rotate(0) }
+        100% { transform: rotate(360deg) }
+    }
 .menus {
   position: relative;
   width: 30vw;
   height: 100%;
   max-width: 512px;
   background-color: #222;
-    background-image:url(../assets/menu_back.png);
-    background-size: cover;
-    background-position: bottom center;
+  background-image: url(../assets/menu_back.png);
+  background-size: cover;
+  background-position: bottom center;
   display: flex;
   flex: none;
   align-items: center;
@@ -61,15 +80,83 @@ export default {
     color: #fff;
     letter-spacing: 1px;
     text-align: center;
-      z-index: 2;
-    .photo {
-      display: block;
-      width: 30%;
-      max-width: 120px;
-      border-radius: 120px;
-      border: solid 1px #fff;
-      margin: 0 auto;
-    }
+    z-index: 2;
+      .photo-box{
+          position: relative;
+          display: block;
+          width: 26%;
+          margin: 0 auto;
+          padding: 13% 0 13% 0;
+          .photo {
+              position: absolute;
+              display: block;
+              box-sizing: border-box;
+              top: 2px;
+              left: 2px;
+              width: calc(100% - 3px);
+              height: calc(100% - 3px);
+              border-radius: 100%;
+              border: solid 1px #fff;
+              z-index: 2;
+          }
+          .playing{
+              position: absolute;
+              top: 0;
+              left: 0;
+              box-sizing: border-box;
+              width: 100%;
+              height: 100%;
+              border-radius: 100%;
+              background: linear-gradient(#FFb765 , rgba(0,0,0,0));
+              animation: go-round 2s;
+              animation-iteration-count: infinite;
+              animation-timing-function: linear;
+              opacity: 1;
+              z-index: 1;
+              &.stop{
+                  animation-play-state:paused;
+              }
+          }
+          .play-btn{
+              cursor: pointer;
+              position: absolute;
+              box-sizing: border-box;
+              top: 2px;
+              left: 2px;
+              width: calc(100% - 3px);
+              height: calc(100% - 3px);
+              border-radius: 100%;
+              background-color: rgba(0,0,0,.5);
+              opacity: 0;
+              transition: all 200ms;
+              z-index: 3;
+              &:hover{
+                  opacity: 1;
+              }
+              .line{
+                  position: absolute;
+                  height: 25%;
+                  width: 25%;
+                  top: 37.5%;
+                  left: 30%;
+                  transition: all 200ms;
+                  transform: rotate(45deg);
+                  border: none;
+                  border-top: solid 1px #fff;
+                  border-right: solid 1px #fff;
+                  &.play{
+                      height: 40%;
+                      width: 10px;
+                      top: 30%;
+                      left: calc(50% - 5px);
+                      transform: rotate(0);
+                      border: none;
+                      border-left: solid 1px #fff;
+                      border-right: solid 1px #fff;
+                  }
+              }
+          }
+      }
     .name {
       font-size: 24px;
       margin-top: 24px;

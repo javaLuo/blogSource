@@ -9,14 +9,10 @@
 <script>
 export default {
   name: "Header",
-    data: function(){
-      return {
-
-      }
-    },
-  props: {
-
-  }
+  data: function() {
+    return {};
+  },
+  props: {}
 };
 </script>
 

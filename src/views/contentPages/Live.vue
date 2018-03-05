@@ -6,7 +6,6 @@
 
 <script>
 import { mapState, mapGetters } from "vuex";
-import Swiper from 'swiper';
 import ArtiveList from "../../components/ArtiveList.vue";
 import listData from "../../util/data";
 export default {
@@ -15,32 +14,30 @@ export default {
     return {
       username: "",
       password: "",
-      listData,
+      listData
     };
   },
   components: {
     ArtiveList
   },
-  mounted() {
-
-  },
+  mounted() {},
   computed: {
     allData() {
       return this.listData.article;
     }
   },
-    methods: {
-        onMousewheel(e) {
-            const f = e.wheelDeltaY || -e.detail;
-            const st = this.$el.scrollTop;
-            const sh = this.$el.scrollHeight;
-            const ch = this.$el.clientHeight;
-            console.log('子级：', st, sh, ch, f);
-            if ((f < 0 && st + ch !== sh) || (f > 0 && st !== 0)) {
-                e.stopPropagation();
-            }
-        }
+  methods: {
+    onMousewheel(e) {
+      const f = e.wheelDeltaY || -e.detail;
+      const st = this.$el.scrollTop;
+      const sh = this.$el.scrollHeight;
+      const ch = this.$el.clientHeight;
+      console.log("子级：", st, sh, ch, f);
+      if ((f < 0 && st + ch !== sh) || (f > 0 && st !== 0)) {
+        e.stopPropagation();
+      }
     }
+  }
 };
 </script>
 
