@@ -5,6 +5,7 @@
 </template>
 
 <script>
+/** 文章列表 */
 import { mapState, mapGetters } from "vuex";
 export default {
   name: "article",
@@ -15,16 +16,7 @@ export default {
     };
   },
   methods: {
-    onLogin() {
-      this.$store
-        .dispatch({
-          type: "app/onLogin",
-          params: { username: this.username, password: this.password }
-        })
-        .then(res => {
-          console.log("能返回么：", res);
-        });
-    }
+
   },
   computed: {
     ...mapState({

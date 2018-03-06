@@ -1,20 +1,18 @@
 <template>
     <ul class="live" @mousewheel="onMousewheel" @DOMMouseScroll="onMousewheel" @touchmove="onMousewheel">
-        <ArtiveList class="swiper-slide" v-for="(v, index) in allData" :thisData="v" :key="index"></ArtiveList>
+        <ArtiveList class="swiper-slide" v-for="(v, index) in listData" :thisData="v" :key="index"></ArtiveList>
     </ul>
 </template>
 
 <script>
 import { mapState, mapGetters } from "vuex";
 import ArtiveList from "../../components/ArtiveList.vue";
-import listData from "../../util/data";
 export default {
   name: "live",
   data: function() {
     return {
       username: "",
       password: "",
-      listData
     };
   },
   components: {
@@ -22,9 +20,9 @@ export default {
   },
   mounted() {},
   computed: {
-    allData() {
-      return this.listData.article;
-    }
+      ...mapState({
+        listData: state => state.app.blogList,
+      })
   },
   methods: {
     onMousewheel(e) {

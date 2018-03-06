@@ -12,7 +12,7 @@
             <div class="name">Logic</div>
             <div class="func">web前端开发工程师</div>
             <ul class="list-info">
-                <li>文章 12</li>
+                <li>文章 {{ articleLength }}</li>
                 <li>作品 5</li>
                 <li>日志 10</li>
             </ul>
@@ -51,6 +51,7 @@ export default {
   computed: {
       ...mapState({
           play: state => state.page.playing,
+          articleLength: state => state.app.blogList.length,
       })
   }
 };

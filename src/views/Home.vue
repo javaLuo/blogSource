@@ -55,6 +55,7 @@ export default {
         this.mp3Dom.a.currentTime = 2;
       }
     };
+    this.getBlogList();
   },
   beforeDestroy: function() {
     this.scrollDom && this.scrollDom.destroy();
@@ -127,7 +128,14 @@ export default {
       } else {
         this.mp3Dom.a.pause();
       }
-    }
+    },
+      /** 进入页面及获取所有文章列表 **/
+      getBlogList() {
+        this.$store.dispatch({
+            type: 'app/getBlogList',
+            params: null,
+        })
+      }
   },
   watch: {
     pageNow(newV, oldV) {

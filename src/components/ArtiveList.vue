@@ -1,24 +1,44 @@
 <template>
     <li class="artive-list">
-        <div class="title"><router-link to="/">{{ thisData.title || '--' }}</router-link></div>
-        <div class="time">{{ thisData.time || '--' }}</div>
-        <div class="info"><span v-html="thisData.info"></span></div>
+        <div class="title"><router-link to="/">{{ d.title }}</router-link></div>
+        <div class="time">{{ d.date }}</div>
+        <div class="info"><span v-html="d.info"></span></div>
         <div class="read-more"><router-link to="/">Read More</router-link></div>
     </li>
 </template>
 
 <script>
+/** 单个数据列表项 **/
 export default {
   name: "ArtiveList",
   data: function() {
-    return {};
-  },
-  beforeMount() {
-    console.log("数据是什么：", this.thisData);
+    return {
+        d: {},
+    };
   },
   props: {
     thisData: Object
-  }
+  },
+    mounted() {
+      this.makeData(this.thisData);
+    },
+    methods: {
+      /** 解析名字 **/
+      makeData(data) {
+          const temp = data.name.split('_');
+          this.d = {
+              title: temp[0],
+              type: temp[1],
+              date: temp[2],
+              info: temp[3],
+          }
+      }
+    },
+    watch: {
+      thisData(newV, oldV) {
+          this.makeData(newV);
+      }
+    }
 };
 </script>
 
