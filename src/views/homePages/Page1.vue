@@ -4,9 +4,8 @@
       <img class="logo" :src="ImgLogo" />
       <div class="info-box">
           <span class="all_trans1s title">ISLUO BLOG</span>
-          <div class="all_trans1s">hidden in the city</div>
+          <div class="all_trans1s">hide in the city</div>
           <div class="all_trans1s">no card, no phone, no ID</div>
-          <span class="all_trans1s dot"></span>
       </div>
       <img class="down" :src="ImgDown" />
   </div>
@@ -86,6 +85,7 @@ export default {
       & > div {
         transform: scale(1);
         letter-spacing: 1px;
+          margin-bottom: 8px;
         opacity: 1;
       }
       .dot {
@@ -119,7 +119,6 @@ export default {
   .info-box {
     flex: auto;
     margin-top: 16vh;
-    font-family: BradleyHandITC;
     color: #d0d0d0;
     text-align: center;
     z-index: 2;
@@ -133,16 +132,6 @@ export default {
       &:nth-child(3) {
         transition-delay: 0.6s;
       }
-    }
-    .dot {
-      display: block;
-      width: 1px;
-      height: 54px;
-      border-radius: 3px;
-      background: linear-gradient(transparent, #f00, transparent);
-      transition-delay: 0.6s;
-      opacity: 0;
-      margin: 16vh auto 0 auto;
     }
     .title {
       display: block;

@@ -1,6 +1,5 @@
 <template>
   <div id="home" class="home" @mousewheel="onMouseWheel" @DOMMouseScroll="onMouseWheel">
-      <Header :pageNow="pageNow"></Header>
       <audio class="audio" src="http://isluo.com/imgs/rain.mp3" loop preload id="audio1"></audio>
       <div id="scroller" class="scroller">
           <ul class="scroll-wrapper">
