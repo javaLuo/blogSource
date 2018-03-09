@@ -1,9 +1,9 @@
 <template>
     <li class="artive-list">
-        <div class="title"><router-link to="/">{{ d.title }}</router-link></div>
+        <div class="title" @click="onDetailChose">{{ d.title }}</div>
         <div class="time">{{ d.date }}</div>
         <div class="info"><span v-html="d.info"></span></div>
-        <div class="read-more"><router-link to="/">Read More</router-link></div>
+        <div class="read-more"  @click="onDetailChose">Read More</div>
     </li>
 </template>
 
@@ -32,6 +32,15 @@ export default {
               date: temp[2],
               info: temp[3],
           }
+      },
+      /** 点击某篇文章保存相关数据进入详情 **/
+      onDetailChose() {
+          console.log('到这了吧：', this.thisData);
+//          this.$store.dispatch({
+//              type: 'app/saveDetailNow',
+//              data: this.thisData,
+//          });
+          this.$router.push(`/detail/${this.thisData.name}`);
       }
     },
     watch: {

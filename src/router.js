@@ -5,6 +5,7 @@ import About from "./views/About.vue";
 import Live from "./views/contentPages/Live.vue";
 import Works from "./views/contentPages/Works.vue";
 import Article from "./views/contentPages/Article.vue";
+import Detail from './views/contentPages/Detail.vue';
 Vue.use(Router);
 
 export default new Router({
@@ -29,7 +30,12 @@ export default new Router({
           path: "article", // 文章列表
           name: "article",
           component: Article
-        }
+        },
+      {
+          path: "detail/:id",   // 文章详情页
+          name: "detail",
+          component: Detail,
+      }
       ]
     },
     {
