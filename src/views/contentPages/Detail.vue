@@ -1,10 +1,16 @@
 <template>
-    <div class="page-detail" @mousewheel="onMousewheel" @DOMMouseScroll="onMousewheel" @touchmove="onMousewheel">
+    <div class="page-detail" @mousewheel="onMousewheel" @DOMMouseScroll="onMousewheel" @touchmove="onMousewheel" :v-loading="true">
         <div class="info">
             <div class="title">{{ comDetailInfo.title }}</div>
             <div class="date">{{ comDetailInfo.date }}</div>
         </div>
-        <div v-html="htmlData"></div>
+        <div v-html="htmlData" class="the-body">
+            <div class="loading-box">
+                <img :src="ImgLoading" />
+                <div>正在从开源世界获取信息…</div>
+            </div>
+        </div>
+        <div class="the-end">--<span>End</span>--</div>
         <div id="gitment-box"></div>
     </div>
 </template>
@@ -12,17 +18,24 @@
 <script>
 /** 文章的详情页 **/
 import { mapState, mapGetters } from "vuex";
+import { Button, Loading } from 'element-ui';
+import { getBlogInfo } from '../../util/tools';
 import "gitment/style/default.css";
 import ShowDown from "showdown";
 import Gitment from "gitment";
-
+import ImgLoading from '../../assets/loading.gif';
 export default {
   name: "live",
   data: function() {
     return {
-      sourceData: null
+      sourceData: null,
+        ImgLoading,
     };
   },
+    components: {
+        Button,
+        Loading,
+    },
   mounted() {
     console.log("router:", this.$route.params.id);
     this.getData(this.$route.params.id);
@@ -40,13 +53,9 @@ export default {
     /** 解析出标题 **/
     comDetailInfo() {
       if (!this.$route.params.id) {
-        return "--";
+        return {};
       }
-      const temp = this.$route.params.id.split("_");
-      return {
-        title: temp[0],
-        date: temp[2]
-      };
+      return getBlogInfo(this.$route.params.id);
     },
     ...mapState({})
   },
@@ -113,7 +122,7 @@ export default {
 
 <style scoped lang="less">
 .page-detail {
-  padding: 16px;
+  padding: 32px;
   box-sizing: border-box;
   width: 100%;
   min-height: 100vh;
@@ -133,5 +142,30 @@ export default {
     padding-bottom: 24px;
     margin-bottom: 24px;
   }
+    .the-body{
+        .loading-box{
+            padding: 48px;
+            text-align: center;
+            display: block;
+            margin: 0 auto;
+            color: #888;
+            font-size: 14px;
+            img{
+                max-width: 100vw;
+            }
+            div{
+                margin-top: -100px;
+            }
+        }
+    }
+    .the-end{
+        padding: 24px;
+        text-align: center;
+        font-size: 14px;
+        color: #888;
+        span{
+            padding: 0 24px;
+        }
+    }
 }
 </style>

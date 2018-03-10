@@ -1,29 +1,60 @@
 <template>
-    <ul class="live" @mousewheel="onMousewheel" @DOMMouseScroll="onMousewheel" @touchmove="onMousewheel">
-        <ArtiveList class="swiper-slide" v-for="(v, index) in listData" :thisData="v" :key="index"></ArtiveList>
-    </ul>
+    <div class="live-box">
+        <div class="bread">
+            <i class="el-icon-location"></i>
+            <span>文章列表</span>
+        </div>
+        <ul class="live" @mousewheel="onMousewheel" @DOMMouseScroll="onMousewheel" @touchmove="onMousewheel">
+            <ArtiveList class="swiper-slide" v-for="(v, index) in pageNowData" :thisData="v" :key="index"></ArtiveList>
+        </ul>
+        <div class="pagin">
+            <Pagination
+                    :total="total"
+                    :current-page="pageNow"
+                    layout="total, prev, pager, next, jumper"
+                    @current-change="onPageChange"
+            ></Pagination>
+        </div>
+    </div>
 </template>
 
 <script>
-import { mapState, mapGetters } from "vuex";
+/** 文章列表页 **/
+import { mapState } from "vuex";
+import { Pagination, Breadcrumb, BreadcrumbItem } from 'element-ui';
 import ArtiveList from "../../components/ArtiveList.vue";
+import { getBlogInfo } from '../../util/tools';
 export default {
   name: "live",
   data: function() {
     return {
-      username: "",
-      password: ""
+      pageNow: 1,
+        pageSize: 10,
+        total: 0,
     };
   },
   components: {
-    ArtiveList
+    ArtiveList,
+      Pagination,
+      Breadcrumb,
+      BreadcrumbItem,
   },
-  mounted() {},
+  mounted() {
+      this.total = this.listData.length;
+  },
   computed: {
     ...mapState({
-      listData: state => state.app.blogList
-    })
+      listData: state => state.app.blogList.filter((item) => getBlogInfo(item.name).type === 1),
+    }),
+      pageNowData() {
+          return this.listData.filter((item, index) => index >= (this.pageNow - 1) * 10 && index < this.pageNow * 10 );
+      },
   },
+    watch: {
+      listData(newV, oldV) {
+          this.total = newV.length;
+      }
+    },
   methods: {
     onMousewheel(e) {
       const f = e.wheelDeltaY || -e.detail;
@@ -34,19 +65,34 @@ export default {
       if ((f < 0 && st + ch !== sh) || (f > 0 && st !== 0)) {
         e.stopPropagation();
       }
-    }
+    },
+  /** 页码改变时触发 **/
+  onPageChange(v) {
+    console.log('触发：', v);
+    this.pageNow = v;
+  }
   }
 };
 </script>
 
 <style scoped lang="less">
-.live {
-  display: block;
-  width: 100%;
-  height: 100vh;
-  overflow-y: auto;
-  overflow-x: hidden;
-  box-sizing: border-box;
-  padding: 32px;
-}
+    .live-box{
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        min-height :100vh;
+        overflow-y: auto;
+        overflow-x: hidden;
+        box-sizing: border-box;
+        padding: 32px;
+        .live {
+            display: block;
+            width: 100%;
+            flex: auto;
+        }
+        .pagin{
+            flex: none;
+        }
+    }
 </style>

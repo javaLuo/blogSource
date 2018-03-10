@@ -14,6 +14,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "editor.md": "^1.5.0",
+    "element-ui": "^2.2.1",
     "gitment": "^0.0.3",
     "iscroll": "^5.2.0",
     "jquery": "^3.3.1",
@@ -32,6 +33,7 @@
     "@vue/test-utils": "^1.0.0-beta.10",
     "babel-core": "^7.0.0-0",
     "babel-jest": "^22.0.4",
+    "babel-plugin-component": "^1.1.0",
     "less": "^2.7.3",
     "less-loader": "^4.0.5",
     "prettier": "^1.10.2",

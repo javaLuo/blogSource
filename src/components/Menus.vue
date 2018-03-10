@@ -12,9 +12,9 @@
             <div class="name">Logic</div>
             <div class="func">web前端开发工程师</div>
             <ul class="list-info">
-                <li>文章 {{ articleLength }}</li>
-                <li>作品 5</li>
-                <li>日志 10</li>
+                <li>文章 {{ liveLength }}</li>
+                <li>作品 {{ workLength }}</li>
+                <li>日志 {{ articleLength }}</li>
             </ul>
             <ul class="link">
                 <li><router-link to="/live">文章列表</router-link></li>
@@ -29,6 +29,7 @@
 import ImgPic from "../assets/pic.jpg";
 import CanvasBack from "./CanvasBack.vue";
 import { mapState } from "vuex";
+import { getBlogInfo } from '../util/tools';
 export default {
   name: "Menus",
   data: function() {
@@ -51,7 +52,9 @@ export default {
   computed: {
     ...mapState({
       play: state => state.page.playing,
-      articleLength: state => state.app.blogList.length
+      liveLength: state => state.app.blogList.filter((item) => getBlogInfo(item.name).type === 1).length,
+      workLength: state => state.app.blogList.filter((item) => getBlogInfo(item.name).type === 2).length,
+      articleLength: state => state.app.blogList.filter((item) => getBlogInfo(item.name).type === 3).length,
     })
   }
 };
@@ -71,7 +74,7 @@ export default {
   width: 30vw;
   height: 100%;
   max-width: 512px;
-  background-color: #222;
+  background-color: #333;
   background-image: url(../assets/menu_back.png);
   background-size: cover;
   background-position: bottom center;
