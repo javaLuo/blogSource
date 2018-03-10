@@ -12,7 +12,7 @@ export default {
   data: function() {
     return {
       username: "",
-      password: "",
+      password: ""
     };
   },
   components: {
@@ -20,9 +20,9 @@ export default {
   },
   mounted() {},
   computed: {
-      ...mapState({
-        listData: state => state.app.blogList,
-      })
+    ...mapState({
+      listData: state => state.app.blogList
+    })
   },
   methods: {
     onMousewheel(e) {

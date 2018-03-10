@@ -13,41 +13,41 @@ export default {
   name: "ArtiveList",
   data: function() {
     return {
-        d: {},
+      d: {}
     };
   },
   props: {
     thisData: Object
   },
-    mounted() {
-      this.makeData(this.thisData);
+  mounted() {
+    this.makeData(this.thisData);
+  },
+  methods: {
+    /** 解析名字 **/
+    makeData(data) {
+      const temp = data.name.split("_");
+      this.d = {
+        title: temp[0],
+        type: temp[1],
+        date: temp[2],
+        info: temp[3]
+      };
     },
-    methods: {
-      /** 解析名字 **/
-      makeData(data) {
-          const temp = data.name.split('_');
-          this.d = {
-              title: temp[0],
-              type: temp[1],
-              date: temp[2],
-              info: temp[3],
-          }
-      },
-      /** 点击某篇文章保存相关数据进入详情 **/
-      onDetailChose() {
-          console.log('到这了吧：', this.thisData);
-//          this.$store.dispatch({
-//              type: 'app/saveDetailNow',
-//              data: this.thisData,
-//          });
-          this.$router.push(`/detail/${this.thisData.name}`);
-      }
-    },
-    watch: {
-      thisData(newV, oldV) {
-          this.makeData(newV);
-      }
+    /** 点击某篇文章保存相关数据进入详情 **/
+    onDetailChose() {
+      console.log("到这了吧：", this.thisData);
+      //          this.$store.dispatch({
+      //              type: 'app/saveDetailNow',
+      //              data: this.thisData,
+      //          });
+      this.$router.push(`/detail/${this.thisData.name}`);
     }
+  },
+  watch: {
+    thisData(newV, oldV) {
+      this.makeData(newV);
+    }
+  }
 };
 </script>
 

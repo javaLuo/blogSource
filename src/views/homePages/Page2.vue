@@ -21,12 +21,13 @@ export default {
   components: {
     Menus
   },
-    methods: {
-        playChange(playing) {  // 菜单中的播放器按钮被点击时触发
-            console.log('触发时间：', playing);
-            this.$emit()
-        }
-    },
+  methods: {
+    playChange(playing) {
+      // 菜单中的播放器按钮被点击时触发
+      console.log("触发时间：", playing);
+      this.$emit();
+    }
+  },
   mounted() {
     if (this.pageNow === 1) {
       this.isShow = true;

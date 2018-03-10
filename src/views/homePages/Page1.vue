@@ -85,7 +85,7 @@ export default {
       & > div {
         transform: scale(1);
         letter-spacing: 1px;
-          margin-bottom: 8px;
+        margin-bottom: 8px;
         opacity: 1;
       }
       .dot {

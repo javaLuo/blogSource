@@ -15,9 +15,7 @@ export default {
       password: ""
     };
   },
-  methods: {
-
-  },
+  methods: {},
   computed: {
     ...mapState({
       userinfo: state => state.app.userinfo || {}

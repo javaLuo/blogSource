@@ -1,1 +1,1 @@
-export const masterName = 'javaLuo';    // 作者在GitHub的用户名
+export const masterName = "javaLuo"; // 作者在GitHub的用户名

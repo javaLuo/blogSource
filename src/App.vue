@@ -51,7 +51,6 @@ a {
 }
 button {
   cursor: pointer;
-  padding: 0 !important;
 }
 label {
   cursor: pointer;

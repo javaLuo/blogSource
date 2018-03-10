@@ -18,9 +18,7 @@ export default {
       ImgMenuBack
     };
   },
-  props: {
-
-  },
+  props: {},
   mounted() {
     console.log("得到了啊：", this.$el);
     this.ctx = this.$el.getContext("2d");
@@ -34,11 +32,11 @@ export default {
     this.init(300);
     this.animate();
   },
-    computed: {
-        ...mapState({
-            play: state => state.page.playing,
-        })
-    },
+  computed: {
+    ...mapState({
+      play: state => state.page.playing
+    })
+  },
   methods: {
     init(many) {
       /**

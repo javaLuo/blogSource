@@ -33,18 +33,18 @@ export default {
       }
     };
   },
-    props: {},
-    components: {
-        Header,
-        Page1,
-        Page2,
-        Page3,
-    },
-    computed: {
-        ...mapState({
-            play: state => state.page.playing,
-        })
-    },
+  props: {},
+  components: {
+    Header,
+    Page1,
+    Page2,
+    Page3
+  },
+  computed: {
+    ...mapState({
+      play: state => state.page.playing
+    })
+  },
   mounted: function() {
     this.initScroll();
     this.mp3Dom.a = document.getElementById("audio1");
@@ -128,13 +128,13 @@ export default {
         this.mp3Dom.a.pause();
       }
     },
-      /** 进入页面及获取所有文章列表 **/
-      getBlogList() {
-        this.$store.dispatch({
-            type: 'app/getBlogList',
-            params: null,
-        })
-      }
+    /** 进入页面及获取所有文章列表 **/
+    getBlogList() {
+      this.$store.dispatch({
+        type: "app/getBlogList",
+        params: null
+      });
+    }
   },
   watch: {
     pageNow(newV, oldV) {
@@ -145,13 +145,13 @@ export default {
         this.onMp3Pause();
       }
     },
-      play(newV, oldV) {
-        if (newV) {
-            this.onMp3Play();
-        } else {
-            this.onMp3Pause();
-        }
+    play(newV, oldV) {
+      if (newV) {
+        this.onMp3Play();
+      } else {
+        this.onMp3Pause();
       }
+    }
   }
 };
 </script>

@@ -19,71 +19,67 @@
 </template>
 
 <script>
-    import LogoVue from '../../assets/logo-vue.png';
-    import LogoGitHub from '../../assets/logo-github.png';
-    import LogoW3C from '../../assets/logo-w3school.png';
-    import LogoHTML5 from '../../assets/logo-html5.png';
-    import ImgPic from '../../assets/myhead.png';
+import LogoVue from "../../assets/logo-vue.png";
+import LogoGitHub from "../../assets/logo-github.png";
+import LogoW3C from "../../assets/logo-w3school.png";
+import LogoHTML5 from "../../assets/logo-html5.png";
+import ImgPic from "../../assets/myhead.png";
 export default {
   name: "page3",
   data: function() {
     return {
-        LogoVue,
-        LogoGitHub,
-        LogoW3C,
-        LogoHTML5,
-        ImgPic,
+      LogoVue,
+      LogoGitHub,
+      LogoW3C,
+      LogoHTML5,
+      ImgPic
     };
   },
   components: {},
-  mounted() {
-
-  },
+  mounted() {}
 };
 </script>
 
 <style scoped lang="less">
-
-
 .page3 {
-    position: relative;
-    background-color: #222;
-    height: 100%;
-    .logo-box{
-        display: flex;
-        margin:0 auto;
-        max-width: 960px;
-        justify-content: space-around;
-        align-items: center;
-        box-sizing: border-box;
-        padding: 32px;
-        img{
-            max-height: 80px;
-        }
+  position: relative;
+  background-color: #222;
+  height: 100%;
+  .logo-box {
+    display: flex;
+    margin: 0 auto;
+    max-width: 960px;
+    justify-content: space-around;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 32px;
+    img {
+      max-height: 80px;
     }
-    .info-box{
-        text-align: center;
+  }
+  .info-box {
+    text-align: center;
+    color: #e0e0e0;
+    letter-spacing: 1px;
+    font-size: 16px;
+  }
+  .last {
+    text-align: center;
+    margin-top: 32px;
+    color: #888;
+    font-size: 14px;
+    letter-spacing: 1px;
+    img {
+      height: 40px;
+      margin-right: 8px;
+    }
+    a {
+      color: #888;
+      transition: all 200ms;
+      &:hover {
         color: #e0e0e0;
-        letter-spacing: 1px;
-        font-size: 16px;
+      }
     }
-    .last{
-        text-align: center;
-        margin-top: 32px;
-        color: #888;
-        font-size: 14px;
-        letter-spacing: 1px;
-        img{
-            height: 40px;
-            margin-right: 8px;
-        }
-        a{
-            color: #888;
-            transition: all 200ms;
-            &:hover{
-                color: #e0e0e0;
-            }
-        }
-    }
+  }
 }
 </style>
