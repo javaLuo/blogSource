@@ -1,4 +1,4 @@
-import blogData from './data';
+import blogData from "./data";
 
 /** 判断当前环境是否是PC端 **/
 export const isPc = () => {
@@ -27,7 +27,7 @@ export const isPc = () => {
  * 配图 如果有的话
  * 简介
  * */
-export const getBlogInfo = (gitname) => {
-    const data = blogData.find((item) => item.gitname === gitname);
-    return data || {};
+export const getBlogInfo = gitname => {
+  const data = blogData.find(item => item.gitname === gitname);
+  return data || {};
 };

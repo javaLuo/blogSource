@@ -1,11 +1,11 @@
 <template>
   <div id="home" class="home" @mousewheel="onMouseWheel" @DOMMouseScroll="onMouseWheel">
-      <audio class="audio" src="http://isluo.com/imgs/rain.mp3" loop preload id="audio1"></audio>
+      <audio v-if="isPc" class="audio" src="http://isluo.com/imgs/rain.mp3" loop preload id="audio1"></audio>
       <div id="scroller" class="scroller">
           <ul class="scroll-wrapper">
-              <li class="scroll-page"><Page1 :pageNow="pageNow"></Page1></li>
+              <li v-if="isPc" class="scroll-page"><Page1 :pageNow="pageNow"></Page1></li>
               <li class="scroll-page"><Page2 :pageNow="pageNow"></Page2></li>
-              <li class="scroll-page"><Page3 :pageNow="pageNow"></Page3></li>
+              <li v-if="isPc" class="scroll-page foot-page"><Page3 :pageNow="pageNow"></Page3></li>
           </ul>
       </div>
   </div>
@@ -23,13 +23,13 @@ export default {
   name: "home",
   data: function() {
     return {
+      isPc: isPc(),
       scrollDom: null,
       scrolling: false, // 是否正在滚动中
       pageNow: 0,
       mp3Dom: {
-        // audio, 两个音轨
-        a: null,
-        b: null
+        // audio, 一个音轨
+        a: null
       }
     };
   },
@@ -46,31 +46,34 @@ export default {
     })
   },
   mounted: function() {
-    this.initScroll();
-    this.mp3Dom.a = document.getElementById("audio1");
-    this.mp3Dom.a.volume = 0;
-    this.mp3Dom.a.ontimeupdate = e => {
-      if (this.mp3Dom.a.duration - 3 < this.mp3Dom.a.currentTime) {
-        this.mp3Dom.a.currentTime = 2;
-      }
-    };
+    /** PC端才初始化iscroll和声音 **/
+    if (this.isPc) {
+      this.initScroll();
+      this.mp3Dom.a = document.getElementById("audio1");
+      this.mp3Dom.a.volume = 0;
+      this.mp3Dom.a.ontimeupdate = e => {
+        if (this.mp3Dom.a.duration - 3 < this.mp3Dom.a.currentTime) {
+          this.mp3Dom.a.currentTime = 2;
+        }
+      };
+    }
+    /** 获取博客列表 **/
     this.getBlogList();
   },
   beforeDestroy: function() {
+    /** 离开前销毁iscroll实例 **/
     this.scrollDom && this.scrollDom.destroy();
   },
   methods: {
     /** 初始化页面全局滚动 **/
     initScroll() {
-      const pc = isPc();
-      console.log("现在是PC吗", pc);
       this.scrollDom = new IScroll("#scroller", {
         snap: true,
         bounceEasing: {
-          style: pc ? "cubic-bezier(1,0.1,0.1,1)" : "cubic-bezier(1,1,1,1)"
+          style: "cubic-bezier(1,0.1,0.1,1)"
         },
-        bounceTime: pc ? 1000 : 300,
-        preventDefault: pc,
+        bounceTime: 1000,
+        preventDefault: true,
         disablePointer: true
       });
       this.scrollDom.on("scrollEnd", () => {
@@ -161,7 +164,7 @@ export default {
   background-color: #222;
   .scroller {
     height: 100vh;
-    min-height: 400px;
+    min-height: 300px;
     display: block;
     overflow: hidden;
     .scroll-wrapper {
@@ -173,7 +176,7 @@ export default {
         height: 100vh;
         min-height: 300px;
         background-color: #fff;
-        &:last-child {
+        &.foot-page {
           height: 300px;
         }
       }

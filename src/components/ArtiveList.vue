@@ -13,27 +13,26 @@
 
 <script>
 /** 单个数据列表项 **/
-import { getBlogInfo } from '../util/tools';
-import { Tag } from 'element-ui';
+import { getBlogInfo } from "../util/tools";
+import { Tag } from "element-ui";
 export default {
   name: "ArtiveList",
   data: function() {
-    return {
-    };
+    return {};
   },
   props: {
     thisData: Object
   },
-    components: {
-      Tag,
-    },
+  components: {
+    Tag
+  },
   mounted() {
-        console.log('来了没有：', this.thisData);
+    console.log("来了没有：", this.thisData);
   },
   computed: {
-      blogInfo() {
-          console.log('blogInfo?', this.thisData.name);
-        return getBlogInfo(this.thisData.name);
+    blogInfo() {
+      console.log("blogInfo?", this.thisData.name);
+      return getBlogInfo(this.thisData.name);
     }
   },
   methods: {
@@ -43,9 +42,7 @@ export default {
       this.$router.push(`/detail/${this.thisData.name}`);
     }
   },
-  watch: {
-
-  }
+  watch: {}
 };
 </script>
 
@@ -62,12 +59,12 @@ export default {
     font-size: 24px;
     font-weight: bold;
     margin-bottom: 8px;
-      color: #222;
-      transition: all 0.2s;
-      cursor: pointer;
-      &:hover {
-          color: #51A6FF;
-      }
+    color: #222;
+    transition: all 0.2s;
+    cursor: pointer;
+    &:hover {
+      color: #51a6ff;
+    }
   }
   .time {
     color: #888;
@@ -79,23 +76,23 @@ export default {
     letter-spacing: 1px;
     margin-bottom: 8px;
   }
-    .tags{
-        margin-bottom: 8px;
-        span{
-            font-size: 12px;
-            margin-right: 4px;
-        }
+  .tags {
+    margin-bottom: 8px;
+    span {
+      font-size: 12px;
+      margin-right: 4px;
     }
+  }
   .read-more {
     font-size: 16px;
-      color: #30634c;
-      letter-spacing: 1px;
-      font-style: italic;
-      transition: all 0.2s;
-      cursor:pointer;
-      &:hover {
-          color: #51A6FF;
-      }
+    color: #30634c;
+    letter-spacing: 1px;
+    font-style: italic;
+    transition: all 0.2s;
+    cursor: pointer;
+    &:hover {
+      color: #51a6ff;
+    }
   }
 }
 </style>

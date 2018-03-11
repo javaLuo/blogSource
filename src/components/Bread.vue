@@ -6,31 +6,23 @@
 </template>
 
 <script>
-    /** 文章列表页 **/
-    import { mapState } from "vuex";
-    export default {
-        name: "bread",
-        data: function() {
-            return {
-
-            };
-        },
-        props:{
-            breadData: String,
-        },
-        components: {
-
-        },
-        mounted() {
-
-        },
-        computed: {
-        },
-    };
+/** 文章列表页 **/
+import { mapState } from "vuex";
+export default {
+  name: "bread",
+  data: function() {
+    return {};
+  },
+  props: {
+    breadData: String
+  },
+  components: {},
+  mounted() {},
+  computed: {}
+};
 </script>
 
 <style scoped lang="less">
-    .bread{
-        
-    }
+.bread {
+}
 </style>

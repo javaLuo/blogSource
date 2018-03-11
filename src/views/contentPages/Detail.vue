@@ -17,24 +17,24 @@
 <script>
 /** 文章的详情页 **/
 import { mapState, mapGetters } from "vuex";
-import { Button, Loading } from 'element-ui';
-import { getBlogInfo } from '../../util/tools';
+import { Button, Loading } from "element-ui";
+import { getBlogInfo } from "../../util/tools";
 import "gitment/style/default.css";
 import ShowDown from "showdown";
 import Gitment from "gitment";
-import ImgLoading from '../../assets/loading.gif';
+import ImgLoading from "../../assets/loading.gif";
 export default {
   name: "live",
   data: function() {
     return {
       sourceData: null,
-        ImgLoading,
+      ImgLoading
     };
   },
-    components: {
-        Button,
-        Loading,
-    },
+  components: {
+    Button,
+    Loading
+  },
   mounted() {
     console.log("router:", this.$route.params.id);
     this.getData(this.$route.params.id);
@@ -134,7 +134,7 @@ export default {
       font-weight: bold;
     }
     .date {
-        margin-top: 8px;
+      margin-top: 8px;
       font-size: 16px;
       color: #888;
     }
@@ -142,28 +142,28 @@ export default {
     padding-bottom: 24px;
     margin-bottom: 24px;
   }
-    .loading-box{
-        padding: 48px;
-        text-align: center;
-        display: block;
-        margin: 0 auto;
-        color: #888;
-        font-size: 14px;
-        img{
-            max-width: 100vw;
-        }
-        div{
-            margin-top: -100px;
-        }
+  .loading-box {
+    padding: 48px;
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+    color: #888;
+    font-size: 14px;
+    img {
+      max-width: 100vw;
     }
-    .the-end{
-        padding: 24px;
-        text-align: center;
-        font-size: 14px;
-        color: #888;
-        span{
-            padding: 0 24px;
-        }
+    div {
+      margin-top: -100px;
     }
+  }
+  .the-end {
+    padding: 24px;
+    text-align: center;
+    font-size: 14px;
+    color: #888;
+    span {
+      padding: 0 24px;
+    }
+  }
 }
 </style>

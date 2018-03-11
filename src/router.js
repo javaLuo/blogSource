@@ -16,12 +16,12 @@ export default new Router({
       name: "home",
       component: Home,
       children: [
-          {
-              path: "all", // 所有动态
-              name: "all",
-              alias: "/",
-              component: All
-          },
+        {
+          path: "all", // 所有动态
+          name: "all",
+          alias: "/",
+          component: All
+        },
         {
           path: "live", // 文章列表
           name: "live",

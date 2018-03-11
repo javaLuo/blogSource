@@ -1,6 +1,7 @@
 <template>
     <div class="menus">
-        <CanvasBack></CanvasBack>
+        <div class="back-img-box"></div>
+        <CanvasBack v-if="isPc"></CanvasBack>
         <div class="info-box">
             <div class="photo-box">
                 <img class="photo" :src="ImgPic" />
@@ -29,12 +30,13 @@
 import ImgPic from "../assets/pic.jpg";
 import CanvasBack from "./CanvasBack.vue";
 import { mapState } from "vuex";
-import { getBlogInfo } from '../util/tools';
+import { getBlogInfo, isPc } from "../util/tools";
 export default {
   name: "Menus",
   data: function() {
     return {
-      ImgPic
+      ImgPic,
+      isPc: isPc()
     };
   },
   methods: {
@@ -52,9 +54,15 @@ export default {
   computed: {
     ...mapState({
       play: state => state.page.playing,
-      liveLength: state => state.app.blogList.filter((item) => getBlogInfo(item.name).type === 1).length,
-      workLength: state => state.app.blogList.filter((item) => getBlogInfo(item.name).type === 2).length,
-      articleLength: state => state.app.blogList.filter((item) => getBlogInfo(item.name).type === 3).length,
+      liveLength: state =>
+        state.app.blogList.filter(item => getBlogInfo(item.name).type === 1)
+          .length,
+      workLength: state =>
+        state.app.blogList.filter(item => getBlogInfo(item.name).type === 2)
+          .length,
+      articleLength: state =>
+        state.app.blogList.filter(item => getBlogInfo(item.name).type === 3)
+          .length
     })
   }
 };
@@ -69,20 +77,26 @@ export default {
     transform: rotate(360deg);
   }
 }
+
 .menus {
   position: relative;
   width: 30vw;
   height: 100%;
   max-width: 512px;
-  background-color: #333;
-  background-image: url(../assets/menu_back.png);
-  background-size: cover;
-  background-position: bottom center;
-  display: flex;
-  flex: none;
-  align-items: center;
   box-sizing: border-box;
   padding: 0 8px;
+  z-index: 2;
+  .back-img-box {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #333;
+    background-image: url(../assets/menu_back.png);
+    background-size: cover;
+    background-position: bottom center;
+  }
   .info-box {
     width: 100%;
     color: #fff;
@@ -93,7 +107,7 @@ export default {
       position: relative;
       display: block;
       width: 26%;
-      margin: 0 auto;
+      margin: 15vh auto 0 auto;
       padding: 13% 0 13% 0;
       .photo {
         position: absolute;
@@ -222,6 +236,23 @@ export default {
           }
         }
       }
+    }
+  }
+}
+
+@media only screen and (max-width: 640px) {
+  .menus {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.3);
+    .back-img-box {
+      width: 80%;
+      box-shadow: 3px 0 8px rgba(0, 0, 0, 0.5);
+    }
+    .info-box {
+      width: 80%;
     }
   }
 }
