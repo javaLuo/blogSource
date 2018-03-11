@@ -66,7 +66,7 @@ export default {
       transition: all 0.2s;
       cursor: pointer;
       &:hover {
-          color: #30634c;
+          color: #51A6FF;
       }
   }
   .time {
@@ -94,7 +94,7 @@ export default {
       transition: all 0.2s;
       cursor:pointer;
       &:hover {
-          color: #0acb79;
+          color: #51A6FF;
       }
   }
 }

@@ -2,10 +2,14 @@
     <div class="live-box">
         <div class="bread">
             <i class="el-icon-location"></i>
-            <span>文章列表</span>
+            <Breadcrumb>
+                <BreadcrumbItem to="/all">博客列表</BreadcrumbItem>
+                <BreadcrumbItem>文章列表</BreadcrumbItem>
+            </Breadcrumb>
         </div>
         <ul class="live" @mousewheel="onMousewheel" @DOMMouseScroll="onMousewheel" @touchmove="onMousewheel">
             <ArtiveList class="swiper-slide" v-for="(v, index) in pageNowData" :thisData="v" :key="index"></ArtiveList>
+            <div class="nothing" v-if="!pageNowData.length">还没有任何文章</div>
         </ul>
         <div class="pagin">
             <Pagination
@@ -90,9 +94,23 @@ export default {
             display: block;
             width: 100%;
             flex: auto;
+            .nothing{
+                padding: 40px 0;
+                text-align: center;
+                color: #888;
+            }
         }
         .pagin{
             flex: none;
+        }
+        .bread{
+            display: flex;
+            align-items: center;
+            padding-bottom: 16px;
+            i{
+                margin-right: 8px;
+                color: #0acb79;
+            }
         }
     }
 </style>

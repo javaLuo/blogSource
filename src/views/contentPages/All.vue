@@ -1,10 +1,9 @@
 <template>
-    <div class="article-box">
+    <div class="live-box">
         <div class="bread">
             <i class="el-icon-location"></i>
             <Breadcrumb>
-                <BreadcrumbItem to="/all">博客列表</BreadcrumbItem>
-                <BreadcrumbItem>作品列表</BreadcrumbItem>
+                <BreadcrumbItem>博客列表</BreadcrumbItem>
             </Breadcrumb>
         </div>
         <ul class="live" @mousewheel="onMousewheel" @DOMMouseScroll="onMousewheel" @touchmove="onMousewheel">
@@ -23,13 +22,13 @@
 </template>
 
 <script>
-    /** 日志列表页 **/
+    /** 文章列表页 **/
     import { mapState } from "vuex";
     import { Pagination, Breadcrumb, BreadcrumbItem } from 'element-ui';
     import ArtiveList from "../../components/ArtiveList.vue";
     import { getBlogInfo } from '../../util/tools';
     export default {
-        name: "article",
+        name: "live",
         data: function() {
             return {
                 pageNow: 1,
@@ -48,7 +47,7 @@
         },
         computed: {
             ...mapState({
-                listData: state => state.app.blogList.filter((item) => getBlogInfo(item.name).type === 3),
+                listData: state => state.app.blogList,
             }),
             pageNowData() {
                 return this.listData.filter((item, index) => index >= (this.pageNow - 1) * 10 && index < this.pageNow * 10 );
@@ -80,7 +79,7 @@
 </script>
 
 <style scoped lang="less">
-    .article-box{
+    .live-box{
         position: relative;
         display: flex;
         flex-direction: column;

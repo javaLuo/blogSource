@@ -1,7 +1,15 @@
 <template>
     <div class="work-box">
+        <div class="bread">
+            <i class="el-icon-location"></i>
+            <Breadcrumb>
+                <BreadcrumbItem to="/all">博客列表</BreadcrumbItem>
+                <BreadcrumbItem>作品列表</BreadcrumbItem>
+            </Breadcrumb>
+        </div>
         <ul class="live" @mousewheel="onMousewheel" @DOMMouseScroll="onMousewheel" @touchmove="onMousewheel">
             <ArtiveList class="swiper-slide" v-for="(v, index) in pageNowData" :thisData="v" :key="index"></ArtiveList>
+            <div class="nothing" v-if="!pageNowData.length">还没有任何文章</div>
         </ul>
         <div class="pagin">
             <Pagination
@@ -17,7 +25,7 @@
 <script>
     /** 作品列表页 **/
     import { mapState } from "vuex";
-    import { Pagination } from 'element-ui';
+    import { Pagination, Breadcrumb, BreadcrumbItem } from 'element-ui';
     import ArtiveList from "../../components/ArtiveList.vue";
     import { getBlogInfo } from '../../util/tools';
     export default {
@@ -32,6 +40,8 @@
         components: {
             ArtiveList,
             Pagination,
+            Breadcrumb,
+            BreadcrumbItem,
         },
         mounted() {
             this.total = this.listData.length;
@@ -84,9 +94,23 @@
             display: block;
             width: 100%;
             flex: auto;
+            .nothing{
+                padding: 40px 0;
+                text-align: center;
+                color: #888;
+            }
         }
         .pagin{
             flex: none;
+        }
+        .bread{
+            display: flex;
+            align-items: center;
+            padding-bottom: 16px;
+            i{
+                margin-right: 8px;
+                color: #0acb79;
+            }
         }
     }
 </style>

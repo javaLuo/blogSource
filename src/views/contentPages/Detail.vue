@@ -4,12 +4,11 @@
             <div class="title">{{ comDetailInfo.title }}</div>
             <div class="date">{{ comDetailInfo.date }}</div>
         </div>
-        <div v-html="htmlData" class="the-body">
-            <div class="loading-box">
-                <img :src="ImgLoading" />
-                <div>正在从开源世界获取信息…</div>
-            </div>
+        <div v-if="!sourceData" class="loading-box">
+            <img :src="ImgLoading" />
+            <div>正在从开源世界获取信息…</div>
         </div>
+        <div v-html="htmlData" class="the-body"></div>
         <div class="the-end">--<span>End</span>--</div>
         <div id="gitment-box"></div>
     </div>
@@ -135,6 +134,7 @@ export default {
       font-weight: bold;
     }
     .date {
+        margin-top: 8px;
       font-size: 16px;
       color: #888;
     }
@@ -142,20 +142,18 @@ export default {
     padding-bottom: 24px;
     margin-bottom: 24px;
   }
-    .the-body{
-        .loading-box{
-            padding: 48px;
-            text-align: center;
-            display: block;
-            margin: 0 auto;
-            color: #888;
-            font-size: 14px;
-            img{
-                max-width: 100vw;
-            }
-            div{
-                margin-top: -100px;
-            }
+    .loading-box{
+        padding: 48px;
+        text-align: center;
+        display: block;
+        margin: 0 auto;
+        color: #888;
+        font-size: 14px;
+        img{
+            max-width: 100vw;
+        }
+        div{
+            margin-top: -100px;
         }
     }
     .the-end{

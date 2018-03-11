@@ -6,6 +6,7 @@ import Live from "./views/contentPages/Live.vue";
 import Works from "./views/contentPages/Works.vue";
 import Article from "./views/contentPages/Article.vue";
 import Detail from "./views/contentPages/Detail.vue";
+import All from "./views/contentPages/All.vue";
 Vue.use(Router);
 
 export default new Router({
@@ -15,10 +16,15 @@ export default new Router({
       name: "home",
       component: Home,
       children: [
+          {
+              path: "all", // 所有动态
+              name: "all",
+              alias: "/",
+              component: All
+          },
         {
-          path: "live", // 动态
+          path: "live", // 文章列表
           name: "live",
-          alias: "/",
           component: Live
         },
         {
@@ -27,7 +33,7 @@ export default new Router({
           component: Works
         },
         {
-          path: "article", // 文章列表
+          path: "article", // 日志列表
           name: "article",
           component: Article
         },
