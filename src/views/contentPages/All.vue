@@ -77,8 +77,8 @@ export default {
   display: flex;
   flex-direction: column;
   width: 100%;
-    box-sizing: border-box;
-    min-height: 100%;
+  box-sizing: border-box;
+  min-height: 100%;
   .live {
     display: block;
     width: 100%;

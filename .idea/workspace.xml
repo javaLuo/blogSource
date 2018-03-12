@@ -14,21 +14,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Detail.vue" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Detail.vue" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/views/contentPages/Detail.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="9" column="14" lean-forward="false" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="14" />
-              <folding />
+            <state relative-caret-position="352">
+              <caret line="16" column="8" lean-forward="true" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="8" />
+              <folding>
+                <element signature="e#612#656#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Menus.vue" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Menus.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/Menus.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="565">
-              <caret line="39" column="25" lean-forward="true" selection-start-line="39" selection-start-column="25" selection-end-line="39" selection-end-column="25" />
+            <state relative-caret-position="169">
+              <caret line="12" column="59" lean-forward="false" selection-start-line="12" selection-start-column="59" selection-end-line="12" selection-end-column="59" />
               <folding>
                 <element signature="e#2127#2166#0" expanded="true" />
               </folding>
@@ -144,6 +146,7 @@
       <find>onMenuOpen</find>
       <find>子级</find>
       <find>onLinkClick</find>
+      <find>.link</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -182,12 +185,12 @@
         <option value="$PROJECT_DIR$/src/views/contentPages/All.vue" />
         <option value="$PROJECT_DIR$/src/views/contentPages/Live.vue" />
         <option value="$PROJECT_DIR$/src/views/contentPages/Works.vue" />
-        <option value="$PROJECT_DIR$/src/views/contentPages/Detail.vue" />
         <option value="$PROJECT_DIR$/src/views/homePages/Page2.vue" />
         <option value="$PROJECT_DIR$/src/views/contentPages/Article.vue" />
         <option value="$PROJECT_DIR$/src/views/Home.vue" />
         <option value="$PROJECT_DIR$/src/App.vue" />
         <option value="$PROJECT_DIR$/src/components/Menus.vue" />
+        <option value="$PROJECT_DIR$/src/views/contentPages/Detail.vue" />
       </list>
     </option>
   </component>
@@ -203,8 +206,8 @@
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-4" />
-    <option name="y" value="22" />
+    <option name="x" value="149" />
+    <option name="y" value="90" />
     <option name="width" value="1813" />
     <option name="height" value="999" />
   </component>
@@ -234,31 +237,13 @@
             <path>
               <item name="blog-source" type="b2602c69:ProjectViewProjectNode" />
               <item name="blog-source" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="blog-source" type="b2602c69:ProjectViewProjectNode" />
-              <item name="blog-source" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="blog-source" type="b2602c69:ProjectViewProjectNode" />
               <item name="blog-source" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="blog-source" type="b2602c69:ProjectViewProjectNode" />
-              <item name="blog-source" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="blog-source" type="b2602c69:ProjectViewProjectNode" />
-              <item name="blog-source" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="contentPages" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -398,10 +383,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="187592000" />
+    <option name="totallyTimeSpent" value="188507000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-4" y="22" width="1813" height="999" extended-state="0" />
+    <frame x="149" y="90" width="1813" height="999" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15414579" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -710,14 +695,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/contentPages/Detail.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="9" column="14" lean-forward="false" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/router.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="396">
@@ -772,10 +749,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Menus.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="565">
-          <caret line="39" column="25" lean-forward="true" selection-start-line="39" selection-start-column="25" selection-end-line="39" selection-end-column="25" />
+        <state relative-caret-position="169">
+          <caret line="12" column="59" lean-forward="false" selection-start-line="12" selection-start-column="59" selection-end-line="12" selection-end-column="59" />
           <folding>
             <element signature="e#2127#2166#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/contentPages/Detail.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="16" column="8" lean-forward="true" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="8" />
+          <folding>
+            <element signature="e#612#656#0" expanded="true" />
           </folding>
         </state>
       </provider>

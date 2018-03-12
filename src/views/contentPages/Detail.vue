@@ -6,7 +6,7 @@
         </div>
         <div v-if="!sourceData" class="loading-box">
             <img :src="ImgLoading" />
-            <div>正在从开源世界获取信息…</div>
+            <div>正在从开源世界获取…</div>
         </div>
         <div ref="theBody" v-html="htmlData" class="the-body markdown-body editormd-html-preview"></div>
         <div class="the-end">--<span>End</span>--</div>
@@ -28,7 +28,7 @@ export default {
   data: function() {
     return {
       sourceData: null,
-      ImgLoading,
+      ImgLoading
     };
   },
   components: {
@@ -104,7 +104,7 @@ export default {
 
       gitment.render("gitment-box");
     }
-  },
+  }
 };
 </script>
 
@@ -113,10 +113,10 @@ export default {
   box-sizing: border-box;
   width: 100%;
   min-height: 100%;
-    .the-body{
-        padding: 0 !important;
-        overflow-x: hidden;
-    }
+  .the-body {
+    padding: 0 !important;
+    overflow-x: hidden;
+  }
   .info {
     letter-spacing: 1px;
     .title {
@@ -143,7 +143,7 @@ export default {
       max-width: 100vw;
     }
     div {
-      margin-top: -100px;
+      margin-top: 8px;
     }
   }
   .the-end {
@@ -156,7 +156,7 @@ export default {
     }
   }
 }
-img{
-    max-width: 100% !important;
+img {
+  max-width: 100% !important;
 }
 </style>
