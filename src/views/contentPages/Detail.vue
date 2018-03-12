@@ -1,14 +1,14 @@
 <template>
-    <div class="page-detail" @mousewheel="onMousewheel" @DOMMouseScroll="onMousewheel" @touchmove="onMousewheel" :v-loading="true">
+    <div class="page-detail" :v-loading="true">
         <div class="info">
-            <div class="title">{{ comDetailInfo.title }}</div>
+            <div class="title" >{{ comDetailInfo.title }}</div>
             <div class="date">{{ comDetailInfo.date }}</div>
         </div>
         <div v-if="!sourceData" class="loading-box">
             <img :src="ImgLoading" />
             <div>正在从开源世界获取信息…</div>
         </div>
-        <div v-html="htmlData" class="the-body"></div>
+        <div ref="theBody" v-html="htmlData" class="the-body markdown-body editormd-html-preview"></div>
         <div class="the-end">--<span>End</span>--</div>
         <div id="gitment-box"></div>
     </div>
@@ -28,7 +28,7 @@ export default {
   data: function() {
     return {
       sourceData: null,
-      ImgLoading
+      ImgLoading,
     };
   },
   components: {
@@ -59,17 +59,6 @@ export default {
     ...mapState({})
   },
   methods: {
-    /** 处理滚动事件 **/
-    onMousewheel(e) {
-      const f = e.wheelDeltaY || -e.detail;
-      const st = this.$el.scrollTop;
-      const sh = this.$el.scrollHeight;
-      const ch = this.$el.clientHeight;
-      console.log("子级：", st, sh, ch, f);
-      if ((f < 0 && st + ch !== sh) || (f > 0 && st !== 0)) {
-        e.stopPropagation();
-      }
-    },
     /** 通过标题向github请求文章详细内容 **/
     getData(id) {
       if (!id) {
@@ -115,18 +104,19 @@ export default {
 
       gitment.render("gitment-box");
     }
-  }
+  },
 };
 </script>
 
 <style scoped lang="less">
 .page-detail {
-  padding: 32px;
   box-sizing: border-box;
   width: 100%;
-  min-height: 100vh;
-  overflow-y: auto;
-  overflow-x: hidden;
+  min-height: 100%;
+    .the-body{
+        padding: 0 !important;
+        overflow-x: hidden;
+    }
   .info {
     letter-spacing: 1px;
     .title {
@@ -165,5 +155,8 @@ export default {
       padding: 0 24px;
     }
   }
+}
+img{
+    max-width: 100% !important;
 }
 </style>

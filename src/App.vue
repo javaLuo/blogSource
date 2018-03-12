@@ -5,6 +5,7 @@
 </template>
 
 <style lang="less">
+
 * {
   -webkit-overflow-scrolling: touch;
 }
@@ -12,6 +13,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Futura-Thin", "Helvetica Neue", Helvetica, sans-serif;
+    overflow: hidden;
 }
 div,
 ul,
@@ -124,4 +126,6 @@ th {
   border-radius: 4px;
   background-color: #222;
 }
+
+@import './style/css/editormd.preview.min.css';
 </style>

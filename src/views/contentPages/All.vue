@@ -6,7 +6,7 @@
                 <BreadcrumbItem>博客列表</BreadcrumbItem>
             </Breadcrumb>
         </div>
-        <ul class="live" @mousewheel="onMousewheel" @DOMMouseScroll="onMousewheel" @touchmove="onMousewheel">
+        <ul class="live">
             <ArtiveList class="swiper-slide" v-for="(v, index) in pageNowData" :thisData="v" :key="index"></ArtiveList>
             <div class="nothing" v-if="!pageNowData.length">还没有任何文章</div>
         </ul>
@@ -14,7 +14,7 @@
             <Pagination
                     :total="total"
                     :current-page="pageNow"
-                    layout="total, prev, pager, next, jumper"
+                    layout="total, prev, pager, next"
                     @current-change="onPageChange"
             ></Pagination>
         </div>
@@ -62,16 +62,6 @@ export default {
     }
   },
   methods: {
-    onMousewheel(e) {
-      const f = e.wheelDeltaY || -e.detail;
-      const st = this.$el.scrollTop;
-      const sh = this.$el.scrollHeight;
-      const ch = this.$el.clientHeight;
-      console.log("子级：", st, sh, ch, f);
-      if ((f < 0 && st + ch !== sh) || (f > 0 && st !== 0)) {
-        e.stopPropagation();
-      }
-    },
     /** 页码改变时触发 **/
     onPageChange(v) {
       console.log("触发：", v);
@@ -87,11 +77,8 @@ export default {
   display: flex;
   flex-direction: column;
   width: 100%;
-  min-height: 100vh;
-  overflow-y: auto;
-  overflow-x: hidden;
-  box-sizing: border-box;
-  padding: 32px;
+    box-sizing: border-box;
+    min-height: 100%;
   .live {
     display: block;
     width: 100%;

@@ -1,7 +1,9 @@
 <template>
   <div class="page2" :class="{show: isShow}">
       <Menus @playChange="playChange"></Menus>
-      <router-view></router-view>
+      <div ref="bodyBox" class="body-box" @mousewheel="onMousewheel" @DOMMouseScroll="onMousewheel">
+          <router-view></router-view>
+      </div>
   </div>
 </template>
 
@@ -22,6 +24,16 @@ export default {
     Menus
   },
   methods: {
+      onMousewheel(e) {
+          const f = e.wheelDeltaY || -e.detail;
+          const st = this.$refs.bodyBox.scrollTop;
+          const sh = this.$refs.bodyBox.scrollHeight;
+          const ch = this.$refs.bodyBox.clientHeight;
+          // console.log("子级：", st, sh, ch, f);
+          if ((f < 0 && st + ch !== sh) || (f > 0 && st !== 0)) {
+              e.stopPropagation();
+          }
+      },
     playChange(playing) {
       // 菜单中的播放器按钮被点击时触发
       console.log("触发时间：", playing);
@@ -44,5 +56,19 @@ export default {
   height: 100%;
   position: relative;
   display: flex;
+    .body-box{
+        flex: auto;
+        padding: 32px;
+        box-sizing: border-box;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+}
+@media only screen and (max-width: 640px) {
+    .page2 {
+        .body-box{
+            padding-top: 64px;
+        }
+    }
 }
 </style>

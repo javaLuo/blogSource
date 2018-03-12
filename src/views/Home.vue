@@ -162,6 +162,7 @@ export default {
 <style scoped lang="less">
 .home {
   background-color: #222;
+    overflow: hidden;
   .scroller {
     height: 100vh;
     min-height: 300px;
