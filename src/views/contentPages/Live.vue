@@ -7,10 +7,13 @@
                 <BreadcrumbItem>文章列表</BreadcrumbItem>
             </Breadcrumb>
         </div>
-        <ul class="live">
+        <transition-group name="list" tag="ul" class="live">
             <ArtiveList class="swiper-slide" v-for="(v, index) in pageNowData" :thisData="v" :key="index"></ArtiveList>
-            <div class="nothing" v-if="!pageNowData.length">还没有任何文章</div>
-        </ul>
+        </transition-group>
+        <div class="nothing" v-if="!pageNowData.length">
+            <img :src="ImgLoading" />
+            <div>正在从开源世界获取…</div>
+        </div>
         <div class="pagin">
             <Pagination
                     :total="total"
@@ -28,13 +31,16 @@ import { mapState } from "vuex";
 import { Pagination, Breadcrumb, BreadcrumbItem } from "element-ui";
 import ArtiveList from "../../components/ArtiveList.vue";
 import { getBlogInfo } from "../../util/tools";
+import ImgLoading from "../../assets/loading.gif";
 export default {
   name: "live",
   data: function() {
     return {
+      ImgLoading,
       pageNow: 1,
       pageSize: 10,
-      total: 0
+      total: 0,
+      pageNowData: []
     };
   },
   components: {
@@ -45,22 +51,30 @@ export default {
   },
   mounted() {
     this.total = this.listData.length;
+    const temp = this.listData.filter(
+      (item, index) =>
+        index >= (this.pageNow - 1) * 10 && index < this.pageNow * 10
+    );
+    for (let i = 0; temp[i]; i++) {
+      setTimeout(() => this.pageNowData.push(temp[i]), i * 100);
+    }
   },
   computed: {
     ...mapState({
       listData: state =>
         state.app.blogList.filter(item => getBlogInfo(item.name).type === 1)
-    }),
-    pageNowData() {
-      return this.listData.filter(
-        (item, index) =>
-          index >= (this.pageNow - 1) * 10 && index < this.pageNow * 10
-      );
-    }
+    })
   },
   watch: {
     listData(newV, oldV) {
       this.total = newV.length;
+      const temp = this.listData.filter(
+        (item, index) =>
+          index >= (this.pageNow - 1) * 10 && index < this.pageNow * 10
+      );
+      for (let i = 0; temp[i]; i++) {
+        setTimeout(() => this.pageNowData.push(temp[i]), i * 100);
+      }
     }
   },
   methods: {
@@ -74,6 +88,15 @@ export default {
 </script>
 
 <style scoped lang="less">
+.list-enter-active,
+.list-leave-active {
+  transition: all 500ms;
+}
+.list-enter,
+.list-leave-to {
+  opacity: 0;
+  transform: translateY(30px);
+}
 .live-box {
   position: relative;
   display: flex;
@@ -85,12 +108,16 @@ export default {
     display: block;
     width: 100%;
     flex: auto;
-    .nothing {
-      padding: 40px 0;
-      text-align: center;
-      color: #888;
-    }
   }
+    .nothing {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 100%;
+        transform: translateY(-50%);
+        text-align: center;
+        color: #888;
+    }
   .pagin {
     flex: none;
   }
@@ -100,6 +127,7 @@ export default {
     padding-bottom: 16px;
     i {
       margin-right: 8px;
+      margin-left: -5px;
       color: #0acb79;
     }
   }

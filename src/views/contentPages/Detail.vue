@@ -10,7 +10,7 @@
         </div>
         <div ref="theBody" v-html="htmlData" class="the-body markdown-body editormd-html-preview"></div>
         <div class="the-end">--<span>End</span>--</div>
-        <div id="gitment-box"></div>
+        <div id="gitment-box" class="gitment-box"></div>
     </div>
 </template>
 
@@ -108,7 +108,7 @@ export default {
 };
 </script>
 
-<style scoped lang="less">
+<style lang="less">
 .page-detail {
   box-sizing: border-box;
   width: 100%;
@@ -156,7 +156,14 @@ export default {
     }
   }
 }
-img {
-  max-width: 100% !important;
+
+
+@media only screen and (max-width: 640px) {
+    .gitment-editor-login{
+        width: 42px !important;
+        margin-right: 0 !important;
+        overflow: hidden;
+        white-space: nowrap;
+    }
 }
 </style>

@@ -372,7 +372,6 @@ export default {
     }
   }
 }
-
 @media only screen and (max-width: 640px) {
   .menus {
     position: fixed;
