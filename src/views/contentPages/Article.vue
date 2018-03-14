@@ -103,21 +103,22 @@ export default {
   flex-direction: column;
   width: 100%;
   box-sizing: border-box;
-  min-height: 100%;
+  height: 100%;
   .live {
     display: block;
     width: 100%;
     flex: auto;
+    min-height: 300px;
   }
-    .nothing {
-        position: absolute;
-        top: 50%;
-        left: 0;
-        width: 100%;
-        transform: translateY(-50%);
-        text-align: center;
-        color: #888;
-    }
+  .nothing {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    transform: translateY(-50%);
+    text-align: center;
+    color: #888;
+  }
   .pagin {
     flex: none;
   }

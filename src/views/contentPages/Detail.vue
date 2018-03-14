@@ -78,6 +78,10 @@ export default {
     },
     /** 初始化评论 **/
     initGitMent() {
+      if (!this.$route.params.id) {
+        return;
+      }
+
       const myTheme = {
         render(state, instance) {
           const container = document.createElement("div");
@@ -92,7 +96,7 @@ export default {
       };
 
       const gitment = new Gitment({
-        id: this.comDetailInfo.title,
+        id: this.$route.params.id,
         owner: "javaLuo", //7686097,
         repo: "javaimluo",
         oauth: {
@@ -157,13 +161,12 @@ export default {
   }
 }
 
-
 @media only screen and (max-width: 640px) {
-    .gitment-editor-login{
-        width: 42px !important;
-        margin-right: 0 !important;
-        overflow: hidden;
-        white-space: nowrap;
-    }
+  .gitment-editor-login {
+    width: 42px !important;
+    margin-right: 0 !important;
+    overflow: hidden;
+    white-space: nowrap;
+  }
 }
 </style>

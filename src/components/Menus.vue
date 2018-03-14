@@ -6,7 +6,7 @@
                 <i v-if="!menuOpen" class="el-icon-more" ></i>
                 <i v-if="menuOpen" class="el-icon-more-outline" ></i>
             </div>
-            <span>Luo'Blog</span>
+            <span>Luo's Blog</span>
         </div>
         <div class="menu-body" >
             <transition name="fade">

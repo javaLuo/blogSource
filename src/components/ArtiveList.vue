@@ -70,15 +70,15 @@ export default {
     color: #888;
     margin-bottom: 8px;
   }
-    .pic{
-        box-sizing: border-box;
-        margin-bottom: 8px;
-        img{
-            max-width: 100%;
-            max-height: 350px;
-            border-radius: 4px;
-        }
+  .pic {
+    box-sizing: border-box;
+    margin-bottom: 8px;
+    img {
+      max-width: 100%;
+      max-height: 350px;
+      border-radius: 4px;
     }
+  }
   .info {
     color: #888;
     font-size: 14px;

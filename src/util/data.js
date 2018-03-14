@@ -18,9 +18,18 @@ const d = [
     type: 3,
     title: "Hello World 文章测试",
     tags: ["个人日志"],
-    pic: 'http://isluo.com:8080/files/work/gd1.jpg',
+    pic: "http://isluo.com:8080/files/work/gd1.jpg",
     info: `发一篇测试文章试一试`,
     date: "2018/03/10"
+  },
+  {
+    gitname: "earth.md",
+    type: 2,
+    title: "Earth 3D TNC - 大自然保护协会",
+    tags: ["WebGL", "Three.js"],
+    pic: "http://isluo.com:8080/files/work/earth.jpg",
+    info: `学习Three.js时做的东西，要保护地球，Three.js的教程太少，着色器语言有好多需要学习`,
+    date: "2018/03/14"
   }
 ];
 
