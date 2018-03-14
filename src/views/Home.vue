@@ -82,7 +82,8 @@ export default {
     },
     /** 监听滚轮事件处理页面滚动 **/
     onMouseWheel(e) {
-      const f = e.wheelDeltaY || -e.detail;
+        console.log('有在触发吗,IE', e);
+      const f = e.wheelDeltaY || -e.detail || e.wheelDelta;
       if (this.scrolling) {
         return;
       }

@@ -25,7 +25,7 @@ export default {
   },
   methods: {
     onMousewheel(e) {
-      const f = e.wheelDeltaY || -e.detail;
+      const f = e.wheelDeltaY || -e.detail || e.wheelDelta;
       const st = this.$refs.bodyBox.scrollTop;
       const sh = this.$refs.bodyBox.scrollHeight;
       const ch = this.$refs.bodyBox.clientHeight;
