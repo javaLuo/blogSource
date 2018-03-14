@@ -103,7 +103,7 @@ export default {
   flex-direction: column;
   width: 100%;
   box-sizing: border-box;
-  height: 100%;
+    min-height: 100%;
   .live {
     display: block;
     width: 100%;
@@ -123,6 +123,7 @@ export default {
     color: #888;
   }
   .pagin {
+   margin-top: 8px;
     flex: none;
   }
   .bread {
