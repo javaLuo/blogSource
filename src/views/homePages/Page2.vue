@@ -1,5 +1,5 @@
 <template>
-  <div class="page2" :class="{show: isShow}">
+  <div class="page2" :class="{show: isShow, mobile: !isPc}">
       <Menus @playChange="playChange"></Menus>
       <div ref="bodyBox" class="body-box" @mousewheel="onMousewheel" @DOMMouseScroll="onMousewheel">
           <router-view></router-view>
@@ -9,10 +9,12 @@
 
 <script>
 import Menus from "../../components/Menus.vue";
+import { isPc } from "../../util/tools";
 export default {
   name: "page2",
   data: function() {
     return {
+        isPc: isPc(),
       isShow: false,
       scrollDom: null
     };
@@ -63,12 +65,10 @@ export default {
     overflow-y: auto;
     overflow-x: hidden;
   }
-}
-@media only screen and (max-width: 640px) {
-  .page2 {
-    .body-box {
-      padding-top: 64px;
+    &.mobile {
+        .body-box {
+            padding-top: 64px;
+        }
     }
-  }
 }
 </style>

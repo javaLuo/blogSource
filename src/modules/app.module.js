@@ -4,6 +4,7 @@
  * **/
 import server from "../util/fetch";
 import { masterName } from "../config";
+import{ sortDate } from '../util/tools';
 const App = {
   namespaced: true,
   state: {
@@ -46,9 +47,10 @@ const App = {
           "GET"
         );
         if (msg.status === 200 || msg.status === 304) {
+            // 给msg.data按照日期排序
           context.commit({
             type: "setBlogList",
-            data: msg.data
+            data: sortDate(msg.data),
           });
         }
         return msg;

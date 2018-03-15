@@ -7,8 +7,8 @@
           <a href="https://developer.mozilla.org/" target="_blank" title="mozilla.org"><img :src="LogoHTML5" /></a>
       </div>
       <div class="info-box">
-          <div>vue-cli 构建的简单博客：vue.js/vuex/vue-router</div>
-          <div>github-api V4 实现的登录及日志留言功能</div>
+          <div>Vue.js 全家桶框架支持</div>
+          <div>GitHub API 文章及评论支持</div>
           <div>感谢开源世界的恩惠</div>
       </div>
       <div class="last">
@@ -59,9 +59,10 @@ export default {
   }
   .info-box {
     text-align: center;
-    color: #e0e0e0;
+    color: #ccc;
     letter-spacing: 1px;
-    font-size: 16px;
+    font-size: 14px;
+      line-height: 22px;
   }
   .last {
     text-align: center;

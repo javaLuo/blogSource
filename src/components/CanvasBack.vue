@@ -5,7 +5,6 @@
 </template>
 
 <script>
-import ImgMenuBack from "../assets/menu_back.png";
 import { mapState } from "vuex";
 export default {
   name: "Header",
@@ -15,12 +14,11 @@ export default {
       width: 0, // canvas当前的宽及像素
       height: 0, // canvas当前的高及像素
       theRain: [], // 所有的雨
-      ImgMenuBack
+
     };
   },
   props: {},
   mounted() {
-    console.log("得到了啊：", this.$el);
     this.ctx = this.$el.getContext("2d");
     this.width = this.$el.clientWidth;
     this.height = this.$el.clientHeight;
@@ -45,41 +43,41 @@ export default {
        * */
       for (let i = 0; i < many; i++) {
         let params = null;
-        const rgb = Math.round(this.random(20, 80));
-        if (i < many / 5) {
+        const rgb = Math.round(this.random(30, 100));
+        if (i < many / 4) {
           params = {
-            h: 80,
+            h: 60,
             w: 1,
-            s: this.random(10, 12),
-            color: `rgba(${rgb}, ${rgb}, ${rgb}, 0.4)`
-          };
-        } else if (i < many / 4) {
-          params = {
-            h: 100,
-            w: 1,
-            s: this.random(12, 14),
+            s: this.random(10, 15),
             color: `rgba(${rgb}, ${rgb}, ${rgb}, 0.5)`
           };
         } else if (i < many / 3) {
           params = {
-            h: 120,
+            h: 90,
             w: 1,
-            s: this.random(14, 16),
+            s: this.random(15, 20),
             color: `rgba(${rgb}, ${rgb}, ${rgb}, 0.6)`
           };
         } else if (i < many / 2) {
           params = {
-            h: 140,
+            h: 120,
             w: 1,
-            s: this.random(16, 18),
+            s: this.random(20, 25),
             color: `rgba(${rgb}, ${rgb}, ${rgb}, 0.7)`
+          };
+        } else if (i < many / 1.5) {
+          params = {
+            h: 150,
+            w: 1,
+            s: this.random(25, 30),
+            color: `rgba(${rgb}, ${rgb}, ${rgb}, 0.8)`
           };
         } else {
           params = {
             h: 200,
             w: 2,
-            s: this.random(18, 20),
-            color: `rgba(${rgb}, ${rgb}, ${rgb}, 0.8)`
+            s: this.random(30, 35),
+            color: `rgba(${rgb}, ${rgb}, ${rgb}, 0.9)`
           };
         }
         const temp = {

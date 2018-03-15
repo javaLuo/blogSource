@@ -1,5 +1,5 @@
 <template>
-    <div class="menus">
+    <div class="menus" :class="{ mobile: !isPc }">
         <!-- 头部，移动端才显示 -->
         <div class="head">
             <div class="menu-btn" @click="onMenuTrigger">
@@ -215,7 +215,7 @@ export default {
       background-color: #333;
       background-image: url(../assets/menu_back.png);
       background-size: cover;
-      background-position: bottom center;
+      background-position: top center;
     }
     .info-box {
       width: 100%;
@@ -371,31 +371,29 @@ export default {
       }
     }
   }
-}
-@media only screen and (max-width: 640px) {
-  .menus {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 0;
-    .head {
-      display: block;
+    &.mobile {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 0;
+        .head {
+            display: block;
+        }
+        .menu-body-box {
+            position: absolute;
+            top: 45px;
+            left: 0;
+            width: 100vw !important;
+            height: calc(~"100vh - 45px") !important;
+            .back-img-box {
+                width: 80%;
+                box-shadow: 3px 0 8px rgba(0, 0, 0, 0.5);
+            }
+            .info-box {
+                width: 80%;
+            }
+        }
     }
-    .menu-body-box {
-      position: absolute;
-      top: 45px;
-      left: 0;
-      width: 100vw !important;
-      height: calc(~"100vh - 45px") !important;
-      .back-img-box {
-        width: 80%;
-        box-shadow: 3px 0 8px rgba(0, 0, 0, 0.5);
-      }
-      .info-box {
-        width: 80%;
-      }
-    }
-  }
 }
 </style>
