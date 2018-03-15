@@ -56,7 +56,11 @@ export default {
       }
       return getBlogInfo(this.$route.params.id);
     },
-    ...mapState({})
+    ...mapState({
+        blogCache(state) {
+            return state.app.blogs.find((item) => item.name === this.$route.params.id);
+        }
+    })
   },
   methods: {
     /** 通过标题向github请求文章详细内容 **/
@@ -64,6 +68,11 @@ export default {
       if (!id) {
         return null;
       }
+      // 先读缓存
+        if (this.blogCache) {
+          this.sourceData = this.blogCache.body;
+          return;
+        }
       this.$store
         .dispatch({
           type: "app/getBlogDetail",
@@ -72,7 +81,6 @@ export default {
         .then(res => {
           if (res.status === 200) {
             this.sourceData = res.data;
-          } else {
           }
         });
     },
@@ -143,9 +151,6 @@ export default {
     margin: 0 auto;
     color: #888;
     font-size: 14px;
-    img {
-      max-width: 100vw;
-    }
     div {
       margin-top: 8px;
     }

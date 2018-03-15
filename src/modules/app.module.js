@@ -5,39 +5,16 @@
 import server from "../util/fetch";
 import { masterName } from "../config";
 import{ sortDate } from '../util/tools';
+import { Message } from 'element-ui';
 const App = {
   namespaced: true,
   state: {
     userinfo: null,
     blogList: [], // 所有文章列表
+      blogs: [],    // 文章内容缓存
     detailURL: null // 当前选中的文章URL信息
   },
   actions: {
-    async onLogin(context, payload) {
-      console.log("触发登录:", payload.params);
-      try {
-        const msg = await new Promise((res, rej) => {
-          setTimeout(() => {
-            res({
-              status: 200,
-              message: "success",
-              data: { id: 1, username: "admin", password: "123123" }
-            });
-          }, 1000);
-        });
-        console.log("返回结果：", msg, context);
-        if (msg.status === 200) {
-          context.commit({
-            type: "setUserinfo",
-            userinfo: msg.data
-          });
-          console.log("登录成功");
-          return msg;
-        }
-      } catch (e) {
-        console.log("网络错误");
-      }
-    },
     /** 获取所有文章列表 **/
     async getBlogList(context, payload) {
       try {
@@ -55,7 +32,7 @@ const App = {
         }
         return msg;
       } catch (e) {
-        console.log("网络错误");
+          Message.info('网络出现错误，列表获取失败');
       }
     },
     /** 获取某个文章的详细内容 **/
@@ -65,9 +42,16 @@ const App = {
           payload.url
         }`;
         const msg = await server(url, null, "GET");
+        if (msg.status === 200 || msg.status === 304) {
+            context.commit({
+                type: 'saveTheBlog',
+                name: payload.url,
+                data: msg.data,
+            });
+        }
         return msg;
       } catch (e) {
-        console.log("网络错误");
+          Message.info('网络出现错误，文章获取失败');
       }
     },
     /** 点选某篇文章时，保存该文章的URL信息，供详情页获取数据使用 **/
@@ -83,20 +67,18 @@ const App = {
     }
   },
   mutations: {
-    setBlogList(state, payload) {
-      console.log("触发这个mutaions:", payload);
+    setBlogList(state, payload) {   // 保存文章列表
       state.blogList = payload.data;
     },
-    setUserinfo(state, payload) {
-      console.log("触发保存用户信息：", state, payload);
-      state.userinfo = payload.userinfo;
-    },
-    setDetailURL(state, payload) {
+    setDetailURL(state, payload) {  // 保存当前选择的BLOG地址
       state.detailURL = payload.data;
     },
-    clearUserinfo(state) {
-      state.userinfo = null;
-    }
+      saveTheBlog(state, payload) { //  保存blog详细内容
+        const lived = state.blogs.find((item) => item.name === payload.name);
+        if (!lived) {
+            state.blogs.push({ name: payload.name, body: payload.data });
+        }
+      },
   }
 };
 

@@ -121,6 +121,9 @@ export default {
     transform: translateY(-50%);
     text-align: center;
     color: #888;
+      div {
+          margin-top: 8px;
+      }
   }
   .pagin {
    margin-top: 8px;
