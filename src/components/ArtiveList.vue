@@ -14,6 +14,7 @@
 <script>
 /** 单个数据列表项 **/
 import { getBlogInfo } from "../util/tools";
+import { mapState } from "vuex";
 import { Tag } from "element-ui";
 export default {
   name: "ArtiveList",
@@ -30,10 +31,14 @@ export default {
     console.log("来了没有：", this.thisData);
   },
   computed: {
-    blogInfo() {
-      console.log("blogInfo?", this.thisData.name);
-      return getBlogInfo(this.thisData.name);
-    }
+      ...mapState({
+          blogInfo(state) {
+              const d = state.app.blogConfig ? state.app.blogConfig.d : [];
+              console.log('是什么啊：', d, state.app.blogConfig);
+              const data = d.find(item => item.gitname === this.thisData.name);
+              return data || {};
+          },
+      })
   },
   methods: {
     /** 点击某篇文章保存相关数据进入详情 **/

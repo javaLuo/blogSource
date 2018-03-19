@@ -7,7 +7,7 @@
             </Breadcrumb>
         </div>
         <transition-group name="list" tag="ul" class="live">
-            <ArtiveList class="swiper-slide" v-for="(v, index) in pageNowData" :thisData="v" :key="index"></ArtiveList>
+            <ArtiveList v-for="(v, index) in pageNowData" :thisData="v" :key="index"></ArtiveList>
         </transition-group>
         <div class="nothing" v-if="!pageNowData.length">
             <img :src="ImgLoading" />
@@ -61,11 +61,15 @@ export default {
   },
   computed: {
     ...mapState({
-      listData: state => state.app.blogList
+      listData(state) {
+          console.log('变压？', state.app.blogConfig, state.app.blogList);
+          return state.app.blogConfig ? state.app.blogList : [];
+      }
     })
   },
   watch: {
     listData(newV, oldV) {
+        console.log('所以你监听到了吗：', newV, oldV);
       this.total = newV.length;
       const temp = newV.filter(
         (item, index) =>

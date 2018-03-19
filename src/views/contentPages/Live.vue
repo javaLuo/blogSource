@@ -62,7 +62,7 @@ export default {
   computed: {
     ...mapState({
       listData: state =>
-        state.app.blogList.filter(item => getBlogInfo(item.name).type === 1)
+          state.app.blogConfig ? state.app.blogList.filter(item => getBlogInfo(item.name).type === 1) : []
     })
   },
   watch: {

@@ -12,9 +12,23 @@ const App = {
     userinfo: null,
     blogList: [], // 所有文章列表
       blogs: [],    // 文章内容缓存
+      blogConfig: null , // 文章配置信息缓存
     detailURL: null // 当前选中的文章URL信息
   },
   actions: {
+    /** 获取文章配置 **/
+    async getBlogConfig(context, payload) {
+        const url = `https://raw.githubusercontent.com/${masterName}/${masterName}.github.io/master/blog/config.json`;
+        const msg = await server(url, null, "GET");
+        console.log("获得了什么：", msg, msg.data);
+        if (msg.status === 200 || msg.status === 304) {
+            context.commit({
+                type: 'saveTheBlogConfig',
+                data: msg.data,
+            });
+        }
+        return msg;
+    },
     /** 获取所有文章列表 **/
     async getBlogList(context, payload) {
       try {
@@ -79,6 +93,9 @@ const App = {
             state.blogs.push({ name: payload.name, body: payload.data });
         }
       },
+      saveTheBlogConfig(state, payload) { // 保存文章配置信息
+        state.blogConfig = payload.data;
+      }
   }
 };
 

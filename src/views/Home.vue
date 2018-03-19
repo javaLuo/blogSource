@@ -57,6 +57,8 @@ export default {
         }
       };
     }
+    /** 获取博客配置信息 **/
+    this.getBlogConfig();
     /** 获取博客列表 **/
     this.getBlogList();
   },
@@ -132,6 +134,13 @@ export default {
         this.mp3Dom.a.pause();
       }
     },
+      /** 进入页面获取博客配置信息 **/
+      getBlogConfig() {
+        this.$store.dispatch({
+            type: 'app/getBlogConfig',
+            params: null,
+        });
+      },
     /** 进入页面及获取所有文章列表 **/
     getBlogList() {
       this.$store.dispatch({
