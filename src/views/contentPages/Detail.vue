@@ -1,8 +1,8 @@
 <template>
     <div class="page-detail" :v-loading="true">
         <div class="info">
-            <div class="title" >{{ comDetailInfo.title }}</div>
-            <div class="date">{{ comDetailInfo.date }}</div>
+            <div class="title" >{{ blogConfig.title }}</div>
+            <div class="date">{{ blogConfig.date }}</div>
         </div>
         <div v-if="!sourceData" class="loading-box">
             <img :src="ImgLoading" />
@@ -18,7 +18,6 @@
 /** 文章的详情页 **/
 import { mapState, mapGetters } from "vuex";
 import { Button, Loading } from "element-ui";
-import { getBlogInfo } from "../../util/tools";
 import "gitment/style/default.css";
 import ShowDown from "showdown";
 import Gitment from "gitment";
@@ -49,17 +48,21 @@ export default {
       const converter = new ShowDown.Converter();
       return converter.makeHtml(this.sourceData);
     },
-    /** 解析出标题 **/
-    comDetailInfo() {
-      if (!this.$route.params.id) {
-        return {};
-      }
-      return getBlogInfo(this.$route.params.id);
-    },
     ...mapState({
-        blogCache(state) {
-            return state.app.blogs.find((item) => item.name === this.$route.params.id);
+      blogCache(state) {
+        return state.app.blogs.find(
+          item => item.name === this.$route.params.id
+        );
+      },
+      /** 获取当前文章的配置信息 **/
+      blogConfig(state) {
+        const id = this.$route.params.id;
+        if (!id || !state.app.blogConfig) {
+          return {};
         }
+        const b = state.app.blogConfig.d;
+        return b.find(item => item.gitname === id) || { title: id };
+      }
     })
   },
   methods: {
@@ -69,16 +72,17 @@ export default {
         return null;
       }
       // 先读缓存
-        if (this.blogCache) {
-          this.sourceData = this.blogCache.body;
-          return;
-        }
+      if (this.blogCache) {
+        this.sourceData = this.blogCache.body;
+        return;
+      }
       this.$store
         .dispatch({
           type: "app/getBlogDetail",
           url: id
         })
         .then(res => {
+          console.log("得到了源码：", res);
           if (res.status === 200) {
             this.sourceData = res.data;
           }

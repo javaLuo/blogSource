@@ -13,8 +13,7 @@ export default {
       ctx: null,
       width: 0, // canvas当前的宽及像素
       height: 0, // canvas当前的高及像素
-      theRain: [], // 所有的雨
-
+      theRain: [] // 所有的雨
     };
   },
   props: {},

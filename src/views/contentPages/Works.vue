@@ -62,7 +62,9 @@ export default {
   computed: {
     ...mapState({
       listData: state =>
-          state.app.blogConfig ? state.app.blogList.filter(item => getBlogInfo(item.name).type === 2) : []
+        state.app.blogConfig
+          ? state.app.blogList.filter(item => getBlogInfo(item.name).type === 2)
+          : []
     })
   },
   watch: {
@@ -103,7 +105,7 @@ export default {
   flex-direction: column;
   width: 100%;
   box-sizing: border-box;
-    min-height: 100%;
+  min-height: 100%;
   .live {
     display: block;
     width: 100%;
@@ -118,12 +120,12 @@ export default {
     transform: translateY(-50%);
     text-align: center;
     color: #888;
-      div {
-          margin-top: 8px;
-      }
+    div {
+      margin-top: 8px;
+    }
   }
   .pagin {
-      margin-top: 8px;
+    margin-top: 8px;
     flex: none;
   }
   .bread {

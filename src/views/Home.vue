@@ -84,7 +84,7 @@ export default {
     },
     /** 监听滚轮事件处理页面滚动 **/
     onMouseWheel(e) {
-        console.log('有在触发吗,IE', e);
+      console.log("有在触发吗,IE", e);
       const f = e.wheelDeltaY || -e.detail || e.wheelDelta;
       if (this.scrolling) {
         return;
@@ -134,13 +134,13 @@ export default {
         this.mp3Dom.a.pause();
       }
     },
-      /** 进入页面获取博客配置信息 **/
-      getBlogConfig() {
-        this.$store.dispatch({
-            type: 'app/getBlogConfig',
-            params: null,
-        });
-      },
+    /** 进入页面获取博客配置信息 **/
+    getBlogConfig() {
+      this.$store.dispatch({
+        type: "app/getBlogConfig",
+        params: null
+      });
+    },
     /** 进入页面及获取所有文章列表 **/
     getBlogList() {
       this.$store.dispatch({

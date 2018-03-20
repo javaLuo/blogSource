@@ -4,30 +4,33 @@
  * **/
 import server from "../util/fetch";
 import { masterName } from "../config";
-import{ sortDate } from '../util/tools';
-import { Message } from 'element-ui';
+import { sortDate } from "../util/tools";
+import { Message } from "element-ui";
 const App = {
   namespaced: true,
   state: {
     userinfo: null,
     blogList: [], // 所有文章列表
-      blogs: [],    // 文章内容缓存
-      blogConfig: null , // 文章配置信息缓存
+    blogs: [], // 文章内容缓存
+    blogConfig: null, // 文章配置信息缓存
     detailURL: null // 当前选中的文章URL信息
   },
   actions: {
     /** 获取文章配置 **/
     async getBlogConfig(context, payload) {
-        const url = `https://raw.githubusercontent.com/${masterName}/${masterName}.github.io/master/blog/config.json`;
+      try {
+        const url = `https://raw.githubusercontent.com/${masterName}/${masterName}.github.io/master/config/config.json`;
         const msg = await server(url, null, "GET");
-        console.log("获得了什么：", msg, msg.data);
         if (msg.status === 200 || msg.status === 304) {
-            context.commit({
-                type: 'saveTheBlogConfig',
-                data: msg.data,
-            });
+          context.commit({
+            type: "saveTheBlogConfig",
+            data: msg.data
+          });
         }
         return msg;
+      } catch (e) {
+        Message.info("网络出现错误，列表获取失败");
+      }
     },
     /** 获取所有文章列表 **/
     async getBlogList(context, payload) {
@@ -37,16 +40,17 @@ const App = {
           null,
           "GET"
         );
+
         if (msg.status === 200 || msg.status === 304) {
-            // 给msg.data按照日期排序
+          // 给msg.data按照日期排序
           context.commit({
             type: "setBlogList",
-            data: sortDate(msg.data),
+            data: sortDate(msg.data)
           });
         }
         return msg;
       } catch (e) {
-          Message.info('网络出现错误，列表获取失败');
+        Message.info("网络出现错误，列表获取失败");
       }
     },
     /** 获取某个文章的详细内容 **/
@@ -55,17 +59,18 @@ const App = {
         const url = `https://raw.githubusercontent.com/${masterName}/${masterName}.github.io/master/blog/${
           payload.url
         }`;
-        const msg = await server(url, null, "GET");
+        const msg = await server(url, null, "GET", true);
+        console.log("为什么没有，什么意思：", msg);
         if (msg.status === 200 || msg.status === 304) {
-            context.commit({
-                type: 'saveTheBlog',
-                name: payload.url,
-                data: msg.data,
-            });
+          context.commit({
+            type: "saveTheBlog",
+            name: payload.url,
+            data: msg.data
+          });
         }
         return msg;
       } catch (e) {
-          Message.info('网络出现错误，文章获取失败');
+        Message.info("网络出现错误，文章获取失败");
       }
     },
     /** 点选某篇文章时，保存该文章的URL信息，供详情页获取数据使用 **/
@@ -81,21 +86,25 @@ const App = {
     }
   },
   mutations: {
-    setBlogList(state, payload) {   // 保存文章列表
+    setBlogList(state, payload) {
+      // 保存文章列表
       state.blogList = payload.data;
     },
-    setDetailURL(state, payload) {  // 保存当前选择的BLOG地址
+    setDetailURL(state, payload) {
+      // 保存当前选择的BLOG地址
       state.detailURL = payload.data;
     },
-      saveTheBlog(state, payload) { //  保存blog详细内容
-        const lived = state.blogs.find((item) => item.name === payload.name);
-        if (!lived) {
-            state.blogs.push({ name: payload.name, body: payload.data });
-        }
-      },
-      saveTheBlogConfig(state, payload) { // 保存文章配置信息
-        state.blogConfig = payload.data;
+    saveTheBlog(state, payload) {
+      //  保存blog详细内容
+      const lived = state.blogs.find(item => item.name === payload.name);
+      if (!lived) {
+        state.blogs.push({ name: payload.name, body: payload.data });
       }
+    },
+    saveTheBlogConfig(state, payload) {
+      // 保存文章配置信息
+      state.blogConfig = payload.data;
+    }
   }
 };
 

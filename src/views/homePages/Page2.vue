@@ -14,7 +14,7 @@ export default {
   name: "page2",
   data: function() {
     return {
-        isPc: isPc(),
+      isPc: isPc(),
       isShow: false,
       scrollDom: null
     };
@@ -65,10 +65,10 @@ export default {
     overflow-y: auto;
     overflow-x: hidden;
   }
-    &.mobile {
-        .body-box {
-            padding-top: 64px;
-        }
+  &.mobile {
+    .body-box {
+      padding-top: 64px;
     }
+  }
 }
 </style>

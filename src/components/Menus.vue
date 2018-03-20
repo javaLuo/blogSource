@@ -371,29 +371,29 @@ export default {
       }
     }
   }
-    &.mobile {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 0;
-        height: 0;
-        .head {
-            display: block;
-        }
-        .menu-body-box {
-            position: absolute;
-            top: 45px;
-            left: 0;
-            width: 100vw !important;
-            height: calc(~"100vh - 45px") !important;
-            .back-img-box {
-                width: 80%;
-                box-shadow: 3px 0 8px rgba(0, 0, 0, 0.5);
-            }
-            .info-box {
-                width: 80%;
-            }
-        }
+  &.mobile {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    .head {
+      display: block;
     }
+    .menu-body-box {
+      position: absolute;
+      top: 45px;
+      left: 0;
+      width: 100vw !important;
+      height: calc(~"100vh - 45px") !important;
+      .back-img-box {
+        width: 80%;
+        box-shadow: 3px 0 8px rgba(0, 0, 0, 0.5);
+      }
+      .info-box {
+        width: 80%;
+      }
+    }
+  }
 }
 </style>

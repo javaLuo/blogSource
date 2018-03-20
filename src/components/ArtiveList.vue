@@ -27,23 +27,19 @@ export default {
   components: {
     Tag
   },
-  mounted() {
-    console.log("来了没有：", this.thisData);
-  },
+  mounted() {},
   computed: {
-      ...mapState({
-          blogInfo(state) {
-              const d = state.app.blogConfig ? state.app.blogConfig.d : [];
-              console.log('是什么啊：', d, state.app.blogConfig);
-              const data = d.find(item => item.gitname === this.thisData.name);
-              return data || {};
-          },
-      })
+    ...mapState({
+      blogInfo(state) {
+        const d = state.app.blogConfig ? state.app.blogConfig.d : [];
+        const data = d.find(item => item.gitname === this.thisData.name);
+        return data || { title: this.thisData.name };
+      }
+    })
   },
   methods: {
     /** 点击某篇文章保存相关数据进入详情 **/
     onDetailChose() {
-      console.log("到这了吧：", this.thisData);
       this.$router.push(`/detail/${this.thisData.name}`);
     }
   },

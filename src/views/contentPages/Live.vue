@@ -62,7 +62,9 @@ export default {
   computed: {
     ...mapState({
       listData: state =>
-          state.app.blogConfig ? state.app.blogList.filter(item => getBlogInfo(item.name).type === 1) : []
+        state.app.blogConfig
+          ? state.app.blogList.filter(item => getBlogInfo(item.name).type === 1)
+          : []
     })
   },
   watch: {
@@ -118,12 +120,12 @@ export default {
     transform: translateY(-50%);
     text-align: center;
     color: #888;
-      div {
-          margin-top: 8px;
-      }
+    div {
+      margin-top: 8px;
+    }
   }
   .pagin {
-      margin-top: 8px;
+    margin-top: 8px;
     flex: none;
   }
   .bread {

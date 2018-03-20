@@ -62,14 +62,12 @@ export default {
   computed: {
     ...mapState({
       listData(state) {
-          console.log('变压？', state.app.blogConfig, state.app.blogList);
-          return state.app.blogConfig ? state.app.blogList : [];
+        return state.app.blogConfig ? state.app.blogList : [];
       }
     })
   },
   watch: {
     listData(newV, oldV) {
-        console.log('所以你监听到了吗：', newV, oldV);
       this.total = newV.length;
       const temp = newV.filter(
         (item, index) =>
@@ -107,7 +105,7 @@ export default {
   flex-direction: column;
   width: 100%;
   box-sizing: border-box;
-    min-height: 100%;
+  min-height: 100%;
   .live {
     display: block;
     width: 100%;
@@ -125,12 +123,12 @@ export default {
     transform: translateY(-50%);
     text-align: center;
     color: #888;
-      div {
-          margin-top: 8px;
-      }
+    div {
+      margin-top: 8px;
+    }
   }
   .pagin {
-   margin-top: 8px;
+    margin-top: 8px;
     flex: none;
   }
   .bread {

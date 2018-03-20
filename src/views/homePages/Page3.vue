@@ -62,7 +62,7 @@ export default {
     color: #ccc;
     letter-spacing: 1px;
     font-size: 14px;
-      line-height: 22px;
+    line-height: 22px;
   }
   .last {
     text-align: center;

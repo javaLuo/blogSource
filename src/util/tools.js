@@ -1,5 +1,5 @@
 import blogData from "./data";
-import _ from 'lodash';
+import _ from "lodash";
 
 /** 判断当前环境是否是PC端 **/
 export const isPc = () => {
@@ -39,14 +39,20 @@ export const getBlogInfo = gitname => {
  * 反之返回负数
  * 相等返回0
  * */
-export const sortDate = (data) => {
-    const d = _.cloneDeep(data);
-    d.sort((a, b) => {
-        const t1 = blogData.find(item => item.gitname === a.name);
-        if (!t1) { return -1; }
-        const t2 = blogData.find(item => item.gitname === b.name);
-        if (!t2) { return 1; }
-        return Number(t1.date.split('/').join('')) - Number(t2.date.split('/').join(''));
-    });
-    return d;
+export const sortDate = data => {
+  const d = _.cloneDeep(data);
+  d.sort((a, b) => {
+    const t1 = blogData.find(item => item.gitname === a.name);
+    if (!t1) {
+      return -1;
+    }
+    const t2 = blogData.find(item => item.gitname === b.name);
+    if (!t2) {
+      return 1;
+    }
+    return (
+      Number(t1.date.split("/").join("")) - Number(t2.date.split("/").join(""))
+    );
+  });
+  return d;
 };
