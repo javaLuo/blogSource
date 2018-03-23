@@ -29,7 +29,7 @@
 import { mapState } from "vuex";
 import { Pagination, Breadcrumb, BreadcrumbItem } from "element-ui";
 import ArtiveList from "../../components/ArtiveList.vue";
-import { getBlogInfo } from "../../util/tools";
+import { getBlogInfo, sortDate } from "../../util/tools";
 import ImgLoading from "../../assets/loading.gif";
 export default {
   name: "live",
@@ -49,7 +49,6 @@ export default {
     BreadcrumbItem
   },
   mounted() {
-    console.log("被重新构建了吗");
     this.total = this.listData.length;
     const temp = this.listData.filter(
       (item, index) =>
@@ -62,7 +61,9 @@ export default {
   computed: {
     ...mapState({
       listData(state) {
-        return state.app.blogConfig ? state.app.blogList : [];
+        return state.app.blogConfig
+          ? sortDate(state.app.blogList, state.app.blogConfig.d)
+          : [];
       }
     })
   },

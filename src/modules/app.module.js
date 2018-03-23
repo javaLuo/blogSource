@@ -29,7 +29,7 @@ const App = {
         }
         return msg;
       } catch (e) {
-        Message.info("网络出现错误，列表获取失败");
+        Message.info("网络出现错误，配置获取失败");
       }
     },
     /** 获取所有文章列表 **/
@@ -40,12 +40,12 @@ const App = {
           null,
           "GET"
         );
-
+        console.log("到这里了吗：", msg);
         if (msg.status === 200 || msg.status === 304) {
           // 给msg.data按照日期排序
           context.commit({
             type: "setBlogList",
-            data: sortDate(msg.data)
+            data: msg.data
           });
         }
         return msg;

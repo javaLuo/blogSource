@@ -88,14 +88,23 @@ export default {
     ...mapState({
       play: state => state.page.playing,
       liveLength: state =>
-        state.app.blogList.filter(item => getBlogInfo(item.name).type === 1)
-          .length,
+        state.app.blogConfig
+          ? state.app.blogList.filter(
+              item => getBlogInfo(item.name, state.app.blogConfig.d).type === 1
+            ).length
+          : 0,
       workLength: state =>
-        state.app.blogList.filter(item => getBlogInfo(item.name).type === 2)
-          .length,
+        state.app.blogConfig
+          ? state.app.blogList.filter(
+              item => getBlogInfo(item.name, state.app.blogConfig.d).type === 2
+            ).length
+          : 0,
       articleLength: state =>
-        state.app.blogList.filter(item => getBlogInfo(item.name).type === 3)
-          .length
+        state.app.blogConfig
+          ? state.app.blogList.filter(
+              item => getBlogInfo(item.name, state.app.blogConfig.d).type === 3
+            ).length
+          : 0
     })
   }
 };

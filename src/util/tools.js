@@ -1,4 +1,3 @@
-import blogData from "./data";
 import _ from "lodash";
 
 /** 判断当前环境是否是PC端 **/
@@ -28,8 +27,9 @@ export const isPc = () => {
  * 配图 如果有的话
  * 简介
  * */
-export const getBlogInfo = gitname => {
-  const data = blogData.find(item => item.gitname === gitname);
+export const getBlogInfo = (gitname, allofblog) => {
+  console.log("所以：", allofblog);
+  const data = allofblog.find(item => item.gitname === gitname);
   return data || {};
 };
 
@@ -39,7 +39,7 @@ export const getBlogInfo = gitname => {
  * 反之返回负数
  * 相等返回0
  * */
-export const sortDate = data => {
+export const sortDate = (data, blogData) => {
   const d = _.cloneDeep(data);
   d.sort((a, b) => {
     const t1 = blogData.find(item => item.gitname === a.name);
