@@ -34,10 +34,8 @@ export const getBlogInfo = (gitname, allofblog) => {
 };
 
 /**
- * 比较两个日期字符串的大小
- * 如果str1>str2,返回正数
- * 反之返回负数
- * 相等返回0
+ * 比较两个日期字符串的大小，倒序
+ * sort排序
  * */
 export const sortDate = (data, blogData) => {
   const d = _.cloneDeep(data);
@@ -51,7 +49,7 @@ export const sortDate = (data, blogData) => {
       return 1;
     }
     return (
-      Number(t1.date.split("/").join("")) - Number(t2.date.split("/").join(""))
+        Number(t2.date.split("/").join("") - Number(t1.date.split("/").join("")))
     );
   });
   return d;
