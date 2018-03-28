@@ -1,4 +1,4 @@
-# blogSource
+# blogSource [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 一个博客模版<br/>
 我自己的gitHub博客源代码
 
@@ -18,7 +18,7 @@
 ## 预览地址
 
 <a href="http://blog.isluo.com" target="_blank">http://blog.isluo.com</a>
----
+
 
 ## 使用说明
 
@@ -63,12 +63,12 @@ export const client_secret = "xxxxx"; // 第1步中得到的client_secret，用�
 
 ## 写博客
 
-- 需要在你的github博客项目根目录创建一个名为blog的文件夹
-- 在此文件夹下新建博客文件吧，比如hello.md
-- 在hello.md中书写你的博客内容
-- 在你的github博客项目根目录下创建一个名为config的文件夹
-- 在config文件夹下创建config.json文件
-- 在config.json中写：
+1. 需要在你的github博客项目根目录创建一个名为blog的文件夹
+2. 在此文件夹下新建博客文件吧，比如hello.md
+3. 在hello.md中书写你的博客内容
+4. 在你的github博客项目根目录下创建一个名为config的文件夹
+5. 在config文件夹下创建config.json文件
+6. 在config.json中写：
 ```
 {
     "d": [
