@@ -1,24 +1,35 @@
 # blogSource
+一个博客模版<br/>
 我自己的gitHub博客源代码
 
-- vue-cli全家桶
-- GitHub api获取博客
-- github api添加评论
+- vue-cli 全家桶
+- GitHub API 获取博客列表
+- gitment 添加评论
+- 直接在GitHub上新建.md文件就能发表博客
+- 简单的配置自定义的博客信息（标题、封面、简介等）
 
 ---
-##使用说明
 
-###1. 注册 OAuth Application
+
+![a](https://github.com/javaLuo/blogSource/blob/master/public/a.jpg)
+
+![b](https://github.com/javaLuo/blogSource/blob/master/public/b.jpg)
+
+---
+
+## 使用说明
+
+### 1. 注册 OAuth Application
     
 - <a href="https://github.com/settings/applications/new" target="_blank">点击此处</a> 来注册一个新的 OAuth Application。其他内容可以随意填写，
 但要确保填入正确的 callback URL（就是你网站的域名，比如我的： http://blog.isluo.com）。
 - 你会得到一个 client ID 和一个 client secret，这个将被用于之后的用户登录。
 
-###2. 克隆本项目到本地
+### 2. 克隆本项目到本地
 
-###3. yarn install 或 npm install
+### 3. yarn install 或 npm install
 
-###4. 修改src/config/index.js中的内容
+### 4. 修改src/config/index.js中的内容
 ```
 export const masterName = "javaLuo";  // 这里改为你自己的GitHub账户名
 export const issueName = "javaimluo"; // 这里改为你自己的某个项目的名字(你需要另外一个项目用来作为所有评论的存储仓库)
@@ -27,13 +38,13 @@ export const client_secret = "xxxxx"; // 第1步中得到的client_secret，用�
 
 ```
 
-###5、然后修改项目中你想修改的任何地方（照片、标题、样式等）
+### 5、然后修改项目中你想修改的任何地方（照片、标题、样式等）
 
-###6、npm run serve 可启动开发环境：http://localhost:8080
+### 6、npm run serve 可启动开发环境：http://localhost:8080
 
-###7、npm run build 可将代码打包到dist文件夹下
+### 7、npm run build 可将代码打包到dist文件夹下
 
-###8、开通你自己的github博客服务
+### 8、开通你自己的github博客服务
 
 - 在github上创建一个以你的账户名为前缀的项目，比如我的账户名是javaLuo,则创建的项目名为javaLuo.github.io
 - 几分钟后GitHub会自动帮你开通网站，访问javaLuo.github.io将打开此项目根目录下的index.html
@@ -47,7 +58,7 @@ export const client_secret = "xxxxx"; // 第1步中得到的client_secret，用�
 
 ---
 
-##写博客
+## 写博客
 
 - 需要在你的github博客项目根目录创建一个名为blog的文件夹
 - 在此文件夹下新建博客文件吧，比如hello.md
