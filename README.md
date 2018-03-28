@@ -19,6 +19,15 @@
 
 <a href="http://blog.isluo.com" target="_blank">http://blog.isluo.com</a>
 
+### 构建
+
+```
+npm run serve       // 启动开发环境，默认地址：localhost:8080
+
+npm run build       // 生产环境打包，会自动生成dist文件夹
+
+npm run prettier    // 一键代码格式化
+```
 
 ## 使用说明
 
