@@ -19,6 +19,7 @@
 import { mapState, mapGetters } from "vuex";
 import { Button, Loading } from "element-ui";
 import "gitment/style/default.css";
+import { masterName, issueName, client_id, client_secret } from '../../config';
 import ShowDown from "showdown";
 import Gitment from "gitment";
 import ImgLoading from "../../assets/loading.gif";
@@ -82,7 +83,6 @@ export default {
           url: id
         })
         .then(res => {
-          console.log("得到了源码：", res);
           if (res.status === 200) {
             this.sourceData = res.data;
           }
@@ -109,11 +109,11 @@ export default {
 
       const gitment = new Gitment({
         id: this.$route.params.id,
-        owner: "javaLuo", //7686097,
-        repo: "javaimluo",
+        owner: masterName,
+        repo: issueName,
         oauth: {
-          client_id: "238f860ad73e65016c12",
-          client_secret: "8ad83943947cae78326975b5bc27e0d179746d8b"
+          client_id,
+          client_secret,
         },
         theme: myTheme
       });
