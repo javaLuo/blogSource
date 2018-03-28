@@ -5,7 +5,7 @@
         <div v-if="blogInfo.pic" class="pic"><img :src="blogInfo.pic"></div>
         <div class="info"><span v-html="blogInfo.info"></span></div>
         <div class="tags">
-            <Tag v-for="item in blogInfo.tags" size="small">{{ item }}</Tag>
+            <Tag v-for="(item, index) in blogInfo.tags" size="small" :key="index">{{ item }}</Tag>
         </div>
         <div class="read-more"  @click="onDetailChose">Read More</div>
     </li>
