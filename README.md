@@ -61,10 +61,10 @@ export const client_secret = "xxxxx"; // 第1步中得到的client_secret，用�
 - 在github上创建一个以你的账户名为前缀的项目，比如我的账户名是javaLuo,则创建的项目名为javaLuo.github.io
 - 几分钟后GitHub会自动帮你开通网站，访问javaLuo.github.io将打开此项目根目录下的index.html
 
-###9、上传代码
+### 9、上传代码
 - 把第7步生成的dist文件夹中的东西push到第8步创建的github博客项目中，大功告成。
 
-###10、自定义域名
+### 10、自定义域名
 - 如果你有自己的域名，比如我自己的blog.isluo.com。那可以在博客项目的根目录创建一个名为CNAME的无后缀文件
 - 里面的内容就写你的域名即可
 
@@ -82,12 +82,12 @@ export const client_secret = "xxxxx"; // 第1步中得到的client_secret，用�
 {
     "d": [
         {
-            "gitname": "hello.md",  // 对应你床架难道.md文件名字
+            "gitname": "hello.md",  // 对应你创建的.md文件名
             "type": 1,              //1文章，2作品，3日志
-            "title": "文章标题",    // 文章的大标题
-            "tags": ["文章标签1","文章标签2"],  // 文章的所有标签，没有就写null或[]
+            "title": "文章标题",     // 文章的大标题
+            "tags": ["文章标签1","文章标签2"],    // 文章的所有标签，没有就写null或[]
             "pic": "http://xxx.com/xx.jpg",     // 文章的封面图片，没有就写null
-            "info": "文章简介",                 // 文章的简介提要
+            "info": "文章简介",                  // 文章的简介提要
             "date": "2018/03/28"                // 文章的发表日期
         },
         {
