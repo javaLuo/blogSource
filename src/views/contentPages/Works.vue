@@ -61,29 +61,25 @@ export default {
   },
   computed: {
     ...mapState({
-      listData: state =>
-        state.app.blogConfig
-          ? sortDate(
-              state.app.blogList.filter(
-                item =>
-                  getBlogInfo(item.name, state.app.blogConfig.d).type === 2
-              ),
-              state.app.blogConfig.d
-            )
-          : []
+        listData(state) {
+            if (!state.app.blogConfig){
+                this.total = 0;
+                return [];
+            }
+            const s = state.app.blogList.filter(item => getBlogInfo(item.name, state.app.blogConfig.d).type === 2);
+            this.total = s.length;
+            return sortDate(s, state.app.blogConfig.d).filter((item, index) => index >=(this.pageNow - 1) * 10 && index < this.pageNow * 10);
+        },
     })
   },
   watch: {
-    listData(newV, oldV) {
-      this.total = newV.length;
-      const temp = this.listData.filter(
-        (item, index) =>
-          index >= (this.pageNow - 1) * 10 && index < this.pageNow * 10
-      );
-      for (let i = 0; temp[i]; i++) {
-        setTimeout(() => this.pageNowData.push(temp[i]), i * 100);
+      listData(newV) {
+          this.pageNowData.length = 0;
+          const temp = newV;
+          for (let i = 0; temp[i]; i++) {
+              setTimeout(() => this.pageNowData.push(temp[i]), i * 100);
+          }
       }
-    }
   },
   methods: {
     /** 页码改变时触发 **/

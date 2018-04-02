@@ -50,10 +50,7 @@ export default {
   },
   mounted() {
     this.total = this.listData.length;
-    const temp = this.listData.filter(
-      (item, index) =>
-        index >= (this.pageNow - 1) * 10 && index < this.pageNow * 10
-    );
+    const temp = this.listData;
     for (let i = 0; temp[i]; i++) {
       setTimeout(() => this.pageNowData.push(temp[i]), (i + 1) * 100);
     }
@@ -61,19 +58,19 @@ export default {
   computed: {
     ...mapState({
       listData(state) {
-        return state.app.blogConfig
-          ? sortDate(state.app.blogList, state.app.blogConfig.d)
-          : [];
-      }
-    })
+        if (!state.app.blogConfig){
+            this.total = 0;
+            return [];
+        }
+        this.total = state.app.blogList.length;
+        return sortDate(state.app.blogList, state.app.blogConfig.d).filter((item, index) => index >=(this.pageNow - 1) * 10 && index < this.pageNow * 10);
+      },
+    }),
   },
   watch: {
-    listData(newV, oldV) {
-      this.total = newV.length;
-      const temp = newV.filter(
-        (item, index) =>
-          index >= (this.pageNow - 1) * 10 && index < this.pageNow * 10
-      );
+    listData(newV) {
+      this.pageNowData.length = 0;
+      const temp = newV;
       for (let i = 0; temp[i]; i++) {
         setTimeout(() => this.pageNowData.push(temp[i]), i * 100);
       }
@@ -90,8 +87,7 @@ export default {
 </script>
 
 <style scoped lang="less">
-.list-enter-active,
-.list-leave-active {
+.list-enter-active {
   transition: all 500ms;
 }
 .list-enter,
