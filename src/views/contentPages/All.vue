@@ -49,7 +49,6 @@ export default {
     BreadcrumbItem
   },
   mounted() {
-    this.total = this.listData.length;
     const temp = this.listData;
     for (let i = 0; temp[i]; i++) {
       setTimeout(() => this.pageNowData.push(temp[i]), (i + 1) * 100);
@@ -58,14 +57,17 @@ export default {
   computed: {
     ...mapState({
       listData(state) {
-        if (!state.app.blogConfig){
-            this.total = 0;
-            return [];
+        if (!state.app.blogConfig) {
+          this.total = 0;
+          return [];
         }
         this.total = state.app.blogList.length;
-        return sortDate(state.app.blogList, state.app.blogConfig.d).filter((item, index) => index >=(this.pageNow - 1) * 10 && index < this.pageNow * 10);
-      },
-    }),
+        return sortDate(state.app.blogList, state.app.blogConfig.d).filter(
+          (item, index) =>
+            index >= (this.pageNow - 1) * 10 && index < this.pageNow * 10
+        );
+      }
+    })
   },
   watch: {
     listData(newV) {
@@ -79,7 +81,6 @@ export default {
   methods: {
     /** 页码改变时触发 **/
     onPageChange(v) {
-      console.log("触发：", v);
       this.pageNow = v;
     }
   }

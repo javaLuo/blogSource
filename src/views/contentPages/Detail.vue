@@ -19,7 +19,7 @@
 import { mapState, mapGetters } from "vuex";
 import { Button, Loading } from "element-ui";
 import "gitment/style/default.css";
-import { masterName, issueName, client_id, client_secret } from '../../config';
+import { masterName, issueName, client_id, client_secret } from "../../config";
 import ShowDown from "showdown";
 import Gitment from "gitment";
 import ImgLoading from "../../assets/loading.gif";
@@ -113,7 +113,7 @@ export default {
         repo: issueName,
         oauth: {
           client_id,
-          client_secret,
+          client_secret
         },
         theme: myTheme
       });

@@ -48,8 +48,8 @@ export const sortDate = (data, blogData) => {
     if (!t2) {
       return 1;
     }
-    return (
-        Number(t2.date.split("/").join("") - Number(t1.date.split("/").join("")))
+    return Number(
+      t2.date.split("/").join("") - Number(t1.date.split("/").join(""))
     );
   });
   return d;

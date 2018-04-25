@@ -222,7 +222,7 @@ export default {
       width: 100%;
       height: 100%;
       background-color: #333;
-      background-image: url(../assets/menu_back.png);
+      background-image: url(../assets/menu_back.jpg);
       background-size: cover;
       background-position: top center;
     }

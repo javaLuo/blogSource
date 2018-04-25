@@ -26,7 +26,7 @@ export default {
     this.ctx.fillStyle = "transparent";
     this.ctx.lineCap = "round";
     window.addEventListener("resize", this.resize, false);
-    this.init(300);
+    this.init(250);
     this.animate();
   },
   computed: {
@@ -42,41 +42,41 @@ export default {
        * */
       for (let i = 0; i < many; i++) {
         let params = null;
-        const rgb = Math.round(this.random(30, 100));
+        const rgb = Math.round(this.random(60, 150));
         if (i < many / 4) {
           params = {
             h: 60,
             w: 1,
             s: this.random(10, 15),
-            color: `rgba(${rgb}, ${rgb}, ${rgb}, 0.5)`
+            color: `rgba(${rgb}, ${rgb}, ${rgb}, 0.4)`
           };
         } else if (i < many / 3) {
           params = {
             h: 90,
             w: 1,
             s: this.random(15, 20),
-            color: `rgba(${rgb}, ${rgb}, ${rgb}, 0.6)`
+            color: `rgba(${rgb}, ${rgb}, ${rgb}, 0.5)`
           };
         } else if (i < many / 2) {
           params = {
             h: 120,
             w: 1,
             s: this.random(20, 25),
-            color: `rgba(${rgb}, ${rgb}, ${rgb}, 0.7)`
+            color: `rgba(${rgb}, ${rgb}, ${rgb}, 0.6)`
           };
         } else if (i < many / 1.5) {
           params = {
             h: 150,
             w: 1,
             s: this.random(25, 30),
-            color: `rgba(${rgb}, ${rgb}, ${rgb}, 0.8)`
+            color: `rgba(${rgb}, ${rgb}, ${rgb}, 0.7)`
           };
         } else {
           params = {
             h: 200,
-            w: 2,
+            w: 1,
             s: this.random(30, 35),
-            color: `rgba(${rgb}, ${rgb}, ${rgb}, 0.9)`
+            color: `rgba(${rgb}, ${rgb}, ${rgb}, 0.8)`
           };
         }
         const temp = {
