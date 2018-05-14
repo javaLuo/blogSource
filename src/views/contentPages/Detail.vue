@@ -21,8 +21,11 @@ import { Button, Loading } from "element-ui";
 import "gitment/style/default.css";
 import { masterName, issueName, client_id, client_secret } from "../../config";
 import ShowDown from "showdown";
+import Prism from "prismjs";
+import loadLanguages from "prismjs/components/index";
 import Gitment from "gitment";
 import ImgLoading from "../../assets/loading.gif";
+import "prismjs/themes/prism-dark.css";
 export default {
   name: "live",
   data: function() {
@@ -38,6 +41,7 @@ export default {
   mounted() {
     console.log("router:", this.$route.params.id);
     this.getData(this.$route.params.id);
+
     this.initGitMent();
   },
   computed: {
@@ -46,8 +50,14 @@ export default {
       if (!this.sourceData) {
         return null;
       }
-      const converter = new ShowDown.Converter();
-      return converter.makeHtml(this.sourceData);
+
+      loadLanguages(["markdown"]);
+       const html = Prism.highlight("var a = 1;", Prism.languages.javascript, "javascript");
+      console.log("生成的html:", html);
+      //  return html;
+
+        const converter = new ShowDown.Converter();
+        return converter.makeHtml(this.sourceData);
     },
     ...mapState({
       blogCache(state) {
