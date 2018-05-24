@@ -142,6 +142,7 @@ export default {
   .the-body {
     padding: 0 !important;
     overflow-x: hidden;
+      font-size: 16px;
   }
   .info {
     letter-spacing: 1px;
@@ -170,7 +171,7 @@ export default {
     }
   }
   .the-end {
-    padding: 24px;
+    padding: 50px 0;
     text-align: center;
     font-size: 14px;
     color: #888;
