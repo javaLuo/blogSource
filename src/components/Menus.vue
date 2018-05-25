@@ -24,15 +24,11 @@
                         </div>
                         <div class="name">Logic</div>
                         <div class="func">web前端开发工程师</div>
-                        <ul class="list-info">
-                            <li>文章 {{ liveLength }}</li>
-                            <li>作品 {{ workLength }}</li>
-                            <li>日志 {{ articleLength }}</li>
-                        </ul>
                         <ul class="link">
-                            <li @click="onLinkClick('/live')" @touchend="onLinkClick('/live')">文章列表</li>
-                            <li @click="onLinkClick('/works')" @touchend="onLinkClick('/works')">所有作品</li>
-                            <li @click="onLinkClick('/article')" @touchend="onLinkClick('/article')">日志列表</li>
+                            <li @click="onLinkClick('/')" @touchend="onLinkClick('/')">全部文章({{ allLength }})</li>
+                            <li @click="onLinkClick('/live')" @touchend="onLinkClick('/live')">文章列表({{ liveLength }})</li>
+                            <li @click="onLinkClick('/works')" @touchend="onLinkClick('/works')">个人作品({{ workLength }})</li>
+                            <li @click="onLinkClick('/article')" @touchend="onLinkClick('/article')">日志列表({{ articleLength }})</li>
                         </ul>
                     </div>
                 </transition>
@@ -74,7 +70,7 @@ export default {
       this.menuOpen = !this.menuOpen;
     },
     onMenuClose() {
-      console.log("是否触发");
+      // console.log("是否触发");
       if (!this.isPc) {
         // 只有移动端才能关闭
         this.menuOpen = false;
@@ -104,7 +100,8 @@ export default {
           ? state.app.blogList.filter(
               item => getBlogInfo(item.name, state.app.blogConfig.d).type === 3
             ).length
-          : 0
+          : 0,
+        allLength: state => state.app.blogConfig ? state.app.blogList.length : 0
     })
   }
 };
@@ -253,7 +250,7 @@ export default {
           width: calc(100% - 3px);
           height: calc(100% - 3px);
           border-radius: 100%;
-          border: solid 1px #fff;
+          border: solid 3px rgba(255,255,255,.8);
           z-index: 2;
         }
         .playing {
@@ -264,7 +261,7 @@ export default {
           width: 100%;
           height: 100%;
           border-radius: 100%;
-          background: linear-gradient(#ffb765, rgba(0, 0, 0, 0));
+          background: linear-gradient(#3B79D8, rgba(0, 0, 0, 0));
           animation: go-round 2s;
           animation-iteration-count: infinite;
           animation-timing-function: linear;
@@ -342,15 +339,16 @@ export default {
       }
       .link {
         position: relative;
-        display: block;
+        display: flex;
         margin-top: 24px;
+          flex-direction: column;
+          align-items: center;
         & > li {
           margin-bottom: 16px;
           color: #fff;
-          display: block;
           box-sizing: border-box;
-          width: 100%;
-          padding: 4px;
+          padding: 4px 50px;
+          max-width: 100%;
           position: relative;
           transition: all 200ms;
           cursor: pointer;

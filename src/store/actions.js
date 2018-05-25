@@ -14,7 +14,7 @@ const actions = {
         return msg;
       }
     } catch (e) {
-      console.log("网络错误");
+      // console.log("网络错误");
     }
   }
 };

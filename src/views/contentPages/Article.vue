@@ -85,7 +85,7 @@ export default {
   methods: {
     /** 页码改变时触发 **/
     onPageChange(v) {
-      console.log("触发：", v);
+      // console.log("触发：", v);
       this.pageNow = v;
     }
   }

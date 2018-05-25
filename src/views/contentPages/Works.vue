@@ -4,7 +4,7 @@
             <i class="el-icon-location"></i>
             <Breadcrumb>
                 <BreadcrumbItem to="/all">博客列表</BreadcrumbItem>
-                <BreadcrumbItem>作品列表</BreadcrumbItem>
+                <BreadcrumbItem>个人作品</BreadcrumbItem>
             </Breadcrumb>
         </div>
         <transition-group name="list" tag="ul" class="live">
@@ -26,7 +26,7 @@
 </template>
 
 <script>
-/** 作品列表页 **/
+/** 个人作品页 **/
 import { mapState } from "vuex";
 import { Pagination, Breadcrumb, BreadcrumbItem } from "element-ui";
 import ArtiveList from "../../components/ArtiveList.vue";
@@ -85,7 +85,7 @@ export default {
   methods: {
     /** 页码改变时触发 **/
     onPageChange(v) {
-      console.log("触发：", v);
+      // console.log("触发：", v);
       this.pageNow = v;
     }
   }

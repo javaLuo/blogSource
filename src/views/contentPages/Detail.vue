@@ -1,5 +1,13 @@
 <template>
     <div class="page-detail" :v-loading="true">
+        <div class="bread">
+            <i class="el-icon-location"></i>
+            <Breadcrumb>
+                <BreadcrumbItem to="/all">博客列表</BreadcrumbItem>
+                <BreadcrumbItem :to="breadType.url">{{ breadType.title }}</BreadcrumbItem>
+                <BreadcrumbItem>{{ blogConfig.title }}</BreadcrumbItem>
+            </Breadcrumb>
+        </div>
         <div class="info">
             <div class="title" >{{ blogConfig.title }}</div>
             <div class="date">{{ blogConfig.date }}</div>
@@ -17,7 +25,7 @@
 <script>
 /** 文章的详情页 **/
 import { mapState, mapGetters } from "vuex";
-import { Button, Loading } from "element-ui";
+import { Button, Loading,Breadcrumb, BreadcrumbItem } from "element-ui";
 import "gitment/style/default.css";
 import { masterName, issueName, client_id, client_secret } from "../../config";
 import ShowDown from "showdown";
@@ -36,10 +44,12 @@ export default {
   },
   components: {
     Button,
-    Loading
+    Loading,
+      Breadcrumb,
+      BreadcrumbItem
   },
   mounted() {
-    console.log("router:", this.$route.params.id);
+    // console.log("router:", this.$route.params.id);
     this.getData(this.$route.params.id);
 
     this.initGitMent();
@@ -53,7 +63,7 @@ export default {
 
       loadLanguages(["markdown"]);
        const html = Prism.highlight("var a = 1;", Prism.languages.javascript, "javascript");
-      console.log("生成的html:", html);
+      // console.log("生成的html:", html);
       //  return html;
 
         const converter = new ShowDown.Converter();
@@ -72,8 +82,17 @@ export default {
           return {};
         }
         const b = state.app.blogConfig.d;
+        // console.log('是什么啊：',b.find(item => item.gitname === id) );
         return b.find(item => item.gitname === id) || { title: id };
-      }
+      },
+        breadType(){
+          switch(this.blogConfig.type){
+              case 1: return {title: '文章列表', url: '/live'};
+              case 2: return {title: '个人作品', url: '/works'};
+              case 3: return {title: '日志列表', url: '/article'};
+              default: return {title: '文章列表', url: '/live '};;
+          }
+        }
     })
   },
   methods: {
@@ -179,6 +198,16 @@ export default {
       padding: 0 24px;
     }
   }
+    .bread {
+        display: flex;
+        align-items: center;
+        padding-bottom: 16px;
+        i {
+            margin-right: 8px;
+            margin-left: -5px;
+            color: #0acb79;
+        }
+    }
 }
 
 @media only screen and (max-width: 640px) {

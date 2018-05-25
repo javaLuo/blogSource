@@ -84,7 +84,7 @@ export default {
     },
     /** 监听滚轮事件处理页面滚动 **/
     onMouseWheel(e) {
-      console.log("有在触发吗,IE", e);
+      // console.log("有在触发吗,IE", e);
       const f = e.wheelDeltaY || -e.detail || e.wheelDelta;
       if (this.scrolling) {
         return;
@@ -95,7 +95,7 @@ export default {
         this.scrolling = true;
         this.pageNow++;
         this.scrollDom && this.scrollDom.goToPage(1, this.pageNow, 1000);
-        console.log("滚动：", this.scrollDom);
+        // console.log("滚动：", this.scrollDom);
       } else if (f > 0 && this.pageNow > 0) {
         // 向上滚动
         this.scrolling = true;
@@ -151,7 +151,7 @@ export default {
   },
   watch: {
     pageNow(newV, oldV) {
-      console.log("pageNow变化：", newV, oldV);
+      // console.log("pageNow变化：", newV, oldV);
       if (newV !== 0 && this.play) {
         this.onMp3Play();
       } else {

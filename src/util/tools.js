@@ -28,7 +28,6 @@ export const isPc = () => {
  * 简介
  * */
 export const getBlogInfo = (gitname, allofblog) => {
-  console.log("所以：", allofblog);
   const data = allofblog.find(item => item.gitname === gitname);
   return data || {};
 };

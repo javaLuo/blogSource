@@ -28,7 +28,7 @@ export default new Router({
           component: Live
         },
         {
-          path: "works", // 作品列表
+          path: "works", // 个人作品
           name: "works",
           component: Works
         },

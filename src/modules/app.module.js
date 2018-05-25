@@ -40,7 +40,7 @@ const App = {
           null,
           "GET"
         );
-        console.log("到这里了吗：", msg);
+        // console.log("到这里了吗：", msg);
         if (msg.status === 200 || msg.status === 304) {
           // 给msg.data按照日期排序
           context.commit({
@@ -60,7 +60,7 @@ const App = {
           payload.url
         }`;
         const msg = await server(url, null, "GET", true);
-        console.log("为什么没有，什么意思：", msg);
+        // console.log("为什么没有，什么意思：", msg);
         if (msg.status === 200 || msg.status === 304) {
           context.commit({
             type: "saveTheBlog",
@@ -81,7 +81,7 @@ const App = {
           data: payload.data
         });
       } catch (e) {
-        console.log("网络错误");
+        // console.log("网络错误");
       }
     }
   },

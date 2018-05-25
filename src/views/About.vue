@@ -30,7 +30,7 @@ export default {
           params: { username: this.username, password: this.password }
         })
         .then(res => {
-          console.log("能返回么：", res);
+          // console.log("能返回么：", res);
         });
     }
   },
