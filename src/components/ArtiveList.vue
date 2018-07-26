@@ -5,9 +5,9 @@
         <div v-if="blogInfo.pic" class="pic"><img :src="blogInfo.pic"></div>
         <div class="info"><span v-html="blogInfo.info"></span></div>
         <div class="tags">
-            <Tag v-for="(item, index) in blogInfo.tags" size="small" :key="index">{{ item }}</Tag>
+            <div v-for="(item, index) in blogInfo.tags" :key="index">{{ item }}</div>
         </div>
-        <div class="read-more"  @click="onDetailChose">Read More</div>
+        <div class="read-more"  @click="onDetailChose">阅读全文</div>
     </li>
 </template>
 
@@ -58,13 +58,13 @@ export default {
   }
   .title {
     font-size: 24px;
-    font-weight: bold;
     margin-bottom: 8px;
     color: #222;
     transition: all 0.2s;
     cursor: pointer;
+    letter-spacing: 1px;
     &:hover {
-      color: #51a6ff;
+      color: #0366d6;
     }
   }
   .time {
@@ -88,20 +88,24 @@ export default {
   }
   .tags {
     margin-bottom: 8px;
-    span {
+    display: flex;
+    & > div {
       font-size: 12px;
       margin-right: 4px;
+      background-color: #00bcd4;
+      color: #fff;
+      padding: 3px 5px;
+      border-radius: 3px;
     }
   }
   .read-more {
     font-size: 16px;
     color: #30634c;
     letter-spacing: 1px;
-    font-style: italic;
     transition: all 0.2s;
     cursor: pointer;
     &:hover {
-      color: #51a6ff;
+      color: #0366d6;
     }
   }
 }

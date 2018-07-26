@@ -101,7 +101,7 @@ export default {
               item => getBlogInfo(item.name, state.app.blogConfig.d).type === 3
             ).length
           : 0,
-        allLength: state => state.app.blogConfig ? state.app.blogList.length : 0
+      allLength: state => (state.app.blogConfig ? state.app.blogList.length : 0)
     })
   }
 };
@@ -250,7 +250,7 @@ export default {
           width: calc(100% - 3px);
           height: calc(100% - 3px);
           border-radius: 100%;
-          border: solid 3px rgba(255,255,255,.8);
+          border: solid 3px rgba(255, 255, 255, 0.8);
           z-index: 2;
         }
         .playing {
@@ -261,7 +261,7 @@ export default {
           width: 100%;
           height: 100%;
           border-radius: 100%;
-          background: linear-gradient(#3B79D8, rgba(0, 0, 0, 0));
+          background: linear-gradient(#3b79d8, rgba(0, 0, 0, 0));
           animation: go-round 2s;
           animation-iteration-count: infinite;
           animation-timing-function: linear;
@@ -313,11 +313,11 @@ export default {
       }
       .name {
         font-size: 24px;
-        margin-top: 24px;
+        margin-top: 12px;
       }
       .func {
-        font-size: 14px;
-        margin-top: 12px;
+        font-size: 12px;
+        margin-top: 6px;
       }
       .list-info {
         display: flex;
@@ -341,10 +341,11 @@ export default {
         position: relative;
         display: flex;
         margin-top: 24px;
-          flex-direction: column;
-          align-items: center;
+        flex-direction: column;
+        align-items: center;
         & > li {
           margin-bottom: 16px;
+          font-size: 12px;
           color: #fff;
           box-sizing: border-box;
           padding: 4px 50px;

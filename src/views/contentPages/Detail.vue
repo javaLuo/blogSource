@@ -25,7 +25,7 @@
 <script>
 /** 文章的详情页 **/
 import { mapState, mapGetters } from "vuex";
-import { Button, Loading,Breadcrumb, BreadcrumbItem } from "element-ui";
+
 import "gitment/style/default.css";
 import { masterName, issueName, client_id, client_secret } from "../../config";
 import ShowDown from "showdown";
@@ -34,6 +34,8 @@ import loadLanguages from "prismjs/components/index";
 import Gitment from "gitment";
 import ImgLoading from "../../assets/loading.gif";
 import "prismjs/themes/prism-dark.css";
+
+import { Button, Breadcrumb, BreadcrumbItem } from "element-ui";
 export default {
   name: "live",
   data: function() {
@@ -44,9 +46,8 @@ export default {
   },
   components: {
     Button,
-    Loading,
-      Breadcrumb,
-      BreadcrumbItem
+    Breadcrumb,
+    BreadcrumbItem
   },
   mounted() {
     // console.log("router:", this.$route.params.id);
@@ -62,12 +63,11 @@ export default {
       }
 
       loadLanguages(["markdown"]);
-       const html = Prism.highlight("var a = 1;", Prism.languages.javascript, "javascript");
       // console.log("生成的html:", html);
       //  return html;
 
-        const converter = new ShowDown.Converter();
-        return converter.makeHtml(this.sourceData);
+      const converter = new ShowDown.Converter();
+      return converter.makeHtml(this.sourceData);
     },
     ...mapState({
       blogCache(state) {
@@ -85,14 +85,18 @@ export default {
         // console.log('是什么啊：',b.find(item => item.gitname === id) );
         return b.find(item => item.gitname === id) || { title: id };
       },
-        breadType(){
-          switch(this.blogConfig.type){
-              case 1: return {title: '文章列表', url: '/live'};
-              case 2: return {title: '个人作品', url: '/works'};
-              case 3: return {title: '日志列表', url: '/article'};
-              default: return {title: '文章列表', url: '/live '};;
-          }
+      breadType() {
+        switch (this.blogConfig.type) {
+          case 1:
+            return { title: "文章列表", url: "/live" };
+          case 2:
+            return { title: "个人作品", url: "/works" };
+          case 3:
+            return { title: "日志列表", url: "/article" };
+          default:
+            return { title: "文章列表", url: "/live " };
         }
+      }
     })
   },
   methods: {
@@ -161,13 +165,13 @@ export default {
   .the-body {
     padding: 0 !important;
     overflow-x: hidden;
-      font-size: 16px;
+    font-size: 16px;
   }
   .info {
     letter-spacing: 1px;
     .title {
       font-size: 32px;
-      font-weight: bold;
+      letter-spacing: 1px;
     }
     .date {
       margin-top: 8px;
@@ -198,16 +202,16 @@ export default {
       padding: 0 24px;
     }
   }
-    .bread {
-        display: flex;
-        align-items: center;
-        padding-bottom: 16px;
-        i {
-            margin-right: 8px;
-            margin-left: -5px;
-            color: #0acb79;
-        }
+  .bread {
+    display: flex;
+    align-items: center;
+    padding-bottom: 16px;
+    i {
+      margin-right: 8px;
+      margin-left: -5px;
+      color: #0acb79;
     }
+  }
 }
 
 @media only screen and (max-width: 640px) {

@@ -1,7 +1,7 @@
 <template>
   <div class="page1" :class="{show: isShow}">
       <div class="shadow all_trans1s"></div>
-      <img class="logo" :src="ImgLogo" />
+
       <div class="info-box">
           <span class="all_trans1s title">ISLUO BLOG</span>
           <div class="all_trans1s">hide in the city</div>
@@ -38,26 +38,6 @@ export default {
 </script>
 
 <style scoped lang="less">
-@keyframes animate-light {
-  0% {
-    opacity: 0;
-  }
-  5% {
-    opacity: 0.4;
-  }
-  10% {
-    opacity: 0.9;
-  }
-  12% {
-    opacity: 0.4;
-  }
-  25% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 1;
-  }
-}
 @keyframes animate-down {
   0% {
     transform: translateY(0);
@@ -95,10 +75,6 @@ export default {
         opacity: 1;
       }
     }
-    .logo {
-      animation: animate-light 4s;
-      animation-iteration-count: infinite;
-    }
   }
   .shadow {
     position: absolute;
@@ -110,18 +86,13 @@ export default {
     opacity: 1;
     z-index: 1;
   }
-  .logo {
-    flex: none;
-    width: 36px;
-    height: auto;
-    z-index: 2;
-  }
   .info-box {
     flex: auto;
-    margin-top: 16vh;
+    margin-top: 20vh;
     color: #d0d0d0;
     text-align: center;
     z-index: 2;
+    font-size: 12px;
     & > div {
       letter-spacing: 8px;
       transform: scale(2);
@@ -138,7 +109,6 @@ export default {
       font-size: 36px;
       letter-spacing: 2px;
       color: #f0f0f0;
-      font-family: Futura-Thin;
       margin-bottom: 32px;
       transition-delay: 0.6s;
       opacity: 0;
