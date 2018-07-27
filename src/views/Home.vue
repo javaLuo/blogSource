@@ -1,6 +1,6 @@
 <template>
   <div id="home" class="home" @mousewheel="onMouseWheel" @DOMMouseScroll="onMouseWheel">
-      <audio v-if="isPc" class="audio" src="http://isluo.com/imgs/rain.mp3" loop preload id="audio1"></audio>
+      <audio v-if="isPc" class="audio" src="https://isluo.com/imgs/rain.mp3" loop preload id="audio1"></audio>
       <div id="scroller" class="scroller">
           <ul class="scroll-wrapper">
               <li v-if="isPc" class="scroll-page"><Page1 :pageNow="pageNow"></Page1></li>
@@ -51,7 +51,7 @@ export default {
       this.initScroll();
       this.mp3Dom.a = document.getElementById("audio1");
       this.mp3Dom.a.volume = 0;
-      this.mp3Dom.a.ontimeupdate = e => {
+      this.mp3Dom.a.ontimeupdate = () => {
         if (this.mp3Dom.a.duration - 3 < this.mp3Dom.a.currentTime) {
           this.mp3Dom.a.currentTime = 2;
         }
@@ -150,15 +150,14 @@ export default {
     }
   },
   watch: {
-    pageNow(newV, oldV) {
-      // console.log("pageNow变化：", newV, oldV);
+    pageNow(newV) {
       if (newV !== 0 && this.play) {
         this.onMp3Play();
       } else {
         this.onMp3Pause();
       }
     },
-    play(newV, oldV) {
+    play(newV) {
       if (newV) {
         this.onMp3Play();
       } else {

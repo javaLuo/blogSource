@@ -4,7 +4,7 @@
  * **/
 import server from "../util/fetch";
 import { masterName } from "../config";
-import { sortDate } from "../util/tools";
+// import { sortDate } from "../util/tools";
 import { Message } from "element-ui";
 const App = {
   namespaced: true,
@@ -33,7 +33,7 @@ const App = {
       }
     },
     /** 获取所有文章列表 **/
-    async getBlogList(context, payload) {
+    async getBlogList(context) {
       try {
         const msg = await server(
           `https://api.github.com/repos/${masterName}/${masterName}.github.io/contents/blog`,

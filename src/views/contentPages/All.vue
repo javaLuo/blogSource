@@ -29,7 +29,7 @@
 import { mapState } from "vuex";
 import { Pagination, Breadcrumb, BreadcrumbItem } from "element-ui";
 import ArtiveList from "../../components/ArtiveList.vue";
-import { getBlogInfo, sortDate } from "../../util/tools";
+import { sortDate } from "../../util/tools";
 import ImgLoading from "../../assets/loading.gif";
 export default {
   name: "live",
