@@ -109,13 +109,13 @@ export default {
       ctx.clearRect(0, 0, this.width, this.height);
       for (let i = 0; i < this.theRain.length; i++) {
         const t = this.theRain[i];
-        const deg = Math.PI / 180 * t.deg;
+        const deg = (Math.PI / 180) * t.deg;
         if (Math.abs(t.y) > this.height) {
           t.x = this.random(-10, this.width + 10);
           t.y = -t.h;
         } else {
-          t.x = Math.sin(deg) * t.s / speed + t.x;
-          t.y = Math.cos(deg) * t.s / speed + t.y;
+          t.x = (Math.sin(deg) * t.s) / speed + t.x;
+          t.y = (Math.cos(deg) * t.s) / speed + t.y;
         }
 
         ctx.strokeStyle = t.color;

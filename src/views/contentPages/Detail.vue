@@ -29,7 +29,6 @@ import { mapState, mapGetters } from "vuex";
 import "gitment/style/default.css";
 import { masterName, issueName, client_id, client_secret } from "../../config";
 import ShowDown from "showdown";
-import Prism from "prismjs";
 import loadLanguages from "prismjs/components/index";
 import Gitment from "gitment";
 import ImgLoading from "../../assets/loading.gif";

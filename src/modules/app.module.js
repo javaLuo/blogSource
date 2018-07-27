@@ -17,7 +17,7 @@ const App = {
   },
   actions: {
     /** 获取文章配置 **/
-    async getBlogConfig(context, payload) {
+    async getBlogConfig(context) {
       try {
         const url = `https://raw.githubusercontent.com/${masterName}/${masterName}.github.io/master/config/config.json`;
         const msg = await server(url, null, "GET");

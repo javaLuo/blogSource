@@ -13,7 +13,6 @@
 
 <script>
 /** 单个数据列表项 **/
-import { getBlogInfo } from "../util/tools";
 import { mapState } from "vuex";
 import { Tag } from "element-ui";
 export default {
