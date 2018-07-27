@@ -24,15 +24,13 @@
 
 <script>
 /** 文章的详情页 **/
-import { mapState, mapGetters } from "vuex";
+import { mapState } from "vuex";
 
 import "gitment/style/default.css";
 import { masterName, issueName, client_id, client_secret } from "../../config";
 import ShowDown from "showdown";
-import loadLanguages from "prismjs/components/index";
 import Gitment from "gitment";
 import ImgLoading from "../../assets/loading.gif";
-import "prismjs/themes/prism-dark.css";
 
 import { Button, Breadcrumb, BreadcrumbItem } from "element-ui";
 export default {
@@ -60,10 +58,6 @@ export default {
       if (!this.sourceData) {
         return null;
       }
-
-      loadLanguages(["markdown"]);
-      // console.log("生成的html:", html);
-      //  return html;
 
       const converter = new ShowDown.Converter();
       return converter.makeHtml(this.sourceData);
