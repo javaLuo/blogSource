@@ -1,50 +1,58 @@
 <template>
-    <div class="page-detail" :v-loading="true">
-        <div class="bread">
-            <i class="el-icon-location"></i>
-            <Breadcrumb>
-                <BreadcrumbItem to="/all">博客列表</BreadcrumbItem>
-                <BreadcrumbItem :to="breadType.url">{{ breadType.title }}</BreadcrumbItem>
-                <BreadcrumbItem>{{ blogConfig.title }}</BreadcrumbItem>
-            </Breadcrumb>
-        </div>
-        <div class="info">
-            <div class="title" >{{ blogConfig.title }}</div>
-            <div class="date">{{ blogConfig.date }}</div>
-        </div>
-        <div v-if="!sourceData" class="loading-box">
-            <img :src="ImgLoading" />
-            <div>正在从开源世界获取…</div>
-        </div>
-        <div ref="theBody" v-html="htmlData" class="the-body markdown-body editormd-html-preview"></div>
-        <div class="the-end">--<span>End</span>--</div>
-        <div id="gitment-box" class="gitment-box"></div>
+  <div class="page-detail"
+       :v-loading="true">
+    <div class="bread">
+      <i class="el-icon-location"></i>
+      <Breadcrumb>
+        <BreadcrumbItem to="/all">博客列表</BreadcrumbItem>
+        <BreadcrumbItem :to="breadType.url">{{ breadType.title }}</BreadcrumbItem>
+        <BreadcrumbItem>{{ blogConfig.title }}</BreadcrumbItem>
+      </Breadcrumb>
     </div>
+    <div class="info">
+      <div class="title">{{ blogConfig.title }}</div>
+      <div class="date">{{ blogConfig.date }}</div>
+    </div>
+    <div v-if="!sourceData"
+         class="loading-box">
+      <img :src="ImgLoading" />
+      <div>正在从开源世界获取…</div>
+    </div>
+    <div ref="theBody"
+         v-html="htmlData"
+         class="the-body markdown-body editormd-html-preview"></div>
+    <div class="the-end">--<span>End</span>--</div>
+    <div id="gitment-box"
+         class="gitment-box"></div>
+  </div>
 </template>
 
 <script>
 /** 文章的详情页 **/
-import { mapState } from "vuex";
+import { mapState } from 'vuex';
 
-import "gitment/style/default.css";
-import { masterName, issueName, client_id, client_secret } from "../../config";
-import ShowDown from "showdown";
-import Gitment from "gitment";
-import ImgLoading from "../../assets/loading.gif";
+import 'gitment/style/default.css';
+import { masterName, issueName, client_id, client_secret } from '../../config';
+import ShowDown from 'showdown';
+import Gitment from 'gitment';
+import ImgLoading from '../../assets/loading.gif';
 
-import { Button, Breadcrumb, BreadcrumbItem } from "element-ui";
+import { Button, Breadcrumb, BreadcrumbItem } from 'element-ui';
+
+const converter = new ShowDown.Converter({ tables: true });
 export default {
-  name: "live",
+  name: 'live',
   data: function() {
     return {
       sourceData: null,
-      ImgLoading
+      ImgLoading,
+      htmlData: '',
     };
   },
   components: {
     Button,
     Breadcrumb,
-    BreadcrumbItem
+    BreadcrumbItem,
   },
   mounted() {
     // console.log("router:", this.$route.params.id);
@@ -52,21 +60,22 @@ export default {
 
     this.initGitMent();
   },
-  computed: {
-    /** 原始数据转html代码 **/
-    htmlData() {
-      if (!this.sourceData) {
-        return null;
-      }
-
-      const converter = new ShowDown.Converter();
-      return converter.makeHtml(this.sourceData);
+  watch: {
+    sourceData(newData) {
+      this.htmlData = converter.makeHtml(this.sourceData);
+      this.$nextTick(() => {
+        // color-brewer
+        const allCodesDom = document.querySelectorAll('pre code');
+        Array.from(allCodesDom).forEach(item => {
+          hljs.highlightBlock(item);
+        });
+      });
     },
+  },
+  computed: {
     ...mapState({
       blogCache(state) {
-        return state.app.blogs.find(
-          item => item.name === this.$route.params.id
-        );
+        return state.app.blogs.find(item => item.name === this.$route.params.id);
       },
       /** 获取当前文章的配置信息 **/
       blogConfig(state) {
@@ -81,16 +90,16 @@ export default {
       breadType() {
         switch (this.blogConfig.type) {
           case 1:
-            return { title: "文章列表", url: "/live" };
+            return { title: '文章列表', url: '/live' };
           case 2:
-            return { title: "个人作品", url: "/works" };
+            return { title: '个人作品', url: '/works' };
           case 3:
-            return { title: "日志列表", url: "/article" };
+            return { title: '日志列表', url: '/article' };
           default:
-            return { title: "文章列表", url: "/live " };
+            return { title: '文章列表', url: '/live ' };
         }
-      }
-    })
+      },
+    }),
   },
   methods: {
     /** 通过标题向github请求文章详细内容 **/
@@ -105,8 +114,8 @@ export default {
       }
       this.$store
         .dispatch({
-          type: "app/getBlogDetail",
-          url: id
+          type: 'app/getBlogDetail',
+          url: id,
         })
         .then(res => {
           if (res.status === 200) {
@@ -122,15 +131,15 @@ export default {
 
       const myTheme = {
         render(state, instance) {
-          const container = document.createElement("div");
-          container.lang = "en-US";
-          container.className = "gitment-container gitment-root-container";
+          const container = document.createElement('div');
+          container.lang = 'en-US';
+          container.className = 'gitment-container gitment-root-container';
           container.appendChild(instance.renderHeader(state, instance));
           container.appendChild(instance.renderEditor(state, instance));
           container.appendChild(instance.renderComments(state, instance));
           container.appendChild(instance.renderFooter(state, instance));
           return container;
-        }
+        },
       };
 
       const gitment = new Gitment({
@@ -139,14 +148,14 @@ export default {
         repo: issueName,
         oauth: {
           client_id,
-          client_secret
+          client_secret,
         },
-        theme: myTheme
+        theme: myTheme,
       });
 
-      gitment.render("gitment-box");
-    }
-  }
+      gitment.render('gitment-box');
+    },
+  },
 };
 </script>
 
