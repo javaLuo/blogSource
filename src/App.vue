@@ -12,7 +12,7 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Futura-Thin', 'Helvetica Neue', Helvetica, sans-serif;
+  font-family: "Futura-Thin", "Helvetica Neue", Helvetica, sans-serif;
   overflow: hidden;
 }
 div,
@@ -88,7 +88,7 @@ th {
   word-wrap: break-word;
 } /* 强制换行 */
 .all_clear:after {
-  content: '.';
+  content: ".";
   height: 0;
   visibility: hidden;
   display: block;
@@ -127,5 +127,5 @@ th {
   background-color: #222;
 }
 
-@import './style/css/editormd.preview.min.css';
+@import "./style/css/editormd.preview.min.css";
 </style>
