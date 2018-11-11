@@ -24,13 +24,6 @@
     <div class="the-end">--<span>End</span>--</div>
     <div id="gitment-box"
          class="gitment-box"></div>
-    <!-- 来必力City版安装代码 -->
-    <div id="lv-container"
-         style="width: 100%;height: 500px;"
-         data-id="city"
-         data-uid="MTAyMC80MDk1MS8xNzQ3Ng==">
-    </div>
-    <!-- City版安装代码已完成 -->
   </div>
 </template>
 
@@ -62,12 +55,9 @@ export default {
     BreadcrumbItem,
   },
   mounted() {
-    // console.log("router:", this.$route.params.id);
     this.getData(this.$route.params.id);
 
-    this.initGitMent();
-
-    this.initLiver(document, 'script');
+    this.initGitMent(); // 初始化gitment评论
   },
   watch: {
     sourceData() {
@@ -111,20 +101,6 @@ export default {
     }),
   },
   methods: {
-    initLiver(d, s) {
-      var j,
-        e = d.getElementsByTagName(s)[0];
-
-      if (typeof LivereTower === 'function') {
-        return;
-      }
-
-      j = d.createElement(s);
-      j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-      j.async = true;
-
-      e.parentNode.insertBefore(j, e);
-    },
     /** 通过标题向github请求文章详细内容 **/
     getData(id) {
       if (!id) {
