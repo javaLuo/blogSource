@@ -1,8 +1,10 @@
 # VUE BLOG
-* 我自己的博客模版源代码
+* 我自己的github博客源代码
 * vue-cli 3.0 构建
 * github API 评论留言功能（使用的gitalk）
 
+## 预览地址
+<a href="https://blog.isluo.com" target="_blank">https://blog.isluo.com</a>
 ## 构建
 ```
 yarn install  // 引入包
