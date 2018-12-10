@@ -22,59 +22,61 @@
          v-html="htmlData"
          class="the-body markdown-body editormd-html-preview"></div>
     <div class="the-end">--<span>End</span>--</div>
-    <div id="gitment-box"
-         class="gitment-box"></div>
+    <div id="gitalk-box"
+         class="gitalk-box"></div>
   </div>
 </template>
 
 <script>
 /** 文章的详情页 **/
-import { mapState } from 'vuex';
+import { mapState } from "vuex";
 
-import 'gitment/style/default.css';
-import { masterName, issueName, client_id, client_secret } from '../../config';
-import ShowDown from 'showdown';
-import Gitment from 'gitment';
-import ImgLoading from '../../assets/loading.gif';
+import "gitalk/dist/gitalk.css";
+import { masterName, issueName, client_id, client_secret } from "../../config";
+import ShowDown from "showdown";
+import Gitalk from "gitalk";
+import ImgLoading from "../../assets/loading.gif";
 
-import { Button, Breadcrumb, BreadcrumbItem } from 'element-ui';
+import { Button, Breadcrumb, BreadcrumbItem } from "element-ui";
 
 const converter = new ShowDown.Converter({ tables: true });
 export default {
-  name: 'live',
+  name: "live",
   data: function() {
     return {
       sourceData: null,
       ImgLoading,
-      htmlData: '',
+      htmlData: ""
     };
   },
   components: {
     Button,
     Breadcrumb,
-    BreadcrumbItem,
+    BreadcrumbItem
   },
   mounted() {
     this.getData(this.$route.params.id);
 
-    this.initGitMent(); // 初始化gitment评论
+    this.initGitTalk(); // 初始化评论
   },
   watch: {
     sourceData() {
       this.htmlData = converter.makeHtml(this.sourceData);
       this.$nextTick(() => {
         // color-brewer
-        const allCodesDom = document.querySelectorAll('pre code');
+        const allCodesDom = document.querySelectorAll("pre code");
         Array.from(allCodesDom).forEach(item => {
           window.hljs.highlightBlock(item);
         });
       });
-    },
+    }
   },
   computed: {
     ...mapState({
       blogCache(state) {
-        return state.app.blogs.find(item => item.name === this.$route.params.id);
+        return state.app.blogs.find(
+          item => item.name === this.$route.params.id
+        );
       },
       /** 获取当前文章的配置信息 **/
       blogConfig(state) {
@@ -89,16 +91,16 @@ export default {
       breadType() {
         switch (this.blogConfig.type) {
           case 1:
-            return { title: '文章列表', url: '/live' };
+            return { title: "文章列表", url: "/live" };
           case 2:
-            return { title: '个人作品', url: '/works' };
+            return { title: "个人作品", url: "/works" };
           case 3:
-            return { title: '日志列表', url: '/article' };
+            return { title: "日志列表", url: "/article" };
           default:
-            return { title: '文章列表', url: '/live ' };
+            return { title: "文章列表", url: "/live " };
         }
-      },
-    }),
+      }
+    })
   },
   methods: {
     /** 通过标题向github请求文章详细内容 **/
@@ -113,8 +115,8 @@ export default {
       }
       this.$store
         .dispatch({
-          type: 'app/getBlogDetail',
-          url: id,
+          type: "app/getBlogDetail",
+          url: id
         })
         .then(res => {
           if (res.status === 200) {
@@ -123,38 +125,25 @@ export default {
         });
     },
     /** 初始化评论 **/
-    initGitMent() {
+    initGitTalk() {
       if (!this.$route.params.id) {
         return;
       }
 
-      const myTheme = {
-        render(state, instance) {
-          const container = document.createElement('div');
-          container.lang = 'en-US';
-          container.className = 'gitment-container gitment-root-container';
-          container.appendChild(instance.renderHeader(state, instance));
-          container.appendChild(instance.renderEditor(state, instance));
-          container.appendChild(instance.renderComments(state, instance));
-          container.appendChild(instance.renderFooter(state, instance));
-          return container;
-        },
-      };
-
-      const gitment = new Gitment({
-        id: this.$route.params.id,
-        owner: masterName,
-        repo: issueName,
-        oauth: {
-          client_id,
-          client_secret,
-        },
-        theme: myTheme,
+      const gitalk = new Gitalk({
+        clientID: client_id, // github授权ID
+        clientSecret: client_secret, // github授权证明
+        id: this.$route.params.id, // 文章唯一标识
+        owner: masterName, // 评论存储项目的所有者github名称
+        repo: issueName, // 评论存储项目
+        admin: [masterName], // 拥有写权利的github名称，即可以新建issue的帐号
+        title: `${document.title} ${this.$route.params.id}`, // 新建的issue的标题
+        distractionFreeMode: false // 是否开启全屏遮罩效果
       });
 
-      gitment.render('gitment-box');
-    },
-  },
+      gitalk.render("gitalk-box");
+    }
+  }
 };
 </script>
 
@@ -212,15 +201,6 @@ export default {
       margin-left: -5px;
       color: #0acb79;
     }
-  }
-}
-
-@media only screen and (max-width: 640px) {
-  .gitment-editor-login {
-    width: 42px !important;
-    margin-right: 0 !important;
-    overflow: hidden;
-    white-space: nowrap;
   }
 }
 </style>
