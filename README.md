@@ -11,10 +11,12 @@ yarn build    // 生产环境最终打包
 ```
 ## 需修改的地方
 
-* src/config.js
-  masterName: 你的github的用户名，比如我的：javaLuo
-  issueName: 你的用来存放issue评论的项目,比如我的：javaimluo
-  client_id: github APPlication 授权申请的client_id
-  client_secret: github APPlication 授权申请的client_secret
+* src/config.js<br/>
+  masterName: 你的github的用户名，比如我的：javaLuo<br/>
+  issueName: 你的用来存放issue评论的项目,比如我的：javaimluo<br/>
+  client_id: github APPlication 授权申请的client_id<br/>
+  client_secret: github APPlication 授权申请的client_secret<br/>
   
- 如果还没有GitHub Application 可<a href="https://github.com/settings/applications/new" target="_blank">点击这里申请</a>，Authorization callback URL 填写当前使用插件页面的域名，比如我的：blog.isluo.com
+ 如果还没有GitHub Application 可<a href="https://github.com/settings/applications/new" target="_blank">点击这里申请</a><br/>
+ Authorization callback URL 填写当前使用插件页面的域名，比如我的：blog.isluo.com
+ 
