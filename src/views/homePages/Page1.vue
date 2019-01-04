@@ -1,7 +1,7 @@
 <template>
   <div class="page1"
        :class="{show: isShow}"
-       :style="`background-image: url(https:isluo.com/imgs/blogimg/${imgNum}.jpg)`">
+       :style="`background-image: url(https://isluo.com/imgs/blogimg/${imgNum}.jpg)`">
     <div class="shadow all_trans1s"></div>
 
     <div class="info-box">
