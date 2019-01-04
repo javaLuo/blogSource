@@ -1,13 +1,16 @@
 <template>
-  <div class="page1" :class="{show: isShow}">
-      <div class="shadow all_trans1s"></div>
+  <div class="page1"
+       :class="{show: isShow}"
+       :style="`background-image: url(https:isluo.com/imgs/blogimg/${imgNum}.jpg)`">
+    <div class="shadow all_trans1s"></div>
 
-      <div class="info-box">
-          <span class="all_trans1s title">ISLUO BLOG</span>
-          <div class="all_trans1s">hide in the city</div>
-          <div class="all_trans1s">no card, no phone, no ID</div>
-      </div>
-      <img class="down" :src="ImgDown" />
+    <div class="info-box">
+      <span class="all_trans1s title">ISLUO BLOG</span>
+      <div class="all_trans1s">hide in the city</div>
+      <div class="all_trans1s">no card, no phone, no ID</div>
+    </div>
+    <img class="down"
+         :src="ImgDown" />
   </div>
 </template>
 
@@ -21,11 +24,14 @@ export default {
     return {
       isShow: false,
       ImgLogo,
-      ImgDown
+      ImgDown,
+      imgNum: 0 // 首页随机背景图的编号
     };
   },
   props: ["pageNow"],
-  components: {},
+  beforeMount() {
+    this.imgNum = this.getRandom(0, 3);
+  },
   mounted() {
     if (this.pageNow === 0) {
       this.isShow = true;
@@ -33,6 +39,11 @@ export default {
   },
   beforeUpdate() {
     this.isShow = this.pageNow === 0;
+  },
+  methods: {
+    getRandom(min, max) {
+      return Math.floor(Math.random() * (max - min) + min);
+    }
   }
 };
 </script>
@@ -54,12 +65,11 @@ export default {
   box-sizing: border-box;
   padding: 16px;
   height: 100%;
-  background-image: url(../../assets/page1-back.jpg);
   background-size: cover;
   background-position: top center;
   &.show {
     .shadow {
-      opacity: 0.9;
+      opacity: 0.8;
     }
     .info-box {
       & > div {
