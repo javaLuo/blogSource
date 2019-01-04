@@ -30,7 +30,7 @@ export default {
   },
   props: ["pageNow"],
   beforeMount() {
-    this.imgNum = this.getRandom(0, 3);
+    this.imgNum = this.getRandom(0, 12);
   },
   mounted() {
     if (this.pageNow === 0) {
@@ -42,7 +42,7 @@ export default {
   },
   methods: {
     getRandom(min, max) {
-      return Math.floor(Math.random() * (max - min) + min);
+      return Math.round(Math.random() * (max - min) + min);
     }
   }
 };
