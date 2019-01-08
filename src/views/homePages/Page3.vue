@@ -1,20 +1,29 @@
 <template>
   <div class="page3">
-      <div class="logo-box">
-          <a href="https://cn.vuejs.org" target="_blank" title="vue.js"><img :src="LogoVue" /></a>
-          <a href="https://github.com/javaLuo" target="_blank" title="github"><img :src="LogoGitHub" /></a>
-          <a href="http://www.w3school.com.cn/" target="_blank" title="w3school"><img :src="LogoW3C" /></a>
-          <a href="https://developer.mozilla.org/" target="_blank" title="mozilla.org"><img :src="LogoHTML5" /></a>
-      </div>
-      <div class="info-box">
-          <div>Vue.js 全家桶框架支持</div>
-          <div>GitHub API 文章及评论支持</div>
-          <div>感谢开源世界的恩惠</div>
-      </div>
-      <div class="last">
-          <img :src="ImgPic" />
-          <span>© 2014–2018 <a href="http://isluo.com" target="_blank">isluo.com</a> Ltd.</span>
-      </div>
+    <div class="logo-box">
+      <a href="https://cn.vuejs.org"
+         target="_blank"
+         title="vue.js"><img :src="LogoVue" /></a>
+      <a href="https://github.com/javaLuo"
+         target="_blank"
+         title="github"><img :src="LogoGitHub" /></a>
+      <a href="http://www.w3school.com.cn/"
+         target="_blank"
+         title="w3school"><img :src="LogoW3C" /></a>
+      <a href="https://developer.mozilla.org/"
+         target="_blank"
+         title="mozilla.org"><img :src="LogoHTML5" /></a>
+    </div>
+    <div class="info-box">
+      <div>Vue.js 全家桶框架支持</div>
+      <div>GitHub API 文章及评论支持</div>
+      <div>感谢开源世界的恩惠</div>
+    </div>
+    <div class="last">
+      <img :src="ImgPic" />
+      <span>© 2014–2019 <a href="http://isluo.com"
+           target="_blank">isluo.com</a> Ltd.</span>
+    </div>
   </div>
 </template>
 

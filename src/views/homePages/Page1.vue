@@ -10,7 +10,8 @@
       <div class="all_trans1s">no card, no phone, no ID</div>
     </div>
     <img class="down"
-         :src="ImgDown" />
+         :src="ImgDown"
+         @click="onDownClick" />
   </div>
 </template>
 
@@ -43,6 +44,10 @@ export default {
   methods: {
     getRandom(min, max) {
       return Math.round(Math.random() * (max - min) + min);
+    },
+    // 点击了向下的按钮，跳转到下面一页
+    onDownClick() {
+      this.$emit("onDownClick", 1);
     }
   }
 };
@@ -126,9 +131,11 @@ export default {
   }
   .down {
     flex: none;
-    margin-bottom: 16px;
+    margin-bottom: 8px;
     width: 16px;
     z-index: 2;
+    cursor: pointer;
+    padding: 12px 8px;
     animation: animate-down 1s;
     animation-iteration-count: infinite;
   }
