@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
 import Home from "./views/Home.vue";
-// import About from "./views/About.vue";
+import About from "./views/About.vue";
 import Live from "./views/contentPages/Live.vue";
 import Works from "./views/contentPages/Works.vue";
 import Article from "./views/contentPages/Article.vue";
@@ -36,6 +36,11 @@ export default new Router({
           path: "article", // 日志列表
           name: "article",
           component: Article
+        },
+        {
+          path: "about", // 关于我
+          name: "about",
+          component: About
         },
         {
           path: "detail/:id", // 文章详情页

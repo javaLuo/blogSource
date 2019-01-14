@@ -59,6 +59,9 @@ export default {
 
     this.initGitTalk(); // 初始化评论
   },
+  beforeDestroy() {
+    document.title = "Luo's Blog";
+  },
   watch: {
     sourceData() {
       this.htmlData = converter.makeHtml(this.sourceData);
@@ -85,8 +88,10 @@ export default {
           return {};
         }
         const b = state.app.blogConfig.d;
-        // console.log('是什么啊：',b.find(item => item.gitname === id) );
-        return b.find(item => item.gitname === id) || { title: id };
+        console.log(b);
+        const blogC = b.find(item => item.gitname === id) || { title: id };
+        document.title = blogC.title;
+        return blogC;
       },
       breadType() {
         switch (this.blogConfig.type) {

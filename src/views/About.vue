@@ -1,43 +1,62 @@
 <template>
-  <div class="about">
-      <h1>登录</h1>
-      <input type="text" name="username" v-model="username"/>
-      <input type="password" name="password" v-model="password"/>
-      <br/>
-      <button v-on:click="onLogin">提交</button>
-      <br/>
-      <div>用户名：{{ userinfo.username }}</div>
-      <div>密码：{{ userinfo.password }}</div>
-      <router-link :to="{path: '/', params: { userId: 123 }}">Home</router-link>
+  <div class="page-about">
+    <div class="bread">
+      <i class="el-icon-location"></i>
+      <Breadcrumb>
+        <BreadcrumbItem>关于我</BreadcrumbItem>
+      </Breadcrumb>
+    </div>
+    <div class="info-box">
+      我不过是沧海一粟，是浩瀚宇宙的一瞬，是仅在公元21世纪这几十年中存在的生命体。<br />
+      要问我生命的意义，我便会回答：<br />
+      万物均朝着“生”的方向发展，没有人告诉你为什么。但我想，碳基生命无法长久维持，细胞终会衰老，所以需要繁衍后代生息不止。<br />
+      而这一切的目的都是为了探索未知智慧，一直到达那个永恒的终极答案。<br />
+      我想连宇宙本身都不知道终极答案是什么，倘若有一天人类真的知道了终极答案，那么那个答案一定会反过来告诉我们一切发生的原因。<br />
+      这就是存在的意义吧，这就是万物繁衍生息，本能的向“生”的目的吧。<br />
+    </div>
+    <div class="info-box link">
+      <div class="title">Logic</div>
+      <div>前端开发工程师 目前就职于上海</div>
+      <div>GitHub: <a href="https://github.com/javaLuo"
+           target="_blank">https://github.com/javaLuo</a></div>
+      <div>邮箱: <a href="mailto:376693576@qq.com"
+           target="_blank">376693576@qq.com</a></div>
+    </div>
   </div>
 </template>
-
 <script>
-import { mapState, mapGetters } from "vuex";
 export default {
-  name: "loginPage",
-  data: function() {
-    return {
-      username: "",
-      password: ""
-    };
-  },
-  methods: {
-    onLogin() {
-      this.$store
-        .dispatch({
-          type: "app/onLogin",
-          params: { username: this.username, password: this.password }
-        })
-        .then(res => {
-          // console.log("能返回么：", res);
-        });
-    }
-  },
-  computed: {
-    ...mapState({
-      userinfo: state => state.app.userinfo || {}
-    })
-  }
+  name: "about"
 };
 </script>
+<style lang="less">
+.page-about {
+  .bread {
+    display: flex;
+    align-items: center;
+    padding-bottom: 16px;
+    i {
+      margin-right: 8px;
+      margin-left: -5px;
+      color: #0acb79;
+    }
+  }
+  .info-box {
+    color: #888;
+    padding: 0 20px;
+    margin-bottom: 20px;
+    &.link > div {
+      margin-bottom: 12px;
+    }
+    .title {
+      color: #222;
+    }
+    a {
+      color: #5b83ce;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+</style>

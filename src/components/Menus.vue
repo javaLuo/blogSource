@@ -1,41 +1,64 @@
 <template>
-    <div class="menus" :class="{ mobile: !isPc }">
-        <!-- 头部，移动端才显示 -->
-        <div class="head">
-            <div class="menu-btn" @click="onMenuTrigger">
-                <i v-if="!menuOpen" class="el-icon-more" ></i>
-                <i v-if="menuOpen" class="el-icon-more-outline" ></i>
-            </div>
-            <span>Luo's Blog</span>
-        </div>
-        <div class="menu-body" >
-            <transition name="fade">
-            <div v-show="menuOpen" class="menu-body-box" @click="onMenuClose">
-                <transition name="leftmove"><div v-show="menuOpen" class="back-img-box" @click.stop></div></transition>
-                <CanvasBack v-if="isPc"></CanvasBack>
-                <transition name="leftmove">
-                    <div v-show="menuOpen" class="info-box" @click.stop>
-                        <div class="photo-box">
-                            <img class="photo" :src="ImgPic" />
-                            <div v-if="isPc" class="playing" :class="{ stop: !play }"></div>
-                            <div v-if="isPc" class="play-btn" @click="playOrStop">
-                                <div class="line" :class="{ play }"></div>
-                            </div>
-                        </div>
-                        <div class="name">Logic</div>
-                        <div class="func">web前端开发工程师</div>
-                        <ul class="link">
-                            <li @click="onLinkClick('/')" @touchend="onLinkClick('/')">全部文章({{ allLength }})</li>
-                            <li @click="onLinkClick('/live')" @touchend="onLinkClick('/live')">文章列表({{ liveLength }})</li>
-                            <li @click="onLinkClick('/works')" @touchend="onLinkClick('/works')">个人作品({{ workLength }})</li>
-                            <li @click="onLinkClick('/article')" @touchend="onLinkClick('/article')">日志列表({{ articleLength }})</li>
-                        </ul>
-                    </div>
-                </transition>
-            </div>
-            </transition>
-        </div>
+  <div class="menus"
+       :class="{ mobile: !isPc }">
+    <!-- 头部，移动端才显示 -->
+    <div class="head">
+      <div class="menu-btn"
+           @click="onMenuTrigger">
+        <i v-if="!menuOpen"
+           class="el-icon-more"></i>
+        <i v-if="menuOpen"
+           class="el-icon-more-outline"></i>
+      </div>
+      <span>Luo's Blog</span>
     </div>
+    <div class="menu-body">
+      <transition name="fade">
+        <div v-show="menuOpen"
+             class="menu-body-box"
+             @click="onMenuClose">
+          <transition name="leftmove">
+            <div v-show="menuOpen"
+                 class="back-img-box"
+                 @click.stop></div>
+          </transition>
+          <CanvasBack v-if="isPc"></CanvasBack>
+          <transition name="leftmove">
+            <div v-show="menuOpen"
+                 class="info-box"
+                 @click.stop>
+              <div class="photo-box">
+                <img class="photo"
+                     :src="ImgPic" />
+                <div v-if="isPc"
+                     class="playing"
+                     :class="{ stop: !play }"></div>
+                <div v-if="isPc"
+                     class="play-btn"
+                     @click="playOrStop">
+                  <div class="line"
+                       :class="{ play }"></div>
+                </div>
+              </div>
+              <div class="name"
+                   @click="onLinkClick('/about')">Logic</div>
+              <div class="func">web前端开发工程师</div>
+              <ul class="link">
+                <li @click="onLinkClick('/')"
+                    @touchend="onLinkClick('/')">全部文章({{ allLength }})</li>
+                <li @click="onLinkClick('/live')"
+                    @touchend="onLinkClick('/live')">文章列表({{ liveLength }})</li>
+                <li @click="onLinkClick('/works')"
+                    @touchend="onLinkClick('/works')">个人作品({{ workLength }})</li>
+                <li @click="onLinkClick('/article')"
+                    @touchend="onLinkClick('/article')">日志列表({{ articleLength }})</li>
+              </ul>
+            </div>
+          </transition>
+        </div>
+      </transition>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -314,28 +337,28 @@ export default {
       .name {
         font-size: 24px;
         margin-top: 12px;
+        cursor: pointer;
+        &::after {
+          content: "";
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 0;
+          max-width: 250px;
+          height: 1px;
+          background: linear-gradient(to right, transparent, #fff, transparent);
+          transition: all 200ms;
+        }
+        &:hover {
+          &::after {
+            width: 40%;
+          }
+        }
       }
       .func {
         font-size: 12px;
         margin-top: 6px;
-      }
-      .list-info {
-        display: flex;
-        justify-content: center;
-        font-size: 14px;
-        margin-top: 24px;
-        & > li {
-          padding: 4px;
-          &:first-child {
-            color: aqua;
-          }
-          &:nth-child(2) {
-            color: salmon;
-          }
-          &:nth-child(3) {
-            color: lawngreen;
-          }
-        }
       }
       .link {
         position: relative;
