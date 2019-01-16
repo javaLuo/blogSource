@@ -1,5 +1,5 @@
 import axios from "axios";
-
+import { client_id, client_secret } from "../config";
 /**
  *
  * @param url 请求路径
@@ -10,7 +10,7 @@ import axios from "axios";
  */
 const server = function(url, params = null, method = "GET", type = false) {
   const req = {
-    url,
+    url: `${url}?client_id=${client_id}&client_secret=${client_secret}`,
     method,
     data: params,
     headers: {

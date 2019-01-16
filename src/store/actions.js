@@ -1,7 +1,7 @@
 const actions = {
   async add(context, payload) {
     try {
-      const msg = await new Promise((res, rej) => {
+      const msg = await new Promise(res => {
         setTimeout(() => {
           res({ state: 200, message: "success", data: payload.amount });
         }, 2000);
