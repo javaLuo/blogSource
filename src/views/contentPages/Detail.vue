@@ -21,7 +21,9 @@
     <div ref="theBody"
          v-html="htmlData"
          class="the-body markdown-body editormd-html-preview"></div>
-    <div class="the-end">--<span>End</span>--</div>
+    <div class="the-end"><img :src="ImgFeather" />
+      <div>--<span>End</span>--</div>
+    </div>
     <div id="gitalk-box"
          class="gitalk-box"></div>
   </div>
@@ -36,6 +38,7 @@ import { masterName, issueName, client_id, client_secret } from "../../config";
 import ShowDown from "showdown";
 import Gitalk from "gitalk";
 import ImgLoading from "../../assets/loading.gif";
+import ImgFeather from "../../assets/feather.png";
 
 import { Button, Breadcrumb, BreadcrumbItem } from "element-ui";
 
@@ -46,6 +49,7 @@ export default {
     return {
       sourceData: null,
       ImgLoading,
+      ImgFeather,
       htmlData: ""
     };
   },
@@ -192,9 +196,18 @@ export default {
     padding: 50px 0;
     text-align: center;
     font-size: 14px;
-    color: #888;
-    span {
-      padding: 0 24px;
+    color: #ccc;
+    img {
+      margin-top: 40px;
+      height: auto;
+      width: 36px;
+      transform: translateX(8px);
+    }
+    & > div {
+      margin-top: 10px;
+      span {
+        padding: 0 24px;
+      }
     }
   }
   .bread {
