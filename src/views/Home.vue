@@ -129,8 +129,12 @@ export default {
     },
     /** 音频事件，开始播放 **/
     onMp3Play() {
-      this.mp3Dom.a.play();
-      this.volumeUp();
+      try {
+        this.mp3Dom.a.play();
+        this.volumeUp();
+      } catch (e) {
+        console.log("audio paly fail");
+      }
     },
     /** 音频事件，暂停播放 **/
     onMp3Pause() {

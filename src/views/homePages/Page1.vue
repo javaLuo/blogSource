@@ -1,7 +1,10 @@
 <template>
   <div class="page1"
-       :class="{show: isShow}"
-       :style="`background-image: url(https://isluo.com/imgs/blogimg/${imgNum}.jpg)`">
+       :class="{show: isShow}">
+    <img class="backImg"
+         :class="{show: isBackShow}"
+         :src="`https://isluo.com/imgs/blogimg/${imgNum}.jpg`"
+         @load="onBackImgLoad">
     <div class="shadow all_trans1s"></div>
 
     <div class="info-box">
@@ -26,7 +29,8 @@ export default {
       isShow: false,
       ImgLogo,
       ImgDown,
-      imgNum: 0 // 首页随机背景图的编号
+      imgNum: 0, // 首页随机背景图的编号
+      isBackShow: false // 首页背景图是否加载
     };
   },
   props: ["pageNow"],
@@ -48,6 +52,11 @@ export default {
     // 点击了向下的按钮，跳转到下面一页
     onDownClick() {
       this.$emit("onDownClick", 1);
+    },
+
+    // 背景图加载成功时执行
+    onBackImgLoad() {
+      this.isBackShow = true;
     }
   }
 };
@@ -70,8 +79,9 @@ export default {
   box-sizing: border-box;
   padding: 16px;
   height: 100%;
-  background-size: cover;
-  background-position: top center;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-image: url(../../assets/logo-github.png);
   &.show {
     .shadow {
       opacity: 0.5;
@@ -89,6 +99,21 @@ export default {
       .title {
         opacity: 1;
       }
+    }
+  }
+  .backImg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transition: opacity 1s;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    &.show {
+      opacity: 1;
     }
   }
   .shadow {
