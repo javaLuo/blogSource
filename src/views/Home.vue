@@ -206,10 +206,16 @@ export default {
     display: block;
     overflow: hidden;
     .scroll-wrapper {
+      position: relative;
       display: block;
+      margin: 0;
+      padding: 0;
       width: 100%;
       .scroll-page {
         display: block;
+        list-style: none;
+        margin: 0;
+        padding: 0;
         width: 100%;
         height: 100vh;
         min-height: 300px;

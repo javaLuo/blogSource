@@ -1,14 +1,18 @@
 <template>
-    <li class="artive-list">
-        <div class="title" @click="onDetailChose">{{ blogInfo.title }}</div>
-        <div class="time">{{ blogInfo.date }}</div>
-        <div v-if="blogInfo.pic" class="pic"><img :src="blogInfo.pic"></div>
-        <div class="info"><span v-html="blogInfo.info"></span></div>
-        <div class="tags">
-            <div v-for="(item, index) in blogInfo.tags" :key="index">{{ item }}</div>
-        </div>
-        <div class="read-more"  @click="onDetailChose">阅读全文</div>
-    </li>
+  <li class="artive-list">
+    <div class="title"
+         @click="onDetailChose">{{ blogInfo.title }}</div>
+    <div class="time">{{ blogInfo.date }}</div>
+    <div v-if="blogInfo.pic"
+         class="pic"><img :src="blogInfo.pic"></div>
+    <div class="info"><span v-html="blogInfo.info"></span></div>
+    <div class="tags">
+      <div v-for="(item, index) in blogInfo.tags"
+           :key="index">{{ item }}</div>
+    </div>
+    <div class="read-more"
+         @click="onDetailChose">阅读全文</div>
+  </li>
 </template>
 
 <script>
@@ -52,6 +56,7 @@ export default {
   box-sizing: border-box;
   border-left: solid 5px #d3d3d3;
   padding: 4px 8px;
+  list-style: none;
   & + li {
     margin-top: 32px;
   }

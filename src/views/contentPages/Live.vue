@@ -1,28 +1,32 @@
 <template>
-    <div class="live-box">
-        <div class="bread">
-            <i class="el-icon-location"></i>
-            <Breadcrumb>
-                <BreadcrumbItem to="/all">博客列表</BreadcrumbItem>
-                <BreadcrumbItem>文章列表</BreadcrumbItem>
-            </Breadcrumb>
-        </div>
-        <transition-group name="list" tag="ul" class="live">
-            <ArtiveList class="swiper-slide" v-for="(v, index) in pageNowData" :thisData="v" :key="index"></ArtiveList>
-        </transition-group>
-        <div class="nothing" v-if="!pageNowData.length">
-            <img :src="ImgLoading" />
-            <div>正在从开源世界获取…</div>
-        </div>
-        <div class="pagin">
-            <Pagination
-                    :total="total"
-                    :current-page="pageNow"
-                    layout="total, prev, pager, next"
-                    @current-change="onPageChange"
-            ></Pagination>
-        </div>
+  <div class="live-box">
+    <div class="bread">
+      <i class="el-icon-location"></i>
+      <Breadcrumb>
+        <BreadcrumbItem to="/all">博客列表</BreadcrumbItem>
+        <BreadcrumbItem>文章列表</BreadcrumbItem>
+      </Breadcrumb>
     </div>
+    <transition-group name="list"
+                      tag="ul"
+                      class="live">
+      <ArtiveList class="swiper-slide"
+                  v-for="(v, index) in pageNowData"
+                  :thisData="v"
+                  :key="index"></ArtiveList>
+    </transition-group>
+    <div class="nothing"
+         v-if="!pageNowData.length">
+      <img :src="ImgLoading" />
+      <div>正在从开源世界获取…</div>
+    </div>
+    <div class="pagin">
+      <Pagination :total="total"
+                  :current-page="pageNow"
+                  layout="total, prev, pager, next"
+                  @current-change="onPageChange"></Pagination>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -113,6 +117,8 @@ export default {
     display: block;
     width: 100%;
     flex: auto;
+    margin: 0;
+    padding: 0;
     min-height: 300px;
   }
   .nothing {

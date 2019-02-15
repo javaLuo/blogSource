@@ -341,7 +341,7 @@ export default {
         &::after {
           content: "";
           position: absolute;
-          bottom: 0;
+          bottom: -2px;
           left: 50%;
           transform: translateX(-50%);
           width: 0;
@@ -363,11 +363,13 @@ export default {
       .link {
         position: relative;
         display: flex;
-        margin-top: 24px;
+        margin: 24px 0 0 0;
+        padding: 0;
         flex-direction: column;
         align-items: center;
         & > li {
-          margin-bottom: 16px;
+          list-style: none;
+          margin: 0 0 16px 0;
           font-size: 12px;
           color: #fff;
           box-sizing: border-box;

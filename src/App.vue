@@ -15,21 +15,10 @@ body {
   font-family: "Futura-Thin", "Helvetica Neue", Helvetica, sans-serif;
   overflow: hidden;
 }
-div,
-ul,
-li {
+div {
   position: relative;
-  display: block;
 } /* 全部都是相对定位 */
-ul {
-  margin: 0;
-  padding: 0;
-} /* ul相当于div */
-li {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-} /* li相当于div */
+
 img,
 span {
   vertical-align: middle;

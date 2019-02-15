@@ -1,6 +1,7 @@
 <template>
   <div class="page-detail"
-       :v-loading="true">
+       :v-loading="true"
+       ref="pageDetail">
     <div class="bread">
       <i class="el-icon-location"></i>
       <Breadcrumb>
@@ -59,8 +60,8 @@ export default {
     BreadcrumbItem
   },
   mounted() {
+    this.$refs.pageDetail.scrollTo(0, 0);
     this.getData(this.$route.params.id);
-
     this.initGitTalk(); // 初始化评论
   },
   beforeDestroy() {
@@ -92,7 +93,6 @@ export default {
           return {};
         }
         const b = state.app.blogConfig.d;
-        console.log(b);
         const blogC = b.find(item => item.gitname === id) || { title: id };
         document.title = blogC.title;
         return blogC;
@@ -218,6 +218,9 @@ export default {
       margin-right: 8px;
       margin-left: -5px;
       color: #0acb79;
+    }
+    .el-breadcrumb {
+      line-height: 16px;
     }
   }
 }
