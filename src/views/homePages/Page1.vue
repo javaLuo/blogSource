@@ -35,7 +35,7 @@ export default {
   },
   props: ["pageNow"],
   beforeMount() {
-    this.imgNum = this.getRandom(0, 12);
+    this.imgNum = this.getRandom(0, 19);
   },
   mounted() {
     if (this.pageNow === 0) {
