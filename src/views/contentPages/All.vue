@@ -13,14 +13,11 @@
                   :thisData="v"
                   :key="index"></ArtiveList>
     </transition-group>
-    <div class="nothing"
-         v-if="!pageNowData.length">
-      <img :src="ImgLoading" />
-      <div>正在从开源世界获取…</div>
-    </div>
+    <MyLoading :show="!pageNowData.length" />
     <div class="pagin">
       <Pagination :total="total"
                   :current-page="pageNow"
+                  :pageSize="pageSize"
                   layout="total, prev, pager, next"
                   @current-change="onPageChange"></Pagination>
     </div>
@@ -33,14 +30,13 @@ import { mapState } from "vuex";
 import { Pagination, Breadcrumb, BreadcrumbItem } from "element-ui";
 import ArtiveList from "../../components/ArtiveList.vue";
 import { sortDate } from "../../util/tools";
-import ImgLoading from "../../assets/loading.gif";
+import MyLoading from "../../components/MyLoading";
 export default {
   name: "live",
   data: function() {
     return {
-      ImgLoading,
       pageNow: 1,
-      pageSize: 10,
+      pageSize: 12,
       total: 0,
       pageNowData: []
     };
@@ -49,7 +45,8 @@ export default {
     ArtiveList,
     Pagination,
     Breadcrumb,
-    BreadcrumbItem
+    BreadcrumbItem,
+    MyLoading
   },
   mounted() {
     const temp = this.listData;
@@ -64,17 +61,20 @@ export default {
           this.total = 0;
           return [];
         }
+
         this.total = state.app.blogList.length;
         return sortDate(state.app.blogList, state.app.blogConfig.d).filter(
           (item, index) =>
-            index >= (this.pageNow - 1) * 10 && index < this.pageNow * 10
+            index >= (this.pageNow - 1) * this.pageSize &&
+            index < this.pageNow * this.pageSize
         );
       }
     })
   },
   watch: {
     listData(newV) {
-      this.pageNowData.length = 0;
+      this.pageNowData = [];
+      document.getElementById("bodyBox").scrollTop = 0;
       const temp = newV;
       for (let i = 0; temp[i]; i++) {
         setTimeout(() => this.pageNowData.push(temp[i]), i * 100);
@@ -116,18 +116,6 @@ export default {
     min-height: 300px;
     &li + li {
       margin-top: 16px;
-    }
-  }
-  .nothing {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    width: 100%;
-    transform: translateY(-50%);
-    text-align: center;
-    color: #888;
-    div {
-      margin-top: 8px;
     }
   }
   .pagin {

@@ -7,12 +7,12 @@
       </Breadcrumb>
     </div>
     <div class="info-box">
-      我不过是沧海一粟，是浩瀚宇宙的一瞬，是仅在公元21世纪这几十年中存在的生命体。<br />
+      我是这沧海一粟，是浩瀚宇宙的一瞬，是仅在公元21世纪这几十年中存在的生命体。<br />
       要问我生命的意义，我便会回答：<br />
       万物均朝着“生”的方向发展，没有人告诉你为什么。但我想，碳基生命无法长久维持，细胞终会衰老，所以需要繁衍后代生息不止。<br />
       而这一切的目的都是为了探索未知智慧，一直到达那个永恒的终极答案。<br />
       我想连宇宙本身都不知道终极答案是什么，倘若有一天人类真的知道了终极答案，那么那个答案一定会反过来告诉我们一切发生的原因。<br />
-      这就是存在的意义吧，这就是万物繁衍生息，本能的向“生”的目的吧。<br />
+      这就是存在的意义，是万物繁衍生息，本能的向“生”的目的吧。<br />
     </div>
     <div class="info-box link">
       <div class="title">Logic</div>
@@ -25,8 +25,14 @@
   </div>
 </template>
 <script>
+import { Breadcrumb, BreadcrumbItem } from "element-ui";
+
 export default {
-  name: "about"
+  name: "about",
+  components: {
+    Breadcrumb,
+    BreadcrumbItem
+  }
 };
 </script>
 <style lang="less">

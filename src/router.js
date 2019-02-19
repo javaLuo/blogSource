@@ -7,6 +7,7 @@ import Works from "./views/contentPages/Works.vue";
 import Article from "./views/contentPages/Article.vue";
 import Detail from "./views/contentPages/Detail.vue";
 import All from "./views/contentPages/All.vue";
+import Class from "./views/contentPages/Class.vue";
 Vue.use(Router);
 
 export default new Router({
@@ -36,6 +37,11 @@ export default new Router({
           path: "article", // 日志列表
           name: "article",
           component: Article
+        },
+        {
+          path: "class", // 分类
+          name: "class",
+          component: Class
         },
         {
           path: "about", // 关于我

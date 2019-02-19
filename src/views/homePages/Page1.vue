@@ -3,7 +3,7 @@
        :class="{show: isShow}">
     <img class="backImg"
          :class="{show: isBackShow}"
-         :src="`https://isluo.com/imgs/blogimg/${imgNum}.jpg`"
+         :src="`https://uploadbeta.com/api/pictures/random/`"
          @load="onBackImgLoad">
     <div class="shadow all_trans1s"></div>
 
@@ -35,7 +35,7 @@ export default {
   },
   props: ["pageNow"],
   beforeMount() {
-    this.imgNum = this.getRandom(0, 19);
+    this.imgNum = this.getRandom(0, 29);
   },
   mounted() {
     if (this.pageNow === 0) {
@@ -84,7 +84,7 @@ export default {
   background-image: url(../../assets/logo-github.png);
   &.show {
     .shadow {
-      opacity: 0.5;
+      opacity: 0.4;
     }
     .info-box {
       & > div {

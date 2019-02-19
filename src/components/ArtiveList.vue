@@ -55,7 +55,7 @@ export default {
   width: 100%;
   box-sizing: border-box;
   border-left: solid 5px #d3d3d3;
-  padding: 4px 8px;
+  padding: 4px 15px;
   list-style: none;
   & + li {
     margin-top: 32px;
@@ -68,7 +68,7 @@ export default {
     cursor: pointer;
     letter-spacing: 1px;
     &:hover {
-      color: #0366d6;
+      color: #108ee9;
     }
   }
   .time {
@@ -96,7 +96,7 @@ export default {
     & > div {
       font-size: 12px;
       margin-right: 4px;
-      background-color: #00bcd4;
+      background-color: #2db7f5;
       color: #fff;
       padding: 3px 5px;
       border-radius: 3px;

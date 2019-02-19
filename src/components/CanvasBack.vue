@@ -1,7 +1,7 @@
 <template>
-    <canvas class="canvas-back">
+  <canvas class="canvas-back">
 
-    </canvas>
+  </canvas>
 </template>
 
 <script>
@@ -105,7 +105,7 @@ export default {
     },
     drow() {
       const ctx = this.ctx;
-      const speed = this.play ? 1 : 10; // 非播放状态，所有运动变慢10倍
+      const speed = this.play ? 1 : 20; // 非播放状态，所有运动变慢10倍
       ctx.clearRect(0, 0, this.width, this.height);
       for (let i = 0; i < this.theRain.length; i++) {
         const t = this.theRain[i];

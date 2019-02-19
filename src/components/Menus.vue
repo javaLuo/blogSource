@@ -40,19 +40,31 @@
                        :class="{ play }"></div>
                 </div>
               </div>
-              <div class="name"
-                   @click="onLinkClick('/about')">Logic</div>
-              <div class="func">web前端开发工程师</div>
+              <div class="name">Logic</div>
+              <div class="func">躲过了黑夜的那只鸟<br />最后也消失在漆黑里</div>
               <ul class="link">
-                <li @click="onLinkClick('/')"
-                    @touchend="onLinkClick('/')">全部文章({{ allLength }})</li>
-                <li @click="onLinkClick('/live')"
-                    @touchend="onLinkClick('/live')">文章列表({{ liveLength }})</li>
-                <li @click="onLinkClick('/works')"
-                    @touchend="onLinkClick('/works')">个人作品({{ workLength }})</li>
-                <li @click="onLinkClick('/article')"
-                    @touchend="onLinkClick('/article')">日志列表({{ articleLength }})</li>
+                <li @click="onLinkClick('/')">
+                  <div>{{ allLength }}</div>
+                  <div>全部</div>
+                </li>
+                <li @click="onLinkClick('/live')">
+                  <div>{{ liveLength }}</div>
+                  <div>笔记</div>
+                </li>
+                <li @click="onLinkClick('/works')">
+                  <div>{{ workLength }}</div>
+                  <div>作品</div>
+                </li>
+                <li @click="onLinkClick('/article')">
+                  <div>{{ articleLength }}</div>
+                  <div>日志</div>
+                </li>
               </ul>
+              <div class="tips">
+                <span @click="onLinkClick('/about')">about</span>
+                <div class="line"></div>
+                <span @click="onLinkClick('/class')">tags</span>
+              </div>
             </div>
           </transition>
         </div>
@@ -197,7 +209,7 @@ export default {
 .menus {
   position: relative;
   flex: none;
-  width: 30vw;
+  width: 25vw;
   min-width: 320px;
   max-width: 512px;
   height: 100%;
@@ -248,7 +260,6 @@ export default {
     }
     .info-box {
       width: 100%;
-      height: 100%;
       color: #fff;
       box-sizing: border-box;
       letter-spacing: 1px;
@@ -337,67 +348,83 @@ export default {
       .name {
         font-size: 24px;
         margin-top: 12px;
-        cursor: pointer;
-        &::after {
-          content: "";
-          position: absolute;
-          bottom: -2px;
-          left: 50%;
-          transform: translateX(-50%);
-          width: 0;
-          max-width: 250px;
-          height: 1px;
-          background: linear-gradient(to right, transparent, #fff, transparent);
-          transition: all 200ms;
-        }
-        &:hover {
-          &::after {
-            width: 40%;
-          }
-        }
       }
       .func {
         font-size: 12px;
         margin-top: 6px;
       }
+      .tips {
+        font-size: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 24px;
+        span {
+          cursor: pointer;
+          transition: all 300ms;
+          padding: 2px 6px;
+          border-radius: 3px;
+          &:hover {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #2df569;
+          }
+        }
+        .line {
+          height: 2px;
+          width: 2px;
+          margin: 0 2px;
+          background-color: #2df569;
+        }
+      }
       .link {
         position: relative;
         display: flex;
-        margin: 24px 0 0 0;
+        margin: 24px auto 0 auto;
         padding: 0;
-        flex-direction: column;
+        width: 80%;
+        max-width: 300px;
         align-items: center;
         & > li {
           list-style: none;
-          margin: 0 0 16px 0;
           font-size: 12px;
-          color: #fff;
+          padding: 10px 0;
+          width: 100%;
           box-sizing: border-box;
-          padding: 4px 50px;
-          max-width: 100%;
+          display: block;
           position: relative;
           transition: all 200ms;
           cursor: pointer;
+
+          & > div {
+            &:first-child {
+              font-size: 18px;
+              font-weight: 600;
+              color: #f0f0f0;
+            }
+            &:nth-child(2) {
+              font-size: 12px;
+              color: #f8f8f8;
+            }
+          }
           &::after {
             content: "";
             position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 0;
-            max-width: 250px;
-            height: 1px;
-            background: linear-gradient(
-              to right,
-              transparent,
-              #fff,
-              transparent
-            );
+            top: 50%;
+            left: 0;
+            border-radius: 3px;
+            transform: translateY(-50%);
+            width: 100%;
+            height: 0;
+            background-color: rgba(0, 0, 0, 0.4);
             transition: all 200ms;
+            z-index: -1;
           }
           &:hover {
+            & > div {
+              color: #2df569 !important;
+            }
             &::after {
-              width: 80%;
+              height: 100%;
             }
           }
         }

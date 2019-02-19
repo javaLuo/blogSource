@@ -94,7 +94,7 @@ export default {
         }
         const b = state.app.blogConfig.d;
         const blogC = b.find(item => item.gitname === id) || { title: id };
-        document.title = blogC.title;
+        document.title = `Luo's Blog | ${blogC.title}`;
         return blogC;
       },
       breadType() {
