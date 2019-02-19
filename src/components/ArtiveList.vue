@@ -67,6 +67,8 @@ export default {
     transition: all 0.2s;
     cursor: pointer;
     letter-spacing: 1px;
+    word-break: break-all;
+    word-wrap: break-word;
     &:hover {
       color: #108ee9;
     }

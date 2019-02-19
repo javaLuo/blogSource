@@ -138,7 +138,7 @@ export default {
     .tag-list {
       display: flex;
       flex-wrap: wrap;
-      margin: 0;
+      padding: 0;
       color: #444;
       & > li {
         cursor: pointer;
@@ -146,10 +146,13 @@ export default {
         flex: none;
         box-sizing: border-box;
         width: 33.33%;
+        min-width: 150px;
         padding: 20px;
         margin: 0;
         background-color: #f8f8f8;
         transition: all 300ms;
+        word-break: break-all;
+        word-wrap: break-word;
         &:nth-child(even) {
           background-color: #f0f0f0;
         }

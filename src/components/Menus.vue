@@ -19,7 +19,7 @@
              @click="onMenuClose">
           <transition name="leftmove">
             <div v-show="menuOpen"
-                 class="back-img-box"
+                 :class="`back-img-box ${isPc ? 'pc' : 'mobile'}`"
                  @click.stop></div>
           </transition>
           <CanvasBack v-if="isPc"></CanvasBack>
@@ -43,27 +43,33 @@
               <div class="name">Logic</div>
               <div class="func">躲过了黑夜的那只鸟<br />最后也消失在漆黑里</div>
               <ul class="link">
-                <li @click="onLinkClick('/')">
+                <li @click="onLinkClick('/')"
+                    @touchend="onLinkClick('/')">
                   <div>{{ allLength }}</div>
                   <div>全部</div>
                 </li>
-                <li @click="onLinkClick('/live')">
+                <li @click="onLinkClick('/live')"
+                    @touchend="onLinkClick('/live')">
                   <div>{{ liveLength }}</div>
                   <div>笔记</div>
                 </li>
-                <li @click="onLinkClick('/works')">
+                <li @click="onLinkClick('/works')"
+                    @touchend="onLinkClick('/works')">
                   <div>{{ workLength }}</div>
                   <div>作品</div>
                 </li>
-                <li @click="onLinkClick('/article')">
+                <li @click="onLinkClick('/article')"
+                    @touchend="onLinkClick('/article')">
                   <div>{{ articleLength }}</div>
                   <div>日志</div>
                 </li>
               </ul>
               <div class="tips">
-                <span @click="onLinkClick('/about')">about</span>
+                <span @click="onLinkClick('/about')"
+                      @touchend="onLinkClick('/about')">about</span>
                 <div class="line"></div>
-                <span @click="onLinkClick('/class')">tags</span>
+                <span @click="onLinkClick('/class')"
+                      @touchend="onLinkClick('/class')">tags</span>
               </div>
             </div>
           </transition>
@@ -254,9 +260,14 @@ export default {
       width: 100%;
       height: 100%;
       background-color: #333;
-      background-image: url(../assets/menu_back.jpg);
       background-size: cover;
       background-position: top center;
+      &.pc {
+        background-image: url(../assets/menu.jpg);
+      }
+      &.mobile {
+        background-image: url(../assets/menu_mobile.jpg);
+      }
     }
     .info-box {
       width: 100%;
