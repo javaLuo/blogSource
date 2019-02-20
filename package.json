@@ -10,6 +10,9 @@
     "test:e2e": "vue-cli-service test:e2e",
     "prettier": "prettier --write \"src/**/*.{js,css,scss,less,vue}\""
   },
+  "vue": {
+    "productionSourceMap": false
+  },
   "dependencies": {
     "axios": "^0.18.0",
     "editor.md": "^1.5.0",
