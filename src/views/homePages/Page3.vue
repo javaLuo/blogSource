@@ -21,7 +21,7 @@
     </div>
     <div class="last">
       <img :src="ImgPic" />
-      <span>© 2014–2019 <a href="http://isluo.com"
+      <span>© 2014–2019 <a href="https://isluo.com"
            target="_blank">isluo.com</a> Ltd.</span>
     </div>
   </div>
