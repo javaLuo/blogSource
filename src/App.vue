@@ -14,6 +14,16 @@ body {
   padding: 0;
   font-family: "Futura-Thin", "Helvetica Neue", Helvetica, sans-serif;
   overflow: hidden;
+  &.page0 {
+    .crisp-client {
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
+  .crisp-client {
+    opacity: 1;
+    transition: opacity 300ms;
+  }
 }
 div {
   position: relative;

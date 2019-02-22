@@ -99,6 +99,7 @@ export default {
       this.scrollDom.on("scrollEnd", () => {
         this.scrolling = false;
       });
+      document.body.classList.add("page0");
     },
     /** 监听滚轮事件处理页面滚动 **/
     onMouseWheel(e) {
@@ -181,8 +182,10 @@ export default {
     pageNow(newV) {
       if (newV !== 0 && this.play) {
         this.onMp3Play();
+        document.body.classList.remove("page0");
       } else {
         this.onMp3Pause();
+        document.body.classList.add("page0");
       }
     },
     play(newV) {
