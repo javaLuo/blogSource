@@ -7,15 +7,15 @@
       </Breadcrumb>
     </div>
     <ul>
-      <li class="tag-box"
-          v-for="(item, index) in allTags"
-          :key="`f${index}`">
-        <div class="tag-title">{{item}}</div>
+      <li class="tag-box" v-for="(item, index) in allTags" :key="`f${index}`">
+        <div class="tag-title">{{ item }}</div>
         <ul class="tag-list">
-          <li v-for="(item2,index2) in checkTags(item)"
-              @click="onLinkClick(item2.gitname)"
-              :key="index2">
-            {{item2.title}}
+          <li
+            v-for="(item2, index2) in checkTags(item)"
+            @click="onLinkClick(item2.gitname)"
+            :key="index2"
+          >
+            {{ item2.title }}
           </li>
         </ul>
       </li>

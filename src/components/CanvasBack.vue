@@ -1,7 +1,5 @@
 <template>
-  <canvas class="canvas-back">
-
-  </canvas>
+  <canvas class="canvas-back"> </canvas>
 </template>
 
 <script>

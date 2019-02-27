@@ -6,20 +6,22 @@
         <BreadcrumbItem>博客列表</BreadcrumbItem>
       </Breadcrumb>
     </div>
-    <transition-group name="list"
-                      tag="ul"
-                      class="live">
-      <ArtiveList v-for="(v, index) in pageNowData"
-                  :thisData="v"
-                  :key="index"></ArtiveList>
+    <transition-group name="list" tag="ul" class="live">
+      <ArtiveList
+        v-for="v in pageNowData"
+        :thisData="v"
+        :key="v.name"
+      ></ArtiveList>
     </transition-group>
     <MyLoading :show="!pageNowData.length" />
     <div class="pagin">
-      <Pagination :total="total"
-                  :current-page="pageNow"
-                  :pageSize="pageSize"
-                  layout="total, prev, pager, next"
-                  @current-change="onPageChange"></Pagination>
+      <Pagination
+        :total="total"
+        :current-page="pageNow"
+        :pageSize="pageSize"
+        layout="total, prev, pager, next"
+        @current-change="onPageChange"
+      ></Pagination>
     </div>
   </div>
 </template>

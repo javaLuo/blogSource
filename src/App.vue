@@ -1,6 +1,5 @@
 <template>
-  <div id="app"
-       class="boss">
+  <div id="app" class="boss">
     <router-view />
   </div>
 </template>
@@ -12,7 +11,7 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: "Futura-Thin", "Helvetica Neue", Helvetica, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   overflow: hidden;
   &.page0 {
     .crisp-client {
@@ -125,6 +124,4 @@ th {
   border-radius: 4px;
   background-color: #222;
 }
-
-@import "./style/css/editormd.preview.min.css";
 </style>

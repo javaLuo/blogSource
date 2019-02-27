@@ -1,12 +1,12 @@
 <template>
-  <div class="page-detail"
-       :v-loading="true"
-       ref="pageDetail">
+  <div class="page-detail" :v-loading="true" ref="pageDetail">
     <div class="bread">
       <i class="el-icon-location"></i>
       <Breadcrumb>
         <BreadcrumbItem to="/all">博客列表</BreadcrumbItem>
-        <BreadcrumbItem :to="breadType.url">{{ breadType.title }}</BreadcrumbItem>
+        <BreadcrumbItem :to="breadType.url">{{
+          breadType.title
+        }}</BreadcrumbItem>
         <BreadcrumbItem>{{ blogConfig.title }}</BreadcrumbItem>
       </Breadcrumb>
     </div>
@@ -14,19 +14,20 @@
       <div class="title">{{ blogConfig.title }}</div>
       <div class="date">{{ blogConfig.date }}</div>
     </div>
-    <div v-if="!sourceData"
-         class="loading-box">
+    <div v-if="!sourceData" class="loading-box">
       <img :src="ImgLoading" />
       <div>正在从开源世界获取…</div>
     </div>
-    <div ref="theBody"
-         v-html="htmlData"
-         class="the-body markdown-body editormd-html-preview"></div>
-    <div class="the-end"><img :src="ImgFeather" />
+    <div
+      ref="theBody"
+      v-html="htmlData"
+      class="the-body markdown-body editormd-html-preview"
+    ></div>
+    <div class="the-end">
+      <img :src="ImgFeather" />
       <div>--<span>End</span>--</div>
     </div>
-    <div id="gitalk-box"
-         class="gitalk-box"></div>
+    <div id="gitalk-box" class="gitalk-box"></div>
   </div>
 </template>
 
@@ -41,7 +42,7 @@ import Gitalk from "gitalk";
 import ImgLoading from "../../assets/loading.gif";
 import ImgFeather from "../../assets/feather.png";
 
-import { Button, Breadcrumb, BreadcrumbItem } from "element-ui";
+import { Breadcrumb, BreadcrumbItem } from "element-ui";
 
 const converter = new ShowDown.Converter({ tables: true });
 export default {
@@ -55,7 +56,6 @@ export default {
     };
   },
   components: {
-    Button,
     Breadcrumb,
     BreadcrumbItem
   },

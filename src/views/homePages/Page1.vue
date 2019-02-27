@@ -1,10 +1,11 @@
 <template>
-  <div class="page1"
-       :class="{show: isShow}">
-    <img class="backImg"
-         :class="{show: isBackShow}"
-         :src="`https://uploadbeta.com/api/pictures/random/`"
-         @load="onBackImgLoad">
+  <div class="page1" :class="{ show: isShow }">
+    <img
+      class="backImg"
+      :class="{ show: isBackShow }"
+      :src="`https://uploadbeta.com/api/pictures/random/`"
+      @load="onBackImgLoad"
+    />
     <div class="shadow all_trans1s"></div>
 
     <div class="info-box">
@@ -12,9 +13,7 @@
       <div class="all_trans1s">hide in the city</div>
       <div class="all_trans1s">no card, no phone, no ID</div>
     </div>
-    <img class="down"
-         :src="ImgDown"
-         @click="onDownClick" />
+    <img class="down" :src="ImgDown" @click="onDownClick" />
   </div>
 </template>
 

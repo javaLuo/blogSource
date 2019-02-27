@@ -1,13 +1,8 @@
 import Vue from "vue";
 import Router from "vue-router";
 import Home from "./views/Home.vue";
-import About from "./views/About.vue";
-import Live from "./views/contentPages/Live.vue";
-import Works from "./views/contentPages/Works.vue";
-import Article from "./views/contentPages/Article.vue";
-import Detail from "./views/contentPages/Detail.vue";
 import All from "./views/contentPages/All.vue";
-import Class from "./views/contentPages/Class.vue";
+
 Vue.use(Router);
 
 export default new Router({
@@ -26,32 +21,38 @@ export default new Router({
         {
           path: "live", // 文章列表
           name: "live",
-          component: Live
+          component: () =>
+            import(/* webpackChunkName: "live" */ "./views/contentPages/Live.vue")
         },
         {
           path: "works", // 个人作品
           name: "works",
-          component: Works
+          component: () =>
+            import(/* webpackChunkName: "works" */ "./views/contentPages/Works.vue")
         },
         {
           path: "article", // 日志列表
           name: "article",
-          component: Article
+          component: () =>
+            import(/* webpackChunkName: "article" */ "./views/contentPages/Article.vue")
         },
         {
-          path: "class", // 分类
+          path: "tags", // tag分类
           name: "class",
-          component: Class
-        },
-        {
-          path: "about", // 关于我
-          name: "about",
-          component: About
+          component: () =>
+            import(/* webpackChunkName: "tags" */ "./views/contentPages/Class.vue")
         },
         {
           path: "detail/:id", // 文章详情页
           name: "detail",
-          component: Detail
+          component: () =>
+            import(/* webpackChunkName: "detail" */ "./views/contentPages/Detail.vue")
+        },
+        {
+          path: "about", // 关于我
+          name: "about",
+          component: () =>
+            import(/* webpackChunkName: "about" */ "./views/About.vue")
         }
       ]
     }

@@ -1,27 +1,27 @@
 <template>
-  <div id="home"
-       class="home"
-       @mousewheel="onMouseWheel"
-       @DOMMouseScroll="onMouseWheel">
-    <audio v-if="isPc"
-           class="audio"
-           src="https://isluo.com/imgs/rain.mp3"
-           loop
-           preload
-           id="audio1"></audio>
-    <div id="scroller"
-         class="scroller">
+  <div
+    id="home"
+    class="home"
+    @mousewheel="onMouseWheel"
+    @DOMMouseScroll="onMouseWheel"
+  >
+    <audio
+      v-if="isPc"
+      class="audio"
+      src="https://isluo.com/imgs/rain.mp3"
+      loop
+      preload
+      id="audio1"
+    ></audio>
+    <div id="scroller" class="scroller">
       <ul class="scroll-wrapper">
-        <li v-if="isPc"
-            class="scroll-page">
-          <Page1 :pageNow="pageNow"
-                 @onDownClick="onClickScroll"></Page1>
+        <li v-if="isPc" class="scroll-page">
+          <Page1 :pageNow="pageNow" @onDownClick="onClickScroll"></Page1>
         </li>
         <li class="scroll-page">
           <Page2 :pageNow="pageNow"></Page2>
         </li>
-        <li v-if="isPc"
-            class="scroll-page foot-page">
+        <li v-if="isPc" class="scroll-page foot-page">
           <Page3 :pageNow="pageNow"></Page3>
         </li>
       </ul>
@@ -35,7 +35,6 @@ import IScroll from "iscroll";
 import Page1 from "./homePages/Page1.vue";
 import Page2 from "./homePages/Page2.vue";
 import Page3 from "./homePages/Page3.vue";
-import Header from "../components/Header.vue";
 import { mapState } from "vuex";
 export default {
   name: "home",
@@ -53,7 +52,6 @@ export default {
   },
   props: {},
   components: {
-    Header,
     Page1,
     Page2,
     Page3
@@ -134,7 +132,7 @@ export default {
         this.mp3Dom.a.play();
         this.volumeUp();
       } catch (e) {
-        console.log("audio paly fail");
+        // 播放失败
       }
     },
     /** 音频事件，暂停播放 **/

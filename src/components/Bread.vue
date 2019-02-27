@@ -1,13 +1,12 @@
 <template>
-    <div class="bread">
-        <i class="el-icon-location"></i>
-        <span>{{ breadData }}</span>
-    </div>
+  <div class="bread">
+    <i class="el-icon-location"></i>
+    <span>{{ breadData }}</span>
+  </div>
 </template>
 
 <script>
 /** 文章列表页 **/
-import { mapState } from "vuex";
 export default {
   name: "bread",
   data: function() {

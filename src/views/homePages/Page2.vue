@@ -1,11 +1,7 @@
 <template>
-  <div class="page2"
-       :class="{show: isShow, mobile: !isPc}">
+  <div class="page2" :class="{ show: isShow, mobile: !isPc }">
     <Menus @playChange="playChange"></Menus>
-    <div id="bodyBox"
-         class="body-box"
-         @mousewheel.stop
-         @DOMMouseScroll.stop>
+    <div id="bodyBox" class="body-box" @mousewheel.stop @DOMMouseScroll.stop>
       <router-view></router-view>
     </div>
   </div>

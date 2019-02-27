@@ -17,10 +17,16 @@
     <div class="info-box link">
       <div class="title">Logic</div>
       <div>前端开发工程师 目前就职于上海</div>
-      <div>GitHub: <a href="https://github.com/javaLuo"
-           target="_blank">https://github.com/javaLuo</a></div>
-      <div>邮箱: <a href="mailto:376693576@qq.com"
-           target="_blank">376693576@qq.com</a></div>
+      <div>
+        GitHub:
+        <a href="https://github.com/javaLuo" target="_blank"
+          >https://github.com/javaLuo</a
+        >
+      </div>
+      <div>
+        邮箱:
+        <a href="mailto:376693576@qq.com" target="_blank">376693576@qq.com</a>
+      </div>
     </div>
   </div>
 </template>

@@ -1,24 +1,20 @@
 <template>
   <li class="artive-list">
-    <div class="title"
-         @click="onDetailChose">{{ blogInfo.title }}</div>
+    <div class="title" @click="onDetailChose">{{ blogInfo.title }}</div>
     <div class="time">{{ blogInfo.date }}</div>
-    <div v-if="blogInfo.pic"
-         class="pic"><img :src="blogInfo.pic"></div>
+    <div v-if="blogInfo.pic" class="pic"><img :src="blogInfo.pic" /></div>
     <div class="info"><span v-html="blogInfo.info"></span></div>
     <div class="tags">
-      <div v-for="(item, index) in blogInfo.tags"
-           :key="index">{{ item }}</div>
+      <div v-for="(item, index) in blogInfo.tags" :key="index">{{ item }}</div>
     </div>
-    <div class="read-more"
-         @click="onDetailChose">阅读全文</div>
+    <div class="read-more" @click="onDetailChose">阅读全文</div>
   </li>
 </template>
 
 <script>
 /** 单个数据列表项 **/
 import { mapState } from "vuex";
-import { Tag } from "element-ui";
+
 export default {
   name: "ArtiveList",
   data: function() {
@@ -27,9 +23,7 @@ export default {
   props: {
     thisData: Object
   },
-  components: {
-    Tag
-  },
+
   mounted() {},
   computed: {
     ...mapState({
