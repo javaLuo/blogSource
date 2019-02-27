@@ -18,7 +18,6 @@
 </template>
 
 <script>
-import ImgLogo from "../../assets/logo.png";
 import ImgDown from "../../assets/down.png";
 
 export default {
@@ -26,7 +25,6 @@ export default {
   data: function() {
     return {
       isShow: false,
-      ImgLogo,
       ImgDown,
       imgNum: 0, // 首页随机背景图的编号
       isBackShow: false // 首页背景图是否加载
