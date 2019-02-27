@@ -22,7 +22,7 @@
           <Page2 :pageNow="pageNow"></Page2>
         </li>
         <li v-if="isPc" class="scroll-page foot-page">
-          <Page3 :pageNow="pageNow"></Page3>
+          <Page3 :pageNow="pageNow" :hi="hi"></Page3>
         </li>
       </ul>
     </div>
@@ -58,7 +58,8 @@ export default {
   },
   computed: {
     ...mapState({
-      play: state => state.page.playing
+      play: state => state.page.playing,
+      hi: state => state.app.hi
     })
   },
   mounted: function() {
@@ -181,6 +182,11 @@ export default {
       if (newV !== 0 && this.play) {
         this.onMp3Play();
         document.body.classList.remove("page0");
+        if (newV === 2 && isPc) {
+          this.$store.dispatch({
+            type: "app/getHi"
+          });
+        }
       } else {
         this.onMp3Pause();
         document.body.classList.add("page0");

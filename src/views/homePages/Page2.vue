@@ -1,6 +1,6 @@
 <template>
   <div class="page2" :class="{ show: isShow, mobile: !isPc }">
-    <Menus @playChange="playChange"></Menus>
+    <Menus />
     <div id="bodyBox" class="body-box" @mousewheel.stop @DOMMouseScroll.stop>
       <router-view></router-view>
     </div>
@@ -25,12 +25,7 @@ export default {
   components: {
     Menus
   },
-  methods: {
-    playChange() {
-      // 菜单中的播放器按钮被点击时触发
-      this.$emit();
-    }
-  },
+  methods: {},
   mounted() {
     if (this.pageNow === 1) {
       this.isShow = true;

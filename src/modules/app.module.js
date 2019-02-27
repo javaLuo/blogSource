@@ -13,7 +13,11 @@ const App = {
     blogList: [], // 所有文章列表
     blogs: [], // 文章内容缓存
     blogConfig: null, // 文章配置信息缓存
-    detailURL: null // 当前选中的文章URL信息
+    detailURL: null, // 当前选中的文章URL信息
+    hi: {
+      // 一言
+      hitokoto: "hide in the city"
+    }
   },
   actions: {
     /** 获取文章配置 **/
@@ -83,6 +87,22 @@ const App = {
       } catch (e) {
         // console.log("网络错误");
       }
+    },
+    /** 获取一言随机一条语句 **/
+    async getHi(context) {
+      try {
+        const url = `https://v1.hitokoto.cn?time=${Date.now()}`;
+        const msg = await server(url, null, "GET");
+        if (msg.status === 200 || msg.status === 304) {
+          context.commit({
+            type: "setHi",
+            data: msg.data
+          });
+        }
+        return msg;
+      } catch (e) {
+        Message.info("网络出现错误，配置获取失败");
+      }
     }
   },
   mutations: {
@@ -104,6 +124,9 @@ const App = {
     saveTheBlogConfig(state, payload) {
       // 保存文章配置信息
       state.blogConfig = payload.data;
+    },
+    setHi(state, payload) {
+      state.hi = payload.data;
     }
   }
 };
