@@ -72,7 +72,7 @@
               </div>
             </div>
           </transition>
-          <img class="down" :src="ImgDown" @click="onDownClick" />
+          <img v-if="isPc" class="down" :src="ImgDown" @click="onDownClick" />
         </div>
       </transition>
     </div>

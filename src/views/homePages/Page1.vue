@@ -76,8 +76,10 @@ export default {
   box-sizing: border-box;
   padding: 16px;
   height: 100%;
+  background-color: #5e5e5e;
   background-repeat: no-repeat;
   background-position: center center;
+  background-size: 100px;
   background-image: url(../../assets/logo-github.png);
   &.show {
     .shadow {
