@@ -1,6 +1,6 @@
 <template>
   <div class="page2" :class="{ show: isShow, mobile: !isPc }">
-    <Menus />
+    <Menus @onClickScroll="onClickScroll" />
     <div id="bodyBox" class="body-box" @mousewheel.stop @DOMMouseScroll.stop>
       <router-view></router-view>
     </div>
@@ -25,7 +25,11 @@ export default {
   components: {
     Menus
   },
-  methods: {},
+  methods: {
+    onClickScroll() {
+      this.$emit("onDownClick", 2);
+    }
+  },
   mounted() {
     if (this.pageNow === 1) {
       this.isShow = true;

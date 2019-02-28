@@ -19,7 +19,7 @@
           <Page1 :pageNow="pageNow" @onDownClick="onClickScroll"></Page1>
         </li>
         <li class="scroll-page">
-          <Page2 :pageNow="pageNow"></Page2>
+          <Page2 :pageNow="pageNow" @onDownClick="onClickScroll"></Page2>
         </li>
         <li v-if="isPc" class="scroll-page foot-page">
           <Page3 :pageNow="pageNow" :hi="hi"></Page3>
@@ -123,6 +123,9 @@ export default {
     },
     /** 手动点击跳转页面 **/
     onClickScroll(p) {
+      if (this.pageNow === p) {
+        return;
+      }
       this.scrolling = true;
       this.pageNow = p;
       this.scrollDom && this.scrollDom.goToPage(1, this.pageNow, 1000);

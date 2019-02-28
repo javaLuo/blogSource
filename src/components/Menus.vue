@@ -72,6 +72,7 @@
               </div>
             </div>
           </transition>
+          <img class="down" :src="ImgDown" @click="onDownClick" />
         </div>
       </transition>
     </div>
@@ -83,13 +84,16 @@ import ImgPic from "../assets/pic.jpg";
 import CanvasBack from "./CanvasBack.vue";
 import { mapState } from "vuex";
 import { getBlogInfo, isPc } from "../util/tools";
+import ImgDown from "../assets/down.png";
+
 export default {
   name: "Menus",
   data: function() {
     return {
       ImgPic,
       isPc: isPc(),
-      menuOpen: isPc() // 菜单是否展开
+      menuOpen: isPc(), // 菜单是否展开
+      ImgDown
     };
   },
   methods: {
@@ -115,6 +119,9 @@ export default {
         // 只有移动端才能关闭
         this.menuOpen = false;
       }
+    },
+    onDownClick() {
+      this.$emit("onClickScroll");
     }
   },
   components: {
@@ -154,6 +161,15 @@ export default {
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes animate-down {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(8px);
   }
 }
 
@@ -251,6 +267,18 @@ export default {
       width: 100%;
       height: 100%;
       background-color: rgba(0, 0, 0, 0.3);
+      .down {
+        position: absolute;
+        bottom: 8px;
+        left: 50%;
+        margin-left: -8px;
+        width: 16px;
+        z-index: 2;
+        cursor: pointer;
+        padding: 12px 8px;
+        animation: animate-down 1s;
+        animation-iteration-count: infinite;
+      }
     }
     .back-img-box {
       position: absolute;
