@@ -91,7 +91,7 @@ const App = {
     /** 获取一言随机一条语句 **/
     async getHi(context) {
       try {
-        const url = `https://v1.hitokoto.cn?time=${Date.now()}`;
+        const url = `https://v1.hitokoto.cn?c=c&time=${Date.now()}`;
         const msg = await server(url, null, "GET");
         if (msg.status === 200 || msg.status === 304) {
           context.commit({
