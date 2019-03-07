@@ -47,7 +47,6 @@ export default {
     BreadcrumbItem,
     MyLoading
   },
-  mounted() {},
   computed: {
     ...mapState({
       blogConfig: state => state.app.blogConfig,
