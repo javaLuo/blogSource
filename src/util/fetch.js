@@ -15,6 +15,7 @@ const server = function(url, params = null, method = "GET", type = false) {
     data: params,
     headers: {
       "Content-Type": "text/plain; charset=utf-8"
+      // Authorization: `token ${gitToken}`
     },
     responseType: "json"
   };

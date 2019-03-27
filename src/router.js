@@ -53,6 +53,12 @@ export default new Router({
           name: "about",
           component: () =>
             import(/* webpackChunkName: "about" */ "./views/About.vue")
+        },
+        {
+          path: "photo", // 相册
+          name: "photo",
+          component: () =>
+            import(/* webpackChunkName: "photo" */ "./views/Photo.vue")
         }
       ]
     }

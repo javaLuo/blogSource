@@ -165,6 +165,9 @@ export default {
     padding: 0 !important;
     overflow-x: hidden;
     font-size: 16px;
+    img {
+      border-radius: 4px;
+    }
   }
   .info {
     letter-spacing: 1px;

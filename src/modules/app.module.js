@@ -4,7 +4,6 @@
  * **/
 import server from "../util/fetch";
 import { masterName } from "../config";
-// import { sortDate } from "../util/tools";
 import { Message } from "element-ui";
 const App = {
   namespaced: true,
@@ -14,9 +13,10 @@ const App = {
     blogs: [], // 文章内容缓存
     blogConfig: null, // 文章配置信息缓存
     detailURL: null, // 当前选中的文章URL信息
+    photoList: [], // 所有照片
     hi: {
       // 一言
-      hitokoto: "hide in the city"
+      hitokoto: "Loading..."
     }
   },
   actions: {
@@ -55,6 +55,27 @@ const App = {
         return msg;
       } catch (e) {
         Message.info("网络出现错误，列表获取失败");
+      }
+    },
+    /** 获取所有照片列表 **/
+    async getPhotoList(context) {
+      try {
+        const msg = await server(
+          `https://api.github.com/repos/${masterName}/${masterName}.github.io/contents/photo`,
+          null,
+          "GET"
+        );
+        // console.log("到这里了吗：", msg);
+        if (msg.status === 200 || msg.status === 304) {
+          // 给msg.data按照日期排序
+          context.commit({
+            type: "setPhotoList",
+            data: msg.data
+          });
+        }
+        return msg;
+      } catch (e) {
+        Message.info("网络出现错误，照片获取失败");
       }
     },
     /** 获取某个文章的详细内容 **/
@@ -127,6 +148,10 @@ const App = {
     },
     setHi(state, payload) {
       state.hi = payload.data;
+    },
+    // 保存照片列表
+    setPhotoList(state, payload) {
+      state.photoList = payload.data;
     }
   }
 };

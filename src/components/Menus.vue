@@ -69,6 +69,12 @@
                   @touchend="onLinkClick('/tags')"
                   >tags</span
                 >
+                <div class="line"></div>
+                <span
+                  @click="onLinkClick('/photo')"
+                  @touchend="onLinkClick('/photo')"
+                  >photo</span
+                >
               </div>
             </div>
           </transition>
