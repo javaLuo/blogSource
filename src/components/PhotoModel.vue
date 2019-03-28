@@ -16,7 +16,7 @@
       @touchmove="onMouseMove($event)"
     >
       <ul
-        :class="['scroll-wrapper', { transition: !isMouseDown }]"
+        :class="['scroll-wrapper', { transition: !isMouseDown && canTrans }]"
         :style="
           `width:${
             photoGroupNow.length
@@ -52,6 +52,7 @@ export default {
     return {
       left: 0, // 偏移
       which: 0, // 当前选择的哪一张
+      canTrans: false, // 有过度
       tempLeft: 0, // 左右拖拽
       isMouseDown: false, // 鼠标是否在当前文档按下
       downX: 0 // 鼠标按下的坐标
@@ -76,8 +77,12 @@ export default {
     // 每次出现时需要定位一下是否是当前图片
     show(newV) {
       if (newV) {
+        this.canTrans = false;
         this.left = this.photoWhich * 100;
         this.which = this.photoWhich;
+        setTimeout(() => {
+          this.canTrans = true;
+        }, 128);
       }
     }
   },
@@ -136,7 +141,7 @@ export default {
   right: 0;
   bottom: 0;
   overflow: hidden;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.4);
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
@@ -196,7 +201,7 @@ export default {
           max-width: 80%;
           max-height: 80%;
           border-radius: 4px;
-          box-shadow: 0 0 124px #666;
+          box-shadow: 0 0 124px #222;
         }
       }
     }
@@ -207,7 +212,7 @@ export default {
       width: 100%;
       height: 40px;
       line-height: 40px;
-      background-color: rgba(0, 0, 0, 0.5);
+      background-color: rgba(0, 0, 0, 0.8);
       text-align: center;
       .photo-name {
         position: absolute;

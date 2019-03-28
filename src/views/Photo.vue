@@ -176,10 +176,7 @@ export default {
         background-position: center center;
         background-repeat: no-repeat;
         border-radius: 4px;
-        margin-bottom: 10px;
-        & ~ li {
-          margin-left: 10px;
-        }
+        margin: 0 10px 10px 0;
         img {
           display: block;
           max-width: 100%;
