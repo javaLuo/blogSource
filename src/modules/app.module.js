@@ -14,6 +14,10 @@ const App = {
     blogConfig: null, // 文章配置信息缓存
     detailURL: null, // 当前选中的文章URL信息
     photoList: [], // 所有照片
+    photoShow: false, // 照片模态框是否显示
+    photoGroupChose: "", // 当前选中哪一个相册
+    photoGroup: [], // 相册所有分组
+    photoWhich: 0, // 当前点选的哪一张相片
     hi: {
       // 一言
       hitokoto: "Loading..."
@@ -65,12 +69,18 @@ const App = {
           null,
           "GET"
         );
-        // console.log("到这里了吗：", msg);
         if (msg.status === 200 || msg.status === 304) {
-          // 给msg.data按照日期排序
+          let g = new Set();
+          msg.data.forEach(item => {
+            const n = item.name.split("|");
+            g.add(n[0]);
+          });
+          g = Array.from(g);
           context.commit({
             type: "setPhotoList",
-            data: msg.data
+            data: msg.data,
+            photoGroup: g,
+            photoGroupChose: g[0]
           });
         }
         return msg;
@@ -152,6 +162,21 @@ const App = {
     // 保存照片列表
     setPhotoList(state, payload) {
       state.photoList = payload.data;
+      state.photoGroup = payload.photoGroup;
+      if (!state.photoGroupChose) {
+        state.photoGroupChose = payload.photoGroupChose;
+      }
+    },
+    // 设置当前选择的相册
+    setPhotoChose(state, payload) {
+      state.photoGroupChose = payload.value;
+    },
+    // 设置相册模态框是否显示
+    setPhotoShow(state, payload) {
+      state.photoShow = payload.show;
+      if (payload.show) {
+        state.photoWhich = payload.which;
+      }
     }
   }
 };

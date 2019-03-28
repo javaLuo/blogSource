@@ -11,8 +11,15 @@
       src="https://isluo.com/imgs/rain.mp3"
       loop
       preload
+      @canplaythrough="onCanPlay"
       id="audio1"
     ></audio>
+    <PhotoModel
+      :show="photoShow"
+      :photos="photos"
+      :photoGroupChose="photoGroupChose"
+      :photoWhich="photoWhich"
+    />
     <div id="scroller" class="scroller">
       <ul class="scroll-wrapper">
         <li v-if="isPc" class="scroll-page">
@@ -32,6 +39,7 @@
 <script>
 import { isPc } from "../util/tools";
 import IScroll from "iscroll";
+import PhotoModel from "../components/PhotoModel.vue";
 import Page1 from "./homePages/Page1.vue";
 import Page2 from "./homePages/Page2.vue";
 import Page3 from "./homePages/Page3.vue";
@@ -46,20 +54,25 @@ export default {
       pageNow: 0,
       mp3Dom: {
         // audio, 一个音轨
+        canplay: false,
         a: null
       }
     };
   },
-  props: {},
   components: {
     Page1,
     Page2,
-    Page3
+    Page3,
+    PhotoModel
   },
   computed: {
     ...mapState({
       play: state => state.page.playing,
-      hi: state => state.app.hi
+      hi: state => state.app.hi,
+      photoShow: state => state.app.photoShow,
+      photos: state => state.app.photoList,
+      photoGroupChose: state => state.app.photoGroupChose,
+      photoWhich: state => state.app.photoWhich
     })
   },
   mounted: function() {
@@ -68,11 +81,6 @@ export default {
       this.initScroll();
       this.mp3Dom.a = document.getElementById("audio1");
       this.mp3Dom.a.volume = 0;
-      this.mp3Dom.a.ontimeupdate = () => {
-        if (this.mp3Dom.a.duration - 3 < this.mp3Dom.a.currentTime) {
-          this.mp3Dom.a.currentTime = 2;
-        }
-      };
     }
     /** 获取博客配置信息 **/
     this.getBlogConfig();
@@ -99,6 +107,16 @@ export default {
         this.scrolling = false;
       });
       document.body.classList.add("page0");
+    },
+    /** mp3 可以开始播放了 **/
+    onCanPlay() {
+      this.mp3Dom.canplay = true;
+      // 为了在音乐末尾和开头无缝衔接
+      this.mp3Dom.a.ontimeupdate = () => {
+        if (this.mp3Dom.a.duration - 3 < this.mp3Dom.a.currentTime) {
+          this.mp3Dom.a.currentTime = 2;
+        }
+      };
     },
     /** 监听滚轮事件处理页面滚动 **/
     onMouseWheel(e) {
@@ -132,11 +150,9 @@ export default {
     },
     /** 音频事件，开始播放 **/
     onMp3Play() {
-      try {
+      if (this.mp3Dom.canplay) {
         this.mp3Dom.a.play();
         this.volumeUp();
-      } catch (e) {
-        // 播放失败
       }
     },
     /** 音频事件，暂停播放 **/

@@ -120,7 +120,6 @@ export default {
       this.menuOpen = !this.menuOpen;
     },
     onMenuClose() {
-      // console.log("是否触发");
       if (!this.isPc) {
         // 只有移动端才能关闭
         this.menuOpen = false;

@@ -83,7 +83,7 @@ export default {
   background-image: url(../../assets/logo-github.png);
   &.show {
     .shadow {
-      opacity: 0.4;
+      opacity: 0.2;
     }
     .info-box {
       & > div {

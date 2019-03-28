@@ -14,10 +14,7 @@
       <div class="title">{{ blogConfig.title }}</div>
       <div class="date">{{ blogConfig.date }}</div>
     </div>
-    <div v-if="!sourceData" class="loading-box">
-      <img :src="ImgLoading" />
-      <div>正在从开源世界获取…</div>
-    </div>
+    <MyLoading :show="!sourceData" />
     <div
       ref="theBody"
       v-html="htmlData"
@@ -39,9 +36,8 @@ import "gitalk/dist/gitalk.css";
 import { masterName, issueName, client_id, client_secret } from "../../config";
 import ShowDown from "showdown";
 import Gitalk from "gitalk";
-import ImgLoading from "../../assets/loading.gif";
 import ImgFeather from "../../assets/feather.png";
-
+import MyLoading from "../../components/MyLoading";
 import { Breadcrumb, BreadcrumbItem } from "element-ui";
 
 const converter = new ShowDown.Converter({ tables: true });
@@ -50,14 +46,14 @@ export default {
   data: function() {
     return {
       sourceData: null,
-      ImgLoading,
       ImgFeather,
       htmlData: ""
     };
   },
   components: {
     Breadcrumb,
-    BreadcrumbItem
+    BreadcrumbItem,
+    MyLoading
   },
   mounted() {
     this.$refs.pageDetail.scrollTo(0, 0);

@@ -95,7 +95,6 @@ export default {
     },
     resize() {
       // windows大小被改变时重新设置canvas宽高
-      // console.log("被调用resize");
       this.width = this.$el.clientWidth;
       this.height = this.$el.clientHeight;
       this.$el.width = this.width;

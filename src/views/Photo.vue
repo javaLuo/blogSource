@@ -6,6 +6,7 @@
         <BreadcrumbItem>相册</BreadcrumbItem>
       </Breadcrumb>
     </div>
+    <MyLoading :show="!photoList.length" />
     <div class="info-box">
       <ul class="groups-box">
         <li
@@ -14,62 +15,47 @@
           @click="onGroupChose(item)"
           :key="index"
         >
-          {{ item }}
+          {{ item }}的照片
         </li>
       </ul>
       <transition-group name="animatephoto" tag="ul" class="photos-box">
-        <li v-for="item in photoGroupNow" :key="item.sha">
-          <img :src="item.download_url" :alt="item.name" />
+        <li v-for="(item, index) in photoGroupNow" :key="item.sha">
+          <img
+            :src="item.download_url"
+            :alt="item.name"
+            @click="onClickPhoto(index)"
+          />
         </li>
       </transition-group>
-    </div>
-    <div class="photo-model">
-      <div id="photoScroller" class="scroller">
-        <ul class="scroll-wrapper" :style="`width:${photoGroupNow.length}00%`">
-          <li v-for="item in photoGroupNow" :key="item.sha">
-            <img :src="item.download_url" :alt="item.name" />
-          </li>
-        </ul>
-      </div>
     </div>
   </div>
 </template>
 <script>
 import { Breadcrumb, BreadcrumbItem } from "element-ui";
 import { mapState } from "vuex";
-
+import MyLoading from "../components/MyLoading.vue";
 export default {
   data: () => {
-    return {
-      photoGroupChose: "" // 当前选择的哪个相册
-    };
+    return {};
   },
   components: {
     Breadcrumb,
-    BreadcrumbItem
+    BreadcrumbItem,
+    MyLoading
   },
   mounted() {
     // 进入页面及获取所有相册列表
     if (!this.photoList || !this.photoList.length) {
       this.getPhotoList();
-    } else {
-      this.photoGroupChose = this.photoGroups[0];
     }
     // console.log("时什么：", this.photoGroups);
   },
   computed: {
     ...mapState({
-      photoList: state => state.app.photoList
+      photoList: state => state.app.photoList,
+      photoGroupChose: state => state.app.photoGroupChose, // 当前选择的哪个相册
+      photoGroups: state => state.app.photoGroup
     }),
-    // 对相片原始数据分组
-    photoGroups() {
-      const g = new Set();
-      this.photoList.forEach(item => {
-        const n = item.name.split("|");
-        g.add(n[0]);
-      });
-      return Array.from(g);
-    },
     // 当前选中的相册数据
     photoGroupNow() {
       return this.photoList.filter(item => {
@@ -78,11 +64,7 @@ export default {
       });
     }
   },
-  watch: {
-    photoGroups(newValue) {
-      this.photoGroupChose = newValue[0];
-    }
-  },
+  watch: {},
   methods: {
     getPhotoList() {
       this.$store.dispatch({
@@ -91,13 +73,26 @@ export default {
       });
     },
     onGroupChose(str) {
-      this.photoGroupChose = str;
+      if (str !== this.photoGroupChose) {
+        this.$store.commit({
+          type: "app/setPhotoChose",
+          value: str
+        });
+      }
+    },
+    onClickPhoto(which) {
+      this.$store.commit({
+        type: "app/setPhotoShow",
+        show: true,
+        which
+      });
     }
   }
 };
 </script>
 <style lang="less">
 .page-photo {
+  min-height: 100%;
   .animatephoto-enter-active {
     transition: all 300ms;
   }
@@ -127,9 +122,33 @@ export default {
       list-style: none;
       & > li {
         cursor: pointer;
+        position: relative;
         margin-bottom: 20px;
+        color: #888;
+        padding: 2px 10px;
         &.chose {
-          color: #2222ff;
+          color: #009fde;
+        }
+        &::after {
+          content: "";
+          position: absolute;
+          width: 100%;
+          height: 0;
+          top: 50%;
+          left: 0;
+          transform: translateY(-50%);
+          background-color: rgba(0, 0, 0, 1);
+          border-radius: 4px;
+          transition: all 250ms;
+          z-index: -1;
+          opacity: 0;
+        }
+        &:hover {
+          color: #fff;
+          &::after {
+            height: 100%;
+            opacity: 1;
+          }
         }
       }
     }
@@ -140,18 +159,22 @@ export default {
       list-style: none;
       padding: 0;
       margin: 0;
+      display: flex;
+      flex-wrap: wrap;
       & > li {
         box-sizing: border-box;
-
+        display: flex;
         height: 25vh;
-        min-width: 50px;
+        min-width: 80px;
         min-height: 100px;
         padding: 10px;
         position: relative;
-        display: inline-block;
         align-items: center;
         justify-content: center;
         background-color: rgba(0, 0, 0, 0.1);
+        background-image: url(../assets/loading.gif);
+        background-position: center center;
+        background-repeat: no-repeat;
         border-radius: 4px;
         margin-bottom: 10px;
         & ~ li {
@@ -162,35 +185,7 @@ export default {
           max-width: 100%;
           max-height: 100%;
           border-radius: 4px;
-        }
-      }
-    }
-  }
-  .photo-model {
-    position: fixed;
-    z-index: 99;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.2);
-    .scroller {
-      height: 100%;
-      overflow: hidden;
-      .scroll-wrapper {
-        position: relative;
-        margin: 0;
-        padding: 0;
-        height: 100%;
-        margin: 0;
-        padding: 0;
-        list-style: none;
-
-        & > li {
-          display: block;
-          flex: none;
-          width: 100vw;
-          height: 100vh;
+          cursor: pointer;
         }
       }
     }

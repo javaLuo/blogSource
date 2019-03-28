@@ -1,7 +1,7 @@
 <template>
   <div class="my-loading" v-show="show">
     <img :src="ImgLoading" />
-    <div>正在从开源世界获取…</div>
+    <div>正在从开源世界加载...</div>
   </div>
 </template>
 
