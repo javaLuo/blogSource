@@ -34,7 +34,7 @@
       <!-- 导航控制 -->
       <div class="control-box" @mousedown.stop>
         <div class="photo-name">
-          {{ photoGroupNow[photoWhich] | formartName }}
+          {{ photoGroupNow[which] | formartName }}
         </div>
         <div class="btn" @click="onGo(-100)">
           <i class="el-icon-arrow-left" />
@@ -51,6 +51,7 @@ export default {
   data() {
     return {
       left: 0, // 偏移
+      which: 0, // 当前选择的哪一张
       tempLeft: 0, // 左右拖拽
       isMouseDown: false, // 鼠标是否在当前文档按下
       downX: 0 // 鼠标按下的坐标
@@ -76,6 +77,7 @@ export default {
     show(newV) {
       if (newV) {
         this.left = this.photoWhich * 100;
+        this.which = this.photoWhich;
       }
     }
   },
@@ -100,6 +102,7 @@ export default {
       const p = this.left + position;
       if (p >= 0 && p < this.photoGroupNow.length * 100) {
         this.left = p;
+        this.which = this.which + (position > 0 ? 1 : -1);
       }
     },
     onMouseDown(e) {
