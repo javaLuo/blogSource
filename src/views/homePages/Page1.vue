@@ -132,6 +132,7 @@ export default {
     text-align: center;
     z-index: 2;
     font-size: 12px;
+    text-shadow: 0 0 12px #222;
     & > div {
       letter-spacing: 8px;
       transform: scale(2);

@@ -14,7 +14,6 @@
       <div class="title">{{ blogConfig.title }}</div>
       <div class="date">{{ blogConfig.date }}</div>
     </div>
-    <MyLoading :show="!sourceData" />
     <div
       ref="theBody"
       v-html="htmlData"
@@ -31,13 +30,11 @@
 <script>
 /** 文章的详情页 **/
 import { mapState } from "vuex";
-
 import "gitalk/dist/gitalk.css";
 import { masterName, issueName, client_id, client_secret } from "../../config";
 import ShowDown from "showdown";
 import Gitalk from "gitalk";
 import ImgFeather from "../../assets/feather.png";
-import MyLoading from "../../components/MyLoading";
 import { Breadcrumb, BreadcrumbItem } from "element-ui";
 
 const converter = new ShowDown.Converter({ tables: true });
@@ -52,8 +49,7 @@ export default {
   },
   components: {
     Breadcrumb,
-    BreadcrumbItem,
-    MyLoading
+    BreadcrumbItem
   },
   mounted() {
     this.$refs.pageDetail.scrollTo(0, 0);
