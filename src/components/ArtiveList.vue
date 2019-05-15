@@ -5,7 +5,9 @@
     <div v-if="blogInfo.pic" class="pic"><img :src="blogInfo.pic" /></div>
     <div class="info"><span v-html="blogInfo.info"></span></div>
     <div class="tags">
-      <div v-for="(item, index) in blogInfo.tags" :key="index">{{ item }}</div>
+      <div v-for="(item, index) in blogInfo.tags" :key="index">
+        <i class="el-icon-price-tag"></i> {{ item }}
+      </div>
     </div>
     <div class="read-more" @click="onDetailChose">阅读全文</div>
   </li>
@@ -64,7 +66,7 @@ export default {
     word-break: break-all;
     word-wrap: break-word;
     &:hover {
-      color: #108ee9;
+      color: #2b8ace;
     }
   }
   .time {
@@ -92,7 +94,7 @@ export default {
     & > div {
       font-size: 12px;
       margin-right: 4px;
-      background-color: #2db7f5;
+      background-color: #2b8ace;
       color: #fff;
       padding: 3px 5px;
       border-radius: 3px;
