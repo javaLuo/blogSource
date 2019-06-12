@@ -24,6 +24,7 @@
             :src="item.download_url"
             :alt="item.name"
             @click="onClickPhoto(index)"
+            lazyload="auto"
           />
         </li>
       </transition-group>
