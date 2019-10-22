@@ -59,6 +59,14 @@
           >张鑫旭-鑫空间-鑫生活</a
         >
       </li>
+      <li class="friend">
+        <a
+          href="https://www.microanswer.cn"
+          target="_blank"
+          rel="nofollow me noopener noreferrer"
+          >Microanswer 首页</a
+        >
+      </li>
     </ul>
 
     <div class="hi-one">
@@ -99,7 +107,7 @@
           ><img :src="LogoGitHub"
         /></a>
       </div>
-      <div>vue-cli 3.x 全家桶框架支持</div>
+      <div>vue-cli 4.x 全家桶框架支持</div>
       <div>整站都放在了GitHub, V3API获取文章和评论</div>
       <div>感谢开源世界的恩惠</div>
     </div>
