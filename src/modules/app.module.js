@@ -91,9 +91,7 @@ const App = {
     /** 获取某个文章的详细内容 **/
     async getBlogDetail(context, payload) {
       try {
-        const url = `https://raw.githubusercontent.com/${masterName}/${masterName}.github.io/master/blog/${
-          payload.url
-        }`;
+        const url = `https://raw.githubusercontent.com/${masterName}/${masterName}.github.io/master/blog/${payload.url}`;
         const msg = await server(url, null, "GET", true);
         // console.log("为什么没有，什么意思：", msg);
         if (msg.status === 200 || msg.status === 304) {
@@ -122,8 +120,8 @@ const App = {
     /** 获取一言随机一条语句 **/
     async getHi(context) {
       try {
-        const url = `https://v1.hitokoto.cn?c=d&time=${Date.now()}`;
-        const msg = await server(url, null, "GET");
+        const url = `https://international.v1.hitokoto.cn?c=d&time=${Date.now()}`;
+        const msg = await server(url, null, "GET", false, true);
         if (msg.status === 200 || msg.status === 304) {
           context.commit({
             type: "setHi",
