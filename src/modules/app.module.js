@@ -37,7 +37,7 @@ const App = {
         }
         return msg;
       } catch (e) {
-        Message.info("网络出现错误，配置获取失败");
+        Message.info("配置获取失败，需要翻墙");
       }
     },
     /** 获取所有文章列表 **/
@@ -58,7 +58,7 @@ const App = {
         }
         return msg;
       } catch (e) {
-        Message.info("网络出现错误，列表获取失败");
+        Message.info("列表获取失败，需要翻墙");
       }
     },
     /** 获取所有照片列表 **/
@@ -85,7 +85,7 @@ const App = {
         }
         return msg;
       } catch (e) {
-        Message.info("网络出现错误，照片获取失败");
+        Message.info("照片获取失败，需要翻墙");
       }
     },
     /** 获取某个文章的详细内容 **/
@@ -103,7 +103,7 @@ const App = {
         }
         return msg;
       } catch (e) {
-        Message.info("网络出现错误，文章获取失败");
+        Message.info("文章获取失败，需要翻墙");
       }
     },
     /** 点选某篇文章时，保存该文章的URL信息，供详情页获取数据使用 **/
@@ -130,7 +130,7 @@ const App = {
         }
         return msg;
       } catch (e) {
-        Message.info("网络出现错误，配置获取失败");
+        Message.info("一言获取失败，需要翻墙");
       }
     }
   },
