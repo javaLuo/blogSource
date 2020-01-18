@@ -20,7 +20,7 @@
         </Tooltip>
         <Tooltip class="item" effect="dark" content="Twitter" placement="top">
           <a
-            href="https://twitter.com/webLogicHTML5"
+            href="https://twitter.com/Logic_yes"
             target="_blank"
             rel="nofollow me noopener noreferrer"
             ><img :src="ImgTwitter"
