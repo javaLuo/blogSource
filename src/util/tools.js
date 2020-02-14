@@ -36,19 +36,11 @@ export const getBlogInfo = (gitname, allofblog) => {
  * 比较两个日期字符串的大小，倒序
  * sort排序
  * */
-export const sortDate = (data, blogData) => {
+export const sortDate = data => {
   const d = _.cloneDeep(data);
   d.sort((a, b) => {
-    const t1 = blogData.find(item => item.gitname === a.name);
-    if (!t1) {
-      return -1;
-    }
-    const t2 = blogData.find(item => item.gitname === b.name);
-    if (!t2) {
-      return 1;
-    }
     return Number(
-      t2.date.split("/").join("") - Number(t1.date.split("/").join(""))
+      b.date.split("/").join("") - Number(a.date.split("/").join(""))
     );
   });
   return d;

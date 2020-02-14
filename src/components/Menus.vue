@@ -29,7 +29,10 @@
                 </div>
               </div>
               <div class="name">Logic</div>
-              <div class="func">躲过了黑夜的那只鸟<br />最后也消失在漆黑里</div>
+              <div class="func">
+                躲过了黑夜的那只鸟
+                <br />最后也消失在漆黑里
+              </div>
               <ul class="link">
                 <li @click="onLinkClick('/')" @touchend="onLinkClick('/')">
                   <div>{{ allLength }}</div>
@@ -89,7 +92,7 @@
 import ImgPic from "../assets/pic.jpg";
 import CanvasBack from "./CanvasBack.vue";
 import { mapState } from "vuex";
-import { getBlogInfo, isPc } from "../util/tools";
+import { isPc } from "../util/tools";
 import ImgDown from "../assets/down.png";
 
 export default {
@@ -136,24 +139,12 @@ export default {
     ...mapState({
       play: state => state.page.playing,
       liveLength: state =>
-        state.app.blogConfig
-          ? state.app.blogList.filter(
-              item => getBlogInfo(item.name, state.app.blogConfig.d).type === 1
-            ).length
-          : 0,
+        state.app.blogConfig.filter(item => item.type === 1).length,
       workLength: state =>
-        state.app.blogConfig
-          ? state.app.blogList.filter(
-              item => getBlogInfo(item.name, state.app.blogConfig.d).type === 2
-            ).length
-          : 0,
+        state.app.blogConfig.filter(item => item.type === 2).length,
       articleLength: state =>
-        state.app.blogConfig
-          ? state.app.blogList.filter(
-              item => getBlogInfo(item.name, state.app.blogConfig.d).type === 3
-            ).length
-          : 0,
-      allLength: state => (state.app.blogConfig ? state.app.blogList.length : 0)
+        state.app.blogConfig.filter(item => item.type === 3).length,
+      allLength: state => state.app.blogConfig.length
     })
   }
 };

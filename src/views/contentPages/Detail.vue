@@ -4,15 +4,15 @@
       <i class="el-icon-location"></i>
       <Breadcrumb>
         <BreadcrumbItem to="/all">博客列表</BreadcrumbItem>
-        <BreadcrumbItem :to="breadType.url">{{
-          breadType.title
-        }}</BreadcrumbItem>
-        <BreadcrumbItem>{{ blogConfig.title }}</BreadcrumbItem>
+        <BreadcrumbItem :to="breadType.url">
+          {{ breadType.title }}
+        </BreadcrumbItem>
+        <BreadcrumbItem>{{ blogNow.name }}</BreadcrumbItem>
       </Breadcrumb>
     </div>
     <div class="info">
-      <div class="title">{{ blogConfig.title }}</div>
-      <div class="date">{{ blogConfig.date }}</div>
+      <div class="title">{{ blogNow.name }}</div>
+      <div class="date">{{ blogNow.date }}</div>
     </div>
     <div
       ref="theBody"
@@ -21,7 +21,10 @@
     ></div>
     <div class="the-end">
       <img :src="ImgFeather" />
-      <div>--<span>End</span>--</div>
+      <div>
+        --
+        <span>End</span>--
+      </div>
     </div>
     <div id="gitalk-box" class="gitalk-box"></div>
   </div>
@@ -60,8 +63,8 @@ export default {
     document.title = "Luo's Blog";
   },
   watch: {
-    sourceData() {
-      this.htmlData = converter.makeHtml(this.sourceData);
+    sourceData(newV) {
+      this.htmlData = converter.makeHtml(newV);
       this.$nextTick(() => {
         // color-brewer
         const allCodesDom = document.querySelectorAll("pre code");
@@ -69,28 +72,25 @@ export default {
           window.hljs.highlightBlock(item);
         });
       });
+    },
+    blogNow: {
+      handler(newV) {
+        document.title = `${newV.name} | Luo's Blog`;
+      },
+      immediate: true
     }
   },
   computed: {
     ...mapState({
-      blogCache(state) {
-        return state.app.blogs.find(
-          item => item.name === this.$route.params.id
+      blogNow(state) {
+        return (
+          state.app.blogConfig.find(item => {
+            return item.id === this.$route.params.id;
+          }) || {}
         );
       },
-      /** 获取当前文章的配置信息 **/
-      blogConfig(state) {
-        const id = this.$route.params.id;
-        if (!id || !state.app.blogConfig) {
-          return {};
-        }
-        const b = state.app.blogConfig.d;
-        const blogC = b.find(item => item.gitname === id) || { title: id };
-        document.title = `Luo's Blog | ${blogC.title}`;
-        return blogC;
-      },
       breadType() {
-        switch (this.blogConfig.type) {
+        switch (this.blogNow.type) {
           case 1:
             return { title: "文章列表", url: "/live" };
           case 2:
@@ -109,21 +109,20 @@ export default {
       if (!id) {
         return null;
       }
-      // 先读缓存
-      if (this.blogCache) {
-        this.sourceData = this.blogCache.body;
+      if (window.blogs && window.blogs[id]) {
+        this.sourceData = window.blogs[id];
         return;
       }
-      this.$store
-        .dispatch({
-          type: "app/getBlogDetail",
-          url: id
-        })
-        .then(res => {
-          if (res.status === 200) {
-            this.sourceData = res.data;
-          }
-        });
+      const dom = document.createElement("script");
+      dom.src = `blogs/${id}.js`;
+      dom.type = "text/javascript";
+      dom.onload = () => {
+        this.sourceData = window.blogs[id];
+      };
+      dom.onerror = () => {
+        this.$message.error("文章加载失败，请刷新页面");
+      };
+      document.body.appendChild(dom);
     },
     /** 初始化评论 **/
     initGitTalk() {

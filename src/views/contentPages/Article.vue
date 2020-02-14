@@ -1,5 +1,5 @@
 <template>
-  <div class="article-box">
+  <div class="live-box">
     <div class="bread">
       <i class="el-icon-location"></i>
       <Breadcrumb>
@@ -9,7 +9,6 @@
     </div>
     <transition-group name="list" tag="ul" class="live">
       <ArtiveList
-        class="swiper-slide"
         v-for="v in pageNowData"
         :thisData="v"
         :key="v.name"
@@ -29,14 +28,14 @@
 </template>
 
 <script>
-/** 日志列表页 **/
+/** 文章列表页 **/
 import { mapState } from "vuex";
 import { Pagination, Breadcrumb, BreadcrumbItem } from "element-ui";
 import ArtiveList from "../../components/ArtiveList.vue";
-import { getBlogInfo, sortDate } from "../../util/tools";
+import { sortDate } from "../../util/tools";
 import MyLoading from "../../components/MyLoading";
 export default {
-  name: "Article",
+  name: "live",
   data: function() {
     return {
       pageNow: 1,
@@ -55,21 +54,15 @@ export default {
   mounted() {
     const temp = this.listData;
     for (let i = 0; temp[i]; i++) {
-      setTimeout(() => this.pageNowData.push(temp[i]), i * 100);
+      setTimeout(() => this.pageNowData.push(temp[i]), (i + 1) * 100);
     }
   },
   computed: {
     ...mapState({
       listData(state) {
-        if (!state.app.blogConfig) {
-          this.total = 0;
-          return [];
-        }
-        const s = state.app.blogList.filter(
-          item => getBlogInfo(item.name, state.app.blogConfig.d).type === 3
-        );
+        const s = state.app.blogConfig.filter(item => item.type === 3);
         this.total = s.length;
-        return sortDate(s, state.app.blogConfig.d).filter(
+        return sortDate(s).filter(
           (item, index) =>
             index >= (this.pageNow - 1) * this.pageSize &&
             index < this.pageNow * this.pageSize
@@ -90,7 +83,6 @@ export default {
   methods: {
     /** 页码改变时触发 **/
     onPageChange(v) {
-      // console.log("触发：", v);
       this.pageNow = v;
     }
   }
@@ -98,16 +90,16 @@ export default {
 </script>
 
 <style scoped lang="less">
-.list-enter-active,
-.list-leave-active {
+.list-enter-active {
   transition: all 500ms;
 }
 .list-enter,
 .list-leave-to {
   opacity: 0;
-  transform: translateY(30px);
+  transform: translateX(10px);
 }
-.article-box {
+
+.live-box {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -121,17 +113,8 @@ export default {
     margin: 0;
     padding: 0;
     min-height: 300px;
-  }
-  .nothing {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    width: 100%;
-    transform: translateY(-50%);
-    text-align: center;
-    color: #888;
-    div {
-      margin-top: 8px;
+    &li + li {
+      margin-top: 16px;
     }
   }
   .pagin {

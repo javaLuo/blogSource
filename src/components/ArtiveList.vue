@@ -1,12 +1,17 @@
 <template>
   <li class="artive-list">
-    <div class="title" @click="onDetailChose">{{ blogInfo.title }}</div>
-    <div class="time">{{ blogInfo.date }}</div>
-    <div v-if="blogInfo.pic" class="pic"><img :src="blogInfo.pic" /></div>
-    <div class="info"><span v-html="blogInfo.info"></span></div>
+    <div class="title" @click="onDetailChose">{{ thisData.name }}</div>
+    <div class="time">{{ thisData.date }}</div>
+    <div v-if="thisData.pic" class="pic">
+      <img :src="thisData.pic" />
+    </div>
+    <div class="info">
+      <span v-html="thisData.info"></span>
+    </div>
     <div class="tags">
-      <div v-for="(item, index) in blogInfo.tags" :key="index">
-        <i class="el-icon-price-tag"></i> {{ item }}
+      <div v-for="(item, index) in thisData.tags" :key="index">
+        <i class="el-icon-price-tag"></i>
+        {{ item }}
       </div>
     </div>
     <div class="read-more" @click="onDetailChose">阅读全文</div>
@@ -26,20 +31,10 @@ export default {
     thisData: Object
   },
 
-  mounted() {},
-  computed: {
-    ...mapState({
-      blogInfo(state) {
-        const d = state.app.blogConfig ? state.app.blogConfig.d : [];
-        const data = d.find(item => item.gitname === this.thisData.name);
-        return data || { title: this.thisData.name };
-      }
-    })
-  },
   methods: {
     /** 点击某篇文章保存相关数据进入详情 **/
     onDetailChose() {
-      this.$router.push(`/detail/${this.thisData.name}`);
+      this.$router.push(`/detail/${this.thisData.id}`);
     }
   },
   watch: {}

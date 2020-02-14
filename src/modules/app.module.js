@@ -3,7 +3,7 @@
  * 管理用户信息，登录、注册等功能
  * **/
 import server from "../util/fetch";
-import { masterName } from "../config";
+import { masterName, blogs } from "../config";
 import { Message } from "element-ui";
 const App = {
   namespaced: true,
@@ -11,7 +11,7 @@ const App = {
     userinfo: null,
     blogList: [], // 所有文章列表
     blogs: [], // 文章内容缓存
-    blogConfig: null, // 文章配置信息缓存
+    blogConfig: blogs, // 文章配置信息缓存
     detailURL: null, // 当前选中的文章URL信息
     photoList: [], // 所有照片
     photoShow: false, // 照片模态框是否显示
@@ -24,22 +24,6 @@ const App = {
     }
   },
   actions: {
-    /** 获取文章配置 **/
-    async getBlogConfig(context) {
-      try {
-        const url = `https://raw.githubusercontent.com/${masterName}/${masterName}.github.io/master/config/config.json`;
-        const msg = await server(url, null, "GET");
-        if (msg.status === 200 || msg.status === 304) {
-          context.commit({
-            type: "saveTheBlogConfig",
-            data: msg.data
-          });
-        }
-        return msg;
-      } catch (e) {
-        Message.info("配置获取失败，需要翻墙");
-      }
-    },
     /** 获取所有文章列表 **/
     async getBlogList(context) {
       try {
@@ -90,18 +74,19 @@ const App = {
     },
     /** 获取某个文章的详细内容 **/
     async getBlogDetail(context, payload) {
+      console.log("id:", payload);
       try {
-        const url = `https://raw.githubusercontent.com/${masterName}/${masterName}.github.io/master/blog/${payload.url}`;
-        const msg = await server(url, null, "GET", true);
-        // console.log("为什么没有，什么意思：", msg);
-        if (msg.status === 200 || msg.status === 304) {
-          context.commit({
-            type: "saveTheBlog",
-            name: payload.url,
-            data: msg.data
-          });
-        }
-        return msg;
+        await new Promise((res, rej) => {
+          const dom = document.createElement("script");
+          dom.src = `/public/blogs/${payload.id}`;
+          dom.onload = () => {
+            res(payload.id);
+          };
+          dom.onerror = () => {
+            rej(payload.id);
+          };
+          document.body.appendChild(dom);
+        });
       } catch (e) {
         Message.info("文章获取失败，需要翻墙");
       }

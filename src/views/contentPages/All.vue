@@ -34,7 +34,7 @@ import ArtiveList from "../../components/ArtiveList.vue";
 import { sortDate } from "../../util/tools";
 import MyLoading from "../../components/MyLoading";
 export default {
-  name: "live",
+  name: "all",
   data: function() {
     return {
       pageNow: 1,
@@ -59,13 +59,8 @@ export default {
   computed: {
     ...mapState({
       listData(state) {
-        if (!state.app.blogConfig) {
-          this.total = 0;
-          return [];
-        }
-
-        this.total = state.app.blogList.length;
-        return sortDate(state.app.blogList, state.app.blogConfig.d).filter(
+        this.total = state.app.blogConfig.length;
+        return sortDate(state.app.blogConfig).filter(
           (item, index) =>
             index >= (this.pageNow - 1) * this.pageSize &&
             index < this.pageNow * this.pageSize
@@ -99,7 +94,7 @@ export default {
 .list-enter,
 .list-leave-to {
   opacity: 0;
-  transform: translateY(30px);
+  transform: translateX(10px);
 }
 
 .live-box {
