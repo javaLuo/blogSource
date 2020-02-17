@@ -4,29 +4,35 @@
       <li class="title">联系方式</li>
       <li class="line"></li>
       <li class="find">
-        <Tooltip
+        <el-tooltip
           class="item"
           effect="dark"
           content="QQ 376693576"
           placement="top"
         >
           <img :src="ImgQQ" />
-        </Tooltip>
-        <Tooltip class="item" effect="dark" placement="top">
+        </el-tooltip>
+        <el-tooltip class="item" effect="dark" placement="top">
           <div slot="content">
             <img class="img-wechart" :src="ImgWeChart" />
           </div>
           <img :src="ImgWechart" />
-        </Tooltip>
-        <Tooltip class="item" effect="dark" content="Twitter" placement="top">
+        </el-tooltip>
+        <el-tooltip
+          class="item"
+          effect="dark"
+          content="Twitter"
+          placement="top"
+        >
           <a
             href="https://twitter.com/Logic_yes"
             target="_blank"
             rel="nofollow me noopener noreferrer"
-            ><img :src="ImgTwitter"
-          /></a>
-        </Tooltip>
-        <Tooltip
+          >
+            <img :src="ImgTwitter" />
+          </a>
+        </el-tooltip>
+        <el-tooltip
           class="item"
           effect="dark"
           content="376693576@qq.com"
@@ -36,9 +42,10 @@
             href="mailto:376693576@qq.com"
             target="_blank"
             rel="nofollow me noopener noreferrer"
-            ><img :src="ImgEmail"
-          /></a>
-        </Tooltip>
+          >
+            <img :src="ImgEmail" />
+          </a>
+        </el-tooltip>
       </li>
       <li class="title" style="margin-top: 16px">去往其他服务器</li>
       <li class="line"></li>
@@ -82,37 +89,41 @@
           target="_blank"
           rel="nofollow me noopener noreferrer"
           title="vue.js"
-          ><img :src="LogoVue"
-        /></a>
+        >
+          <img :src="LogoVue" />
+        </a>
 
         <a
           href="https://developer.mozilla.org/"
           target="_blank"
           rel="nofollow me noopener noreferrer"
           title="mozilla.org"
-          ><img :src="LogoMdn"
-        /></a>
+        >
+          <img :src="LogoMdn" />
+        </a>
         <a
           href="http://www.w3school.com.cn/"
           target="_blank"
           rel="nofollow me noopener noreferrer"
           title="w3school"
-          ><img :src="LogoHTML5"
-        /></a>
+        >
+          <img :src="LogoHTML5" />
+        </a>
         <a
           href="https://github.com/javaLuo"
           target="_blank"
           rel="nofollow me noopener noreferrer"
           title="github"
-          ><img :src="LogoGitHub"
-        /></a>
+        >
+          <img :src="LogoGitHub" />
+        </a>
       </div>
       <div>vue-cli 4.x 全家桶框架支持</div>
       <div>整站都放在了GitHub, V3API获取文章和评论</div>
       <div>感谢开源世界的恩惠</div>
     </div>
     <div class="last">
-      © 2014–2019
+      © 2014–2020
       <a
         href="https://isluo.com"
         target="_blank"
@@ -136,7 +147,6 @@ import ImgWechart from "../../assets/footer/share_wechart.png";
 import ImgTwitter from "../../assets/footer/share_twitter.png";
 import ImgEmail from "../../assets/footer/email.png";
 import ImgWeChart from "../../assets/weima2.png";
-import { Tooltip } from "element-ui";
 export default {
   name: "page3",
   data: function() {
@@ -155,9 +165,6 @@ export default {
   },
   props: {
     hi: { type: Object }
-  },
-  components: {
-    Tooltip
   }
 };
 </script>

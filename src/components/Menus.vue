@@ -74,9 +74,9 @@
                 >
                 <div class="line"></div>
                 <span
-                  @click="onLinkClick('/photo')"
-                  @touchend="onLinkClick('/photo')"
-                  >photo</span
+                  @click="onLinkClick('/share')"
+                  @touchend="onLinkClick('/share')"
+                  >share</span
                 >
               </div>
             </div>

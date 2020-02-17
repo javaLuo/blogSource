@@ -2,10 +2,17 @@
   <div class="live-box">
     <div class="bread">
       <i class="el-icon-location"></i>
-      <Breadcrumb>
-        <BreadcrumbItem to="/all">博客列表</BreadcrumbItem>
-        <BreadcrumbItem>学习和笔记</BreadcrumbItem>
-      </Breadcrumb>
+      <el-breadcrumb>
+        <el-breadcrumbItem to="/all">博客列表</el-breadcrumbItem>
+        <el-breadcrumbItem>学习笔记</el-breadcrumbItem>
+      </el-breadcrumb>
+      <el-input
+        class="search-input"
+        size="mini"
+        placeholder="搜索"
+        prefix-icon="el-icon-search"
+        v-model="searchValue"
+      ></el-input>
     </div>
     <transition-group name="list" tag="ul" class="live">
       <ArtiveList
@@ -16,68 +23,82 @@
     </transition-group>
     <MyLoading :show="!pageNowData.length" />
     <div class="pagin">
-      <Pagination
+      <el-pagination
         :total="total"
         :current-page="pageNow"
         :pageSize="pageSize"
         layout="total, prev, pager, next"
         @current-change="onPageChange"
-      ></Pagination>
+      ></el-pagination>
     </div>
   </div>
 </template>
 
 <script>
-/** 文章列表页 **/
+/** 笔记列表页 **/
 import { mapState } from "vuex";
-import { Pagination, Breadcrumb, BreadcrumbItem } from "element-ui";
 import ArtiveList from "../../components/ArtiveList.vue";
 import { sortDate } from "../../util/tools";
 import MyLoading from "../../components/MyLoading";
 export default {
-  name: "live",
+  name: "name-live",
   data: function() {
     return {
       pageNow: 1,
-      pageSize: 12,
+      pageSize: 10,
       total: 0,
-      pageNowData: []
+      pageNowData: [],
+      searchValue: ""
     };
   },
   components: {
     ArtiveList,
-    Pagination,
-    Breadcrumb,
-    BreadcrumbItem,
     MyLoading
-  },
-  mounted() {
-    const temp = this.listData;
-    for (let i = 0; temp[i]; i++) {
-      setTimeout(() => this.pageNowData.push(temp[i]), (i + 1) * 100);
-    }
   },
   computed: {
     ...mapState({
-      listData(state) {
-        const s = state.app.blogConfig.filter(item => item.type === 1);
-        this.total = s.length;
-        return sortDate(s).filter(
-          (item, index) =>
-            index >= (this.pageNow - 1) * this.pageSize &&
-            index < this.pageNow * this.pageSize
-        );
+      blogConfig: state => state.app.blogConfig
+    }),
+    searchData() {
+      let res = this.blogConfig.filter(item => item.type === 1);
+      if (this.searchValue) {
+        res = res.filter(item => {
+          return item.name.includes(this.searchValue);
+        });
       }
-    })
+      return res;
+    },
+    listData() {
+      return sortDate(this.searchData).filter(
+        (item, index) =>
+          index >= (this.pageNow - 1) * this.pageSize &&
+          index < this.pageNow * this.pageSize
+      );
+    }
   },
   watch: {
-    listData(newV) {
-      this.pageNowData = [];
-      document.getElementById("bodyBox").scrollTop = 0;
-      const temp = newV;
-      for (let i = 0; temp[i]; i++) {
-        setTimeout(() => this.pageNowData.push(temp[i]), i * 100);
-      }
+    searchValue(newV) {
+      this.pageNow = 1;
+    },
+    searchData: {
+      handler(newV) {
+        this.total = newV.length;
+      },
+      immediate: true
+    },
+    listData: {
+      handler(newV) {
+        this.pageNowData = [];
+        const dom = document.getElementById("bodyBox");
+        if (dom) {
+          dom.scrollTop = 0;
+        }
+        const temp = newV;
+        for (let i = 0; temp[i]; i++) {
+          setTimeout(() => this.pageNowData.push(temp[i]), i * 80);
+        }
+      },
+      immediate: true
     }
   },
   methods: {
@@ -129,6 +150,10 @@ export default {
       margin-right: 8px;
       margin-left: -5px;
       color: #0acb79;
+    }
+    .search-input {
+      margin-left: 20px;
+      width: 200px;
     }
   }
 }

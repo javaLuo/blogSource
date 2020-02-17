@@ -13,11 +13,6 @@ const App = {
     blogs: [], // 文章内容缓存
     blogConfig: blogs, // 文章配置信息缓存
     detailURL: null, // 当前选中的文章URL信息
-    photoList: [], // 所有照片
-    photoShow: false, // 照片模态框是否显示
-    photoGroupChose: "", // 当前选中哪一个相册
-    photoGroup: [], // 相册所有分组
-    photoWhich: 0, // 当前点选的哪一张相片
     hi: {
       // 一言
       hitokoto: "Loading..."
@@ -43,33 +38,6 @@ const App = {
         return msg;
       } catch (e) {
         Message.info("列表获取失败，需要翻墙");
-      }
-    },
-    /** 获取所有照片列表 **/
-    async getPhotoList(context) {
-      try {
-        const msg = await server(
-          `https://api.github.com/repos/${masterName}/${masterName}.github.io/contents/photo`,
-          null,
-          "GET"
-        );
-        if (msg.status === 200 || msg.status === 304) {
-          let g = new Set();
-          msg.data.forEach(item => {
-            const n = item.name.split("|");
-            g.add(n[0]);
-          });
-          g = Array.from(g);
-          context.commit({
-            type: "setPhotoList",
-            data: msg.data,
-            photoGroup: g,
-            photoGroupChose: g[0]
-          });
-        }
-        return msg;
-      } catch (e) {
-        Message.info("照片获取失败，需要翻墙");
       }
     },
     /** 获取某个文章的详细内容 **/
@@ -141,25 +109,6 @@ const App = {
     },
     setHi(state, payload) {
       state.hi = payload.data;
-    },
-    // 保存照片列表
-    setPhotoList(state, payload) {
-      state.photoList = payload.data;
-      state.photoGroup = payload.photoGroup;
-      if (!state.photoGroupChose) {
-        state.photoGroupChose = payload.photoGroupChose;
-      }
-    },
-    // 设置当前选择的相册
-    setPhotoChose(state, payload) {
-      state.photoGroupChose = payload.value;
-    },
-    // 设置相册模态框是否显示
-    setPhotoShow(state, payload) {
-      state.photoShow = payload.show;
-      if (payload.show) {
-        state.photoWhich = payload.which;
-      }
     }
   }
 };

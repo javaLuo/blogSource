@@ -14,12 +14,6 @@
       @canplaythrough="onCanPlay"
       id="audio1"
     ></audio>
-    <PhotoModel
-      :show="photoShow"
-      :photos="photos"
-      :photoGroupChose="photoGroupChose"
-      :photoWhich="photoWhich"
-    />
     <div id="scroller" class="scroller">
       <ul class="scroll-wrapper">
         <li v-if="isPc" class="scroll-page">
@@ -39,7 +33,6 @@
 <script>
 import { isPc } from "../util/tools";
 import IScroll from "iscroll";
-import PhotoModel from "../components/PhotoModel.vue";
 import Page1 from "./homePages/Page1.vue";
 import Page2 from "./homePages/Page2.vue";
 import Page3 from "./homePages/Page3.vue";
@@ -62,17 +55,12 @@ export default {
   components: {
     Page1,
     Page2,
-    Page3,
-    PhotoModel
+    Page3
   },
   computed: {
     ...mapState({
       play: state => state.page.playing,
-      hi: state => state.app.hi,
-      photoShow: state => state.app.photoShow,
-      photos: state => state.app.photoList,
-      photoGroupChose: state => state.app.photoGroupChose,
-      photoWhich: state => state.app.photoWhich
+      hi: state => state.app.hi
     })
   },
   mounted: function() {

@@ -2,13 +2,13 @@
   <div class="page-detail" :v-loading="true" ref="pageDetail">
     <div class="bread">
       <i class="el-icon-location"></i>
-      <Breadcrumb>
-        <BreadcrumbItem to="/all">博客列表</BreadcrumbItem>
-        <BreadcrumbItem :to="breadType.url">
-          {{ breadType.title }}
-        </BreadcrumbItem>
-        <BreadcrumbItem>{{ blogNow.name }}</BreadcrumbItem>
-      </Breadcrumb>
+      <el-breadcrumb>
+        <el-breadcrumbItem to="/all">博客列表</el-breadcrumbItem>
+        <el-breadcrumbItem :to="breadType.url">{{
+          breadType.title
+        }}</el-breadcrumbItem>
+        <el-breadcrumbItem>{{ blogNow.name }}</el-breadcrumbItem>
+      </el-breadcrumb>
     </div>
     <div class="info">
       <div class="title">{{ blogNow.name }}</div>
@@ -38,21 +38,16 @@ import { masterName, issueName, client_id, client_secret } from "../../config";
 import ShowDown from "showdown";
 import Gitalk from "gitalk";
 import ImgFeather from "../../assets/feather.png";
-import { Breadcrumb, BreadcrumbItem } from "element-ui";
 
 const converter = new ShowDown.Converter({ tables: true });
 export default {
-  name: "live",
+  name: "name-detail",
   data: function() {
     return {
       sourceData: null,
       ImgFeather,
       htmlData: ""
     };
-  },
-  components: {
-    Breadcrumb,
-    BreadcrumbItem
   },
   mounted() {
     this.$refs.pageDetail.scrollTo(0, 0);

@@ -2,9 +2,9 @@
   <div class="class-box">
     <div class="bread">
       <i class="el-icon-location"></i>
-      <Breadcrumb>
-        <BreadcrumbItem>标签分类</BreadcrumbItem>
-      </Breadcrumb>
+      <el-breadcrumb>
+        <el-breadcrumbItem>标签分类</el-breadcrumbItem>
+      </el-breadcrumb>
     </div>
     <ul>
       <li class="tag-box" v-for="(item, index) in allTags" :key="`f${index}`">
@@ -12,10 +12,10 @@
         <ul class="tag-list">
           <li
             v-for="(item2, index2) in checkTags(item)"
-            @click="onLinkClick(item2.gitname)"
+            @click="onLinkClick(item2.id)"
             :key="index2"
           >
-            {{ item2.title }}
+            {{ item2.name }}
           </li>
         </ul>
       </li>
@@ -25,14 +25,13 @@
 </template>
 
 <script>
-/** 文章列表页 **/
+/** 标签页 **/
 import { mapState } from "vuex";
-import { Breadcrumb, BreadcrumbItem } from "element-ui";
 import { sortDate } from "../../util/tools";
 import ImgLoading from "../../assets/loading.gif";
 import MyLoading from "../../components/MyLoading";
 export default {
-  name: "class",
+  name: "name-class",
   data: function() {
     return {
       ImgLoading,
@@ -43,32 +42,23 @@ export default {
     };
   },
   components: {
-    Breadcrumb,
-    BreadcrumbItem,
     MyLoading
   },
   computed: {
     ...mapState({
       blogConfig: state => state.app.blogConfig,
       listData(state) {
-        if (!state.app.blogConfig) {
-          this.total = 0;
-          return [];
-        }
-        this.total = state.app.blogList.length;
-        return sortDate(state.app.blogList, state.app.blogConfig.d);
+        this.total = state.app.blogConfig.length;
+        return sortDate(state.app.blogConfig);
       },
       allTags(state) {
-        if (!state.app.blogConfig) {
-          return [];
-        }
         let tags = new Set();
-        state.app.blogConfig.d.forEach(item => {
+        state.app.blogConfig.forEach(item => {
           item.tags.forEach(item2 => {
             tags.add(this.firstUpperCase(item2));
           });
         });
-
+        console.log("waht:", tags);
         return Array.from(tags).sort();
       }
     })
@@ -82,10 +72,7 @@ export default {
     },
     // 筛选文章中指定tag的文章
     checkTags(tag) {
-      if (!this.blogConfig) {
-        return [];
-      }
-      return this.blogConfig.d.filter(item => {
+      return this.blogConfig.filter(item => {
         for (let i = 0; i < item.tags.length; i++) {
           if (item.tags[i].toUpperCase() === tag.toUpperCase()) {
             return true;
@@ -95,8 +82,8 @@ export default {
       });
     },
     // 跳转到详情
-    onLinkClick(file) {
-      this.$router.push(`/detail/${file}`);
+    onLinkClick(id) {
+      this.$router.push(`/detail/${id}`);
     }
   }
 };
