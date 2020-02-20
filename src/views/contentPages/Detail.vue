@@ -4,9 +4,9 @@
       <i class="el-icon-location"></i>
       <el-breadcrumb>
         <el-breadcrumbItem to="/all">博客列表</el-breadcrumbItem>
-        <el-breadcrumbItem :to="breadType.url">{{
-          breadType.title
-        }}</el-breadcrumbItem>
+        <el-breadcrumbItem :to="breadType.url">
+          {{ breadType.title }}
+        </el-breadcrumbItem>
         <el-breadcrumbItem>{{ blogNow.name }}</el-breadcrumbItem>
       </el-breadcrumb>
     </div>
@@ -59,6 +59,7 @@ export default {
   },
   watch: {
     sourceData(newV) {
+      console.log(newV);
       this.htmlData = converter.makeHtml(newV);
       this.$nextTick(() => {
         // color-brewer
@@ -105,14 +106,14 @@ export default {
         return null;
       }
       if (window.blogs && window.blogs[id]) {
-        this.sourceData = window.blogs[id];
+        this.sourceData = window.blogs[id].replace(/@/g, "`");
         return;
       }
       const dom = document.createElement("script");
       dom.src = `blogs/${id}.js`;
       dom.type = "text/javascript";
       dom.onload = () => {
-        this.sourceData = window.blogs[id];
+        this.sourceData = window.blogs[id].replace(/@/g, "`");
       };
       dom.onerror = () => {
         this.$message.error("文章加载失败，请刷新页面");
