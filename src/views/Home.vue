@@ -70,9 +70,6 @@ export default {
       this.mp3Dom.a = document.getElementById("audio1");
       this.mp3Dom.a.volume = 0;
     }
-
-    /** 获取博客列表 **/
-    this.getBlogList();
   },
   beforeDestroy: function() {
     /** 离开前销毁iscroll实例 **/
@@ -167,13 +164,6 @@ export default {
       } else {
         this.mp3Dom.a.pause();
       }
-    },
-    /** 进入页面及获取所有文章列表 **/
-    getBlogList() {
-      this.$store.dispatch({
-        type: "app/getBlogList",
-        params: null
-      });
     }
   },
   watch: {

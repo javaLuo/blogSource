@@ -13,6 +13,7 @@ body {
   padding: 0;
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   overflow: hidden;
+  font-size: 14px;
   &.page0 {
     .crisp-client {
       opacity: 0;
@@ -22,6 +23,9 @@ body {
   .crisp-client {
     opacity: 1;
     transition: opacity 300ms;
+  }
+  pre {
+    font-size: 16px;
   }
 }
 div {
@@ -109,8 +113,8 @@ th {
 
 /* 美化滚动条 */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
   background-color: #f5f5f5;
 }
 
@@ -121,7 +125,23 @@ th {
 
 /*定义滑块 内阴影+圆角*/
 ::-webkit-scrollbar-thumb {
-  border-radius: 4px;
+  border-radius: 6px;
   background-color: #222;
+}
+
+// 重置element样式
+.el-pagination {
+  button:disabled {
+    background-color: transparent;
+  }
+  .btn-prev,
+  .btn-next {
+    background-color: transparent;
+  }
+}
+.el-pager {
+  li {
+    background-color: transparent;
+  }
 }
 </style>

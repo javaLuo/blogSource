@@ -4,9 +4,9 @@
       <i class="el-icon-location"></i>
       <el-breadcrumb>
         <el-breadcrumbItem to="/all">博客列表</el-breadcrumbItem>
-        <el-breadcrumbItem :to="breadType.url">
-          {{ breadType.title }}
-        </el-breadcrumbItem>
+        <el-breadcrumbItem :to="breadType.url">{{
+          breadType.title
+        }}</el-breadcrumbItem>
         <el-breadcrumbItem>{{ blogNow.name }}</el-breadcrumbItem>
       </el-breadcrumb>
     </div>
@@ -59,7 +59,6 @@ export default {
   },
   watch: {
     sourceData(newV) {
-      console.log(newV);
       this.htmlData = converter.makeHtml(newV);
       this.$nextTick(() => {
         // color-brewer
@@ -110,8 +109,8 @@ export default {
         return;
       }
       const dom = document.createElement("script");
-      dom.src = `blogs/${id}.js`;
       dom.type = "text/javascript";
+      dom.src = `blogs/${id}.js`;
       dom.onload = () => {
         this.sourceData = window.blogs[id].replace(/@/g, "`");
       };

@@ -134,6 +134,7 @@ export default {
         height: calc(100% - 30px);
         top: 30px;
         left: 0;
+        border-radius: 4px;
       }
       & + li {
         margin-top: 20px;

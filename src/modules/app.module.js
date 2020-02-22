@@ -3,73 +3,18 @@
  * 管理用户信息，登录、注册等功能
  * **/
 import server from "../util/fetch";
-import { masterName, blogs } from "../config";
+import { blogs } from "../config";
 import { Message } from "element-ui";
 const App = {
   namespaced: true,
   state: {
-    userinfo: null,
-    blogList: [], // 所有文章列表
-    blogs: [], // 文章内容缓存
     blogConfig: blogs, // 文章配置信息缓存
-    detailURL: null, // 当前选中的文章URL信息
     hi: {
       // 一言
       hitokoto: "Loading..."
     }
   },
   actions: {
-    /** 获取所有文章列表 **/
-    async getBlogList(context) {
-      try {
-        const msg = await server(
-          `https://api.github.com/repos/${masterName}/${masterName}.github.io/contents/blog`,
-          null,
-          "GET"
-        );
-        // console.log("到这里了吗：", msg);
-        if (msg.status === 200 || msg.status === 304) {
-          // 给msg.data按照日期排序
-          context.commit({
-            type: "setBlogList",
-            data: msg.data
-          });
-        }
-        return msg;
-      } catch (e) {
-        Message.info("列表获取失败，需要翻墙");
-      }
-    },
-    /** 获取某个文章的详细内容 **/
-    async getBlogDetail(context, payload) {
-      console.log("id:", payload);
-      try {
-        await new Promise((res, rej) => {
-          const dom = document.createElement("script");
-          dom.src = `/public/blogs/${payload.id}`;
-          dom.onload = () => {
-            res(payload.id);
-          };
-          dom.onerror = () => {
-            rej(payload.id);
-          };
-          document.body.appendChild(dom);
-        });
-      } catch (e) {
-        Message.info("文章获取失败，需要翻墙");
-      }
-    },
-    /** 点选某篇文章时，保存该文章的URL信息，供详情页获取数据使用 **/
-    async saveDetailNow(context, payload) {
-      try {
-        context.commit({
-          type: "setDetailURL",
-          data: payload.data
-        });
-      } catch (e) {
-        // console.log("网络错误");
-      }
-    },
     /** 获取一言随机一条语句 **/
     async getHi(context) {
       try {
@@ -88,25 +33,6 @@ const App = {
     }
   },
   mutations: {
-    setBlogList(state, payload) {
-      // 保存文章列表
-      state.blogList = payload.data;
-    },
-    setDetailURL(state, payload) {
-      // 保存当前选择的BLOG地址
-      state.detailURL = payload.data;
-    },
-    saveTheBlog(state, payload) {
-      //  保存blog详细内容
-      const lived = state.blogs.find(item => item.name === payload.name);
-      if (!lived) {
-        state.blogs.push({ name: payload.name, body: payload.data });
-      }
-    },
-    saveTheBlogConfig(state, payload) {
-      // 保存文章配置信息
-      state.blogConfig = payload.data;
-    },
     setHi(state, payload) {
       state.hi = payload.data;
     }

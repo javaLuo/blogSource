@@ -1,4 +1,7 @@
 module.exports = {
   lintOnSave: false,
-  productionSourceMap: false
+  productionSourceMap: false,
+  css: {
+    extract: true
+  }
 };

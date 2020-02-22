@@ -58,7 +58,6 @@ export default {
             tags.add(this.firstUpperCase(item2));
           });
         });
-        console.log("waht:", tags);
         return Array.from(tags).sort();
       }
     })
@@ -140,7 +139,7 @@ export default {
         word-break: break-all;
         word-wrap: break-word;
         &:nth-child(even) {
-          background-color: #f0f0f0;
+          background-color: #dfdfdf;
         }
         &:hover {
           color: #108ee9;
