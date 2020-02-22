@@ -225,7 +225,7 @@ export default {
         width: 100%;
         height: 100vh;
         min-height: 300px;
-        background-color: #fff;
+        background-color: #f0f0f0;
         &.foot-page {
           height: 300px;
         }

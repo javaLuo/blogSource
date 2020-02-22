@@ -21,6 +21,38 @@ export const blogs = [
     type: 1,
     date: "2019/02/22",
     tags: ["作品", "canvas"]
+  },
+  {
+    id: "algorithm",
+    name: "这一次，彻底搞清楚Date对象在Chrome和Safari中的坑",
+    info: "什么GMT、UTC、夏令时，受够了",
+    type: 1,
+    date: "2019/02/22",
+    tags: ["作品", "canvas"]
+  },
+  {
+    id: "along",
+    name: "独行者",
+    info: "在C世界的边缘地带，只有一扇窗户，其余三面被书籍围住",
+    type: 3,
+    date: "2012/10/17",
+    tags: ["日志"]
+  },
+  {
+    id: "algorithm",
+    name: "基础算法",
+    info: "基础算法记录 上学时写得都很溜，现在全忘了",
+    type: 3,
+    date: "2018/06/02",
+    tags: ["js"]
+  },
+  {
+    id: "b_night_snow",
+    name: "夜雪",
+    info: "青春岁月留下的痕迹",
+    type: 3,
+    date: "2008/04/04",
+    tags: ["日志"]
   }
 ];
 
