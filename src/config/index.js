@@ -23,14 +23,6 @@ export const blogs = [
     tags: ["作品", "canvas"]
   },
   {
-    id: "algorithm",
-    name: "这一次，彻底搞清楚Date对象在Chrome和Safari中的坑",
-    info: "什么GMT、UTC、夏令时，受够了",
-    type: 1,
-    date: "2019/02/22",
-    tags: ["作品", "canvas"]
-  },
-  {
     id: "along",
     name: "独行者",
     info: "在C世界的边缘地带，只有一扇窗户，其余三面被书籍围住",

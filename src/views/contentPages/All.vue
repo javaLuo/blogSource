@@ -153,6 +153,11 @@ export default {
     .search-input {
       margin-left: 20px;
       width: 200px;
+      /deep/.el-input__inner {
+        background-color: transparent;
+        border: none;
+        border-bottom: solid 1px #ccc;
+      }
     }
   }
 }
