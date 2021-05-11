@@ -13,7 +13,7 @@
     "element-ui": "^2.13.0",
     "gitalk": "^1.6.0",
     "iscroll": "^5.2.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "register-service-worker": "^1.6.2",
     "showdown": "^1.9.1",
     "showdown-prettify": "^1.3.0",
